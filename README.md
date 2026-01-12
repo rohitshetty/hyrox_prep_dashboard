@@ -1,5 +1,9 @@
 # Hyrox Training Prep
 
+(Disclaimer: The plans are not accurate, and work in progress. This app was vibe coded to explore training plan visualization)
+
+(Homecooked software)
+
 A training command center dashboard for Hyrox race preparation. Visualizes your weekly training schedule including running, strength, and Hyrox station workouts.
 
 ## Tech Stack
