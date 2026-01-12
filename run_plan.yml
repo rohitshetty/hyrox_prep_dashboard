@@ -1,0 +1,421 @@
+# Hyrox Training Plan
+# Source: plan.md
+
+meta:
+  targetRace: April 12, 2026
+  goalTime: Sub 70 minutes
+  duration: 12 weeks
+  startDate: January 13, 2026
+
+paces:
+  - zone: E
+    name: Easy
+    pace: "6:15-6:50/km"
+    purpose: Aerobic base, recovery
+  - zone: M
+    name: Marathon
+    pace: "5:55/km"
+    purpose: Race simulation
+  - zone: T
+    name: Threshold
+    pace: "5:26/km"
+    purpose: Lactate clearance
+  - zone: I
+    name: Interval
+    pace: "4:58/km"
+    purpose: VO2max development
+  - zone: R
+    name: Repetition
+    pace: "4:39/km"
+    purpose: Speed & running economy
+
+weeklyStructure:
+  - day: Monday
+    session: Tempo Run
+    focus: Threshold development
+  - day: Tuesday
+    session: CrossFit
+    focus: Strength/Mobility
+  - day: Wednesday
+    session: Easy Run
+    focus: Recovery & aerobic base
+  - day: Thursday
+    session: CrossFit
+    focus: Strength/Mobility
+  - day: Friday
+    session: Interval Run
+    focus: VO2max & speed
+  - day: Saturday
+    session: Long Run
+    focus: Endurance building
+  - day: Sunday
+    session: Rest
+    focus: Recovery
+
+phases:
+  - name: Base
+    weeks: "1-2"
+    focus: Aerobic foundation
+    volume: 36-38 km
+  - name: Build
+    weeks: "3"
+    focus: Volume increase
+    volume: 46 km
+  - name: Recovery
+    weeks: "4"
+    focus: Adaptation
+    volume: 27 km
+  - name: Build
+    weeks: "5-7"
+    focus: Intensity & volume
+    volume: 48-54 km
+  - name: Recovery
+    weeks: "8"
+    focus: Adaptation
+    volume: 35 km
+  - name: Peak
+    weeks: "9-10"
+    focus: Race-specific fitness
+    volume: 54-57 km
+  - name: Taper
+    weeks: "11-12"
+    focus: Freshness & sharpening
+    volume: 42-20 km
+
+weeks:
+  - name: Week 1
+    dates: Jan 13-19
+    phase: Base
+    volume: 36 km
+    philosophy: Building aerobic foundation and establishing consistent training rhythm. Focus on easy effort and developing running economy.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 8 km
+        details: 2km E + 2x10min T (3min jog) + 2km E
+      - day: Wed
+        type: Easy
+        distance: 6 km
+        details: Steady E pace throughout
+      - day: Fri
+        type: Intervals
+        distance: 8 km
+        details: 2km E + 6x800m I (2min jog) + 2km E
+      - day: Sat
+        type: Long Run
+        distance: 14 km
+        details: E pace, conversational
+
+  - name: Week 2
+    dates: Jan 20-26
+    phase: Base
+    volume: 38 km
+    philosophy: Building aerobic foundation and establishing consistent training rhythm. Focus on easy effort and developing running economy.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 8 km
+        details: 2km E + 15min T + 3min jog + 10min T + 2km E
+      - day: Wed
+        type: Easy
+        distance: 6 km
+        details: Steady E pace throughout
+      - day: Fri
+        type: Intervals
+        distance: 9 km
+        details: 2km E + 5x1000m I (2min jog) + 2km E
+      - day: Sat
+        type: Long Run
+        distance: 15 km
+        details: E pace with 2x5min M in middle
+
+  - name: Week 3
+    dates: Jan 27 - Feb 2
+    phase: Build
+    volume: 46 km
+    philosophy: Progressive overload phase. Increasing volume and introducing more quality work to develop race-specific fitness.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 10 km
+        details: 2km E + 20min T + 3min jog + 15min T + 2km E
+      - day: Wed
+        type: Easy
+        distance: 8 km
+        details: Steady E pace throughout
+      - day: Fri
+        type: Intervals
+        distance: 10 km
+        details: 2km E + 6x1000m I (90s jog) + 2km E
+      - day: Sat
+        type: Long Run
+        distance: 18 km
+        details: E pace, negative split last 4km
+
+  - name: Week 4
+    dates: Feb 3-9
+    phase: Recovery
+    volume: 27 km
+    philosophy: Adaptation week. Reduced volume allows your body to absorb training stress and come back stronger.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 6 km
+        details: 2km E + 12min T + 2km E
+      - day: Wed
+        type: Easy
+        distance: 5 km
+        details: Very easy, recovery focus
+      - day: Fri
+        type: Intervals
+        distance: 5 km
+        details: 2km E + 4x600m I (2min jog) + 1km E
+      - day: Sat
+        type: Long Run
+        distance: 11 km
+        details: E pace, relaxed
+
+  - name: Week 5
+    dates: Feb 10-16
+    phase: Build
+    volume: 48 km
+    philosophy: Progressive overload phase. Increasing volume and introducing more quality work to develop race-specific fitness.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 10 km
+        details: 2km E + 2x15min T (3min jog) + 2km E
+      - day: Wed
+        type: Easy
+        distance: 8 km
+        details: Steady E pace throughout
+      - day: Fri
+        type: Intervals
+        distance: 11 km
+        details: 2km E + 7x1000m I (90s jog) + 2km E
+      - day: Sat
+        type: Long Run
+        distance: 19 km
+        details: E pace with 3x5min M efforts
+
+  - name: Week 6
+    dates: Feb 17-23
+    phase: Build
+    volume: 50 km
+    philosophy: Progressive overload phase. Increasing volume and introducing more quality work to develop race-specific fitness.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 11 km
+        details: 2km E + 25min T + 3min jog + 10min T + 2km E
+      - day: Wed
+        type: Easy
+        distance: 8 km
+        details: Steady E pace throughout
+      - day: Fri
+        type: Intervals
+        distance: 11 km
+        details: 2km E + 8x1000m I (90s jog) + 2km E
+      - day: Sat
+        type: Long Run
+        distance: 20 km
+        details: E pace, last 5km at M pace
+
+  - name: Week 7
+    dates: Feb 24 - Mar 2
+    phase: Build
+    volume: 54 km
+    philosophy: Progressive overload phase. Increasing volume and introducing more quality work to develop race-specific fitness.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 12 km
+        details: 2km E + 30min T + 3min jog + 10min T + 2km E
+      - day: Wed
+        type: Easy
+        distance: 9 km
+        details: Steady E pace throughout
+      - day: Fri
+        type: Intervals
+        distance: 12 km
+        details: 2km E + 5x1600m I (2min jog) + 2km E
+      - day: Sat
+        type: Long Run
+        distance: 21 km
+        details: E pace with 4x5min M efforts
+
+  - name: Week 8
+    dates: Mar 3-9
+    phase: Recovery
+    volume: 35 km
+    philosophy: Adaptation week. Reduced volume allows your body to absorb training stress and come back stronger.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 8 km
+        details: 2km E + 15min T + 2km E
+      - day: Wed
+        type: Easy
+        distance: 6 km
+        details: Very easy, recovery focus
+      - day: Fri
+        type: Intervals
+        distance: 7 km
+        details: 2km E + 5x800m I (2min jog) + 1km E
+      - day: Sat
+        type: Long Run
+        distance: 14 km
+        details: E pace, relaxed
+
+  - name: Week 9
+    dates: Mar 10-16
+    phase: Peak
+    volume: 54 km
+    philosophy: Maximum race-specific training. Highest quality sessions to sharpen fitness for race day performance.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 12 km
+        details: 2km E + 2x20min T (3min jog) + 2km E
+      - day: Wed
+        type: Easy
+        distance: 9 km
+        details: Steady E pace throughout
+      - day: Fri
+        type: Intervals
+        distance: 12 km
+        details: 2km E + 10x800m I (90s jog) + 2km E
+      - day: Sat
+        type: Long Run
+        distance: 21 km
+        details: "Hyrox Sim: 8x1km at M pace (2min jog between) + E cooldown"
+
+  - name: Week 10
+    dates: Mar 17-23
+    phase: Peak
+    volume: 57 km
+    philosophy: Maximum race-specific training. Highest quality sessions to sharpen fitness for race day performance.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 13 km
+        details: 2km E + 35min T + 2km E
+      - day: Wed
+        type: Easy
+        distance: 9 km
+        details: Steady E pace throughout
+      - day: Fri
+        type: Intervals
+        distance: 13 km
+        details: 2km E + 6x1200m I (90s jog) + 2km E
+      - day: Sat
+        type: Long Run
+        distance: 22 km
+        details: E pace with 6x1km at M pace scattered throughout
+
+  - name: Week 11
+    dates: Mar 24-30
+    phase: Taper
+    volume: 42 km
+    philosophy: Reducing volume while maintaining intensity. Letting your body freshen up while staying sharp.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 10 km
+        details: 2km E + 20min T + 2km E
+      - day: Wed
+        type: Easy
+        distance: 7 km
+        details: Steady E pace, stay fresh
+      - day: Fri
+        type: Intervals
+        distance: 9 km
+        details: 2km E + 8x600m I (90s jog) + 2km E
+      - day: Sat
+        type: Long Run
+        distance: 16 km
+        details: "Hyrox Sim: 8x1km at race effort (90s jog)"
+
+  - name: Week 12
+    dates: Mar 31 - Apr 6
+    phase: Taper
+    volume: 20 km
+    philosophy: Reducing volume while maintaining intensity. Letting your body freshen up while staying sharp.
+    workouts:
+      - day: Mon
+        type: Tempo
+        distance: 6 km
+        details: 2km E + 10min T + 2km E
+      - day: Wed
+        type: Easy
+        distance: 5 km
+        details: Shakeout, very easy
+      - day: Fri
+        type: Intervals
+        distance: 5 km
+        details: 1km E + 6x400m R (full recovery) + 1km E
+      - day: Sat
+        type: Long Run
+        distance: 4 km
+        details: Easy jog, confidence builder
+
+  - name: Race Week
+    dates: Apr 7-12
+    phase: Race
+    volume: "~14 km"
+    philosophy: Race week protocol. Minimal volume, short sharpening sessions, and mental preparation for race day.
+    workouts:
+      - day: Mon
+        type: Easy
+        distance: 4 km
+        details: Shakeout run, very easy
+      - day: Wed
+        type: Strides
+        distance: 3 km
+        details: 1km E + 4x200m R (full recovery) + 1km E
+      - day: Fri
+        type: Rest
+        distance: 0 km
+        details: Complete rest or light walk
+      - day: Sat
+        type: RACE
+        distance: 8 km
+        details: Hyrox - GO TIME!
+
+hyroxNotes:
+  - title: Running in Hyrox
+    description: 8 x 1km runs between workout stations
+  - title: Target 1km pace
+    description: "~5:00-5:15/km (for sub-70 finish)"
+  - title: Week 9 & 11 Long Runs
+    description: Simulate Hyrox running pattern with 8x1km efforts
+  - title: Recovery between stations
+    description: Practice quick transitions in training
+
+totals:
+  totalDistance: 514
+  byType:
+    Tempo:
+      distance: 112
+      count: 12
+      percentage: 21.8
+    Easy:
+      distance: 88
+      count: 13
+      percentage: 17.1
+    Intervals:
+      distance: 111
+      count: 12
+      percentage: 21.6
+    Long Run:
+      distance: 195
+      count: 12
+      percentage: 37.9
+    Strides:
+      distance: 3
+      count: 1
+      percentage: 0.6
+    Other:
+      distance: 5
+      count: 1
+      percentage: 1.0

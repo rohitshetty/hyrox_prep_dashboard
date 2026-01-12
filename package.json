@@ -1,0 +1,14 @@
+{
+  "name": "hyrox-prep",
+  "version": "1.0.0",
+  "description": "Hyrox Training Plan Visualizer",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch"
+  },
+  "dependencies": {
+    "nunjucks": "^3.2.4",
+    "js-yaml": "^4.1.0",
+    "chokidar": "^3.6.0"
+  }
+}

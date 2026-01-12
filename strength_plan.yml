@@ -1,0 +1,622 @@
+# Strength Training Plan for Hyrox
+# Full 5-Day PPL integrated with running schedule
+# Based on PPL hypertrophy methodology from context
+
+meta:
+  goal: Build strength + muscle for Hyrox and body recomposition
+  frequency: 5 strength sessions/week integrated with 4 runs
+  duration: 40-60 min (longer on Saturday)
+  cycleLength: 4 weeks
+  philosophy: |
+    Full PPL split integrated with Hyrox running. Each strength day is paired
+    strategically with running to optimize recovery. Thursday stays light per
+    your preference. Saturday allows longer combined sessions. This supports
+    both your aesthetic/muscle goals AND Hyrox performance.
+
+# Weekly Schedule - How it all fits together
+weeklySchedule:
+  monday:
+    primary: Tempo Run
+    secondary: "PPL Day 1 - Squat Focus"
+    duration: 90-100 min total (50 run + 40 weights)
+    notes: Tempo run first, then squat session. Big training day.
+
+  tuesday:
+    primary: "Hyrox Station Day"
+    secondary: null
+    duration: 45-60 min
+    notes: Dedicated Hyrox work. No running, no heavy lifting. See hyrox_plan.yml.
+
+  wednesday:
+    primary: Easy Run
+    secondary: "PPL Day 4 - Upper Hypertrophy"
+    duration: 60 min total (30 run + 30 weights)
+    notes: Easy run first, then light upper pump work.
+
+  thursday:
+    primary: "PPL Day 2 - Bench Focus (Light)"
+    secondary: "Hyrox Station Work (Light)"
+    duration: 50-60 min
+    notes: Light bench + light Hyrox practice. Keep intensity low before Friday intervals.
+
+  friday:
+    primary: Interval Run
+    secondary: "PPL Day 5 - Lower Hypertrophy (Brief)"
+    duration: 60 min total (45 run + 15 accessory)
+    notes: Intervals first. Brief leg accessories after - no heavy squats.
+
+  saturday:
+    primary: Long Run
+    secondary: "PPL Day 3 - Deadlift Focus"
+    duration: 90-120 min total
+    notes: Long run AM, deadlift session PM. Your big training day.
+
+  sunday:
+    primary: Rest
+    secondary: null
+    notes: Full recovery. Optional light stretching/walk.
+
+# Reference maxes (from context)
+maxes:
+  squat: 110  # kg, 3x3
+  deadlift: 140  # kg, 1RM
+  bench: 75  # kg, 1RM
+
+# 4-Week Periodization (matches running plan recovery weeks)
+periodization:
+  week1:
+    name: Volume
+    squat: "5x5 @ 77 kg (70%)"
+    bench: "5x5 @ 52 kg (70%)"
+    deadlift: "4x5 @ 98 kg (70%)"
+    philosophy: Build work capacity. Moderate weight, higher volume. Perfect form.
+  week2:
+    name: Volume+
+    squat: "5x4 @ 82 kg (75%)"
+    bench: "5x4 @ 56 kg (75%)"
+    deadlift: "4x4 @ 105 kg (75%)"
+    philosophy: Progressive overload. Slight weight increase, maintain quality.
+  week3:
+    name: Intensity
+    squat: "5x3 @ 88 kg (80%)"
+    bench: "5x3 @ 60 kg (80%)"
+    deadlift: "5x3 @ 112 kg (80%)"
+    philosophy: Heavier weights, lower reps. Building peak strength.
+  week4:
+    name: Deload
+    squat: "3x5 @ 72 kg (65%)"
+    bench: "3x5 @ 49 kg (65%)"
+    deadlift: "3x5 @ 91 kg (65%)"
+    philosophy: Recovery week. Matches running recovery. Reduced volume, maintain movement.
+
+# Full 4-Week Cycle Detail
+weeks:
+  # ============ WEEK 1 - VOLUME ============
+  - week: 1
+    phase: Volume
+    philosophy: Build work capacity with moderate weights and higher reps. Focus on form.
+
+    monday:
+      name: "Day 1 - Squat Focus (after Tempo Run)"
+      duration: 55 min
+      warmup: "10 min: bike + dynamic stretches + empty bar squats"
+      exercises:
+        - name: Back Squat
+          sets: 5
+          reps: 5
+          weight: 77 kg
+          notes: "70% of 110kg. Controlled descent, drive up."
+        - name: Paused Squats
+          sets: 3
+          reps: 3
+          weight: 70 kg
+          notes: "3 sec pause at bottom. Build strength out of hole."
+        - name: RDL
+          sets: 3
+          reps: 8
+          weight: 80 kg
+          notes: Hamstring stretch, squeeze glutes at top.
+        - name: Leg Curls
+          sets: 3
+          reps: 12
+          weight: moderate
+          notes: Slow eccentric.
+        - name: Core - Planks
+          sets: 3
+          duration: 45s
+          notes: Brace hard, don't sag.
+
+    wednesday:
+      name: "Day 4 - Upper Hypertrophy (after Easy Run)"
+      duration: 30 min (run done separately)
+      warmup: Already warm from run
+      exercises:
+        - name: Incline Dumbbell Bench
+          sets: 4
+          reps: 6
+          weight: 25 kg each
+          notes: Upper chest focus.
+        - name: Dumbbell Bench
+          sets: 3
+          reps: 10
+          weight: 22 kg each
+          notes: Full ROM, squeeze at top.
+        - name: Pull-ups
+          sets: 4
+          reps: "6-8"
+          notes: Full dead hang each rep.
+        - name: Seated Shoulder Press
+          sets: 3
+          reps: 8
+          weight: 20 kg each
+          notes: No back arch.
+        - name: Face Pulls
+          sets: 3
+          reps: 15
+          notes: Shoulder health.
+
+    thursday:
+      name: "Day 2 - Bench Focus (Light) + Hyrox"
+      duration: 55 min total
+      notes: Light bench work + light Hyrox practice. Keep intensity low.
+      warmup: "5 min: band pull-aparts, arm circles"
+      exercises:
+        - name: Barbell Bench Press
+          sets: 4
+          reps: 6
+          weight: 52 kg
+          notes: "70%, controlled. Not grinding."
+        - name: Close Grip Bench
+          sets: 3
+          reps: 8
+          weight: 45 kg
+          notes: Tricep focus.
+        - name: Barbell Rows
+          sets: 3
+          reps: 8
+          weight: 60 kg
+          notes: Strict form.
+        - name: Tricep Pushdowns
+          sets: 2
+          reps: 15
+          notes: Light pump work.
+      hyrox:
+        - name: Wall Balls (Light)
+          sets: 3
+          reps: 15
+          notes: Technique focus, not intensity. Practice rhythm.
+        - name: Farmers Carry
+          prescription: "2 x 50m @ 20 kg"
+          notes: Light grip work. Stay fresh for Friday.
+
+    friday:
+      name: "Day 5 - Lower Hypertrophy (Brief, after Intervals)"
+      duration: 20 min (intervals done separately)
+      notes: Legs already worked from intervals. Keep this brief.
+      exercises:
+        - name: Split Squats
+          sets: 3
+          reps: 8 each leg
+          weight: 16 kg KB
+          notes: Balance and single-leg strength.
+        - name: Glute Bridges
+          sets: 3
+          reps: 12
+          weight: 60 kg
+          notes: Squeeze at top.
+        - name: Calf Raises
+          sets: 3
+          reps: 15
+          notes: Full ROM.
+        - name: Core Circuit
+          sets: 2
+          exercises: "Dead bugs 10/side + Bird dogs 10/side"
+
+    saturday:
+      name: "Day 3 - Deadlift Focus (after Long Run)"
+      duration: 50-60 min
+      notes: Do this session 2-3 hours after long run, or PM if run is AM.
+      warmup: "10 min: light rowing + hip hinges + light pulls"
+      exercises:
+        - name: Deadlift
+          sets: 4
+          reps: 5
+          weight: 98 kg
+          notes: "70% of 140kg. Reset each rep."
+        - name: Pause Deadlift
+          sets: 2
+          reps: 3
+          weight: 80 kg
+          notes: Pause 2 inches off floor. Build off-floor strength.
+        - name: Hip Thrust
+          sets: 4
+          reps: 8
+          weight: 100 kg
+          notes: Glute lockout, pause at top.
+        - name: Back Extensions
+          sets: 3
+          reps: 12
+          notes: Slow and controlled.
+        - name: Grip Work - Farmers Hold
+          sets: 3
+          duration: 30s
+          weight: 28 kg each
+          notes: Hyrox carryover.
+
+  # ============ WEEK 2 - VOLUME+ ============
+  - week: 2
+    phase: Volume+
+    philosophy: Progressive overload. Add 5% weight, maintain rep quality.
+
+    monday:
+      name: "Day 1 - Squat Focus (after Tempo Run)"
+      duration: 55 min
+      exercises:
+        - name: Back Squat
+          sets: 5
+          reps: 4
+          weight: 82 kg
+          notes: "75%. Fewer reps, heavier weight."
+        - name: Paused Squats
+          sets: 3
+          reps: 3
+          weight: 75 kg
+        - name: RDL
+          sets: 3
+          reps: 8
+          weight: 85 kg
+        - name: Leg Curls
+          sets: 3
+          reps: 12
+        - name: Ab Wheel
+          sets: 3
+          reps: 10
+
+    wednesday:
+      name: "Day 4 - Upper Hypertrophy"
+      duration: 30 min
+      exercises:
+        - name: Incline Dumbbell Bench
+          sets: 4
+          reps: 6
+          weight: 27 kg each
+        - name: Dumbbell Bench
+          sets: 3
+          reps: 10
+          weight: 25 kg each
+        - name: Pull-ups
+          sets: 4
+          reps: "6-8"
+          notes: Add light weight if needed.
+        - name: Chest Supported Rows
+          sets: 3
+          reps: 10
+          weight: 25 kg each
+        - name: Bicep Curls
+          sets: 3
+          reps: 12
+          weight: 12.5 kg each
+
+    thursday:
+      name: "Day 2 - Bench Focus (Light) + Hyrox"
+      duration: 55 min
+      exercises:
+        - name: Barbell Bench Press
+          sets: 4
+          reps: 5
+          weight: 56 kg
+          notes: "75%, still controlled."
+        - name: Close Grip Bench
+          sets: 3
+          reps: 6
+          weight: 50 kg
+        - name: Barbell Rows
+          sets: 3
+          reps: 8
+          weight: 65 kg
+        - name: Dips
+          sets: 3
+          reps: "8-10"
+      hyrox:
+        - name: SkiErg (Light)
+          prescription: "2 x 500m @ easy pace"
+          rest: 60s
+          notes: Technique and rhythm, not speed.
+        - name: Rowing (Light)
+          prescription: "500m @ 2:20 pace"
+          notes: Easy effort. Movement practice.
+
+    friday:
+      name: "Day 5 - Lower Hypertrophy (Brief)"
+      duration: 20 min
+      exercises:
+        - name: Front Squat
+          sets: 3
+          reps: 5
+          weight: 60 kg
+          notes: Light, upright torso practice.
+        - name: Walking Lunges
+          sets: 2
+          reps: 12 each leg
+          weight: 16 kg KB
+        - name: Calf Raises
+          sets: 3
+          reps: 15
+
+    saturday:
+      name: "Day 3 - Deadlift Focus"
+      duration: 55 min
+      exercises:
+        - name: Deadlift
+          sets: 4
+          reps: 4
+          weight: 105 kg
+          notes: "75%"
+        - name: Deficit Deadlift
+          sets: 2
+          reps: 3
+          weight: 85 kg
+          notes: "2 inch deficit. Build strength off floor."
+        - name: Hip Thrust
+          sets: 4
+          reps: 8
+          weight: 110 kg
+        - name: Back Extensions
+          sets: 3
+          reps: 12
+        - name: "HYROX: Sled Push"
+          prescription: "3 x 50m @ race weight"
+          rest: 2 min
+          notes: Practice after deadlifts - fatigued state.
+
+  # ============ WEEK 3 - INTENSITY ============
+  - week: 3
+    phase: Intensity
+    philosophy: Heavier weights, lower reps. Peak strength development.
+
+    monday:
+      name: "Day 1 - Squat Focus (after Tempo Run)"
+      duration: 55 min
+      exercises:
+        - name: Back Squat
+          sets: 5
+          reps: 3
+          weight: 88 kg
+          notes: "80%. Quality triples."
+        - name: Paused Squats
+          sets: 3
+          reps: 3
+          weight: 80 kg
+        - name: RDL
+          sets: 3
+          reps: 6
+          weight: 90 kg
+        - name: Leg Curls
+          sets: 3
+          reps: 10
+        - name: Hanging Leg Raises
+          sets: 3
+          reps: 10
+
+    wednesday:
+      name: "Day 4 - Upper Hypertrophy"
+      duration: 30 min
+      exercises:
+        - name: Incline Dumbbell Bench
+          sets: 4
+          reps: 6
+          weight: 30 kg each
+        - name: Weighted Pull-ups
+          sets: 4
+          reps: 5
+          weight: "+5 kg"
+        - name: Seated Shoulder Press
+          sets: 3
+          reps: 6
+          weight: 22 kg each
+        - name: Cable Rows (or barbell)
+          sets: 3
+          reps: 8
+          weight: heavy
+        - name: Tricep Dips
+          sets: 3
+          reps: "8-10"
+
+    thursday:
+      name: "Day 2 - Bench Focus (Light) + Hyrox"
+      duration: 55 min
+      notes: "Keep bench moderate even in intensity week - Thursday stays light."
+      exercises:
+        - name: Barbell Bench Press
+          sets: 4
+          reps: 5
+          weight: 56 kg
+          notes: "Still 75% - maintain Thursday as lighter day."
+        - name: Close Grip Bench
+          sets: 3
+          reps: 5
+          weight: 52 kg
+        - name: Pendlay Rows
+          sets: 3
+          reps: 6
+          weight: 70 kg
+      hyrox:
+        - name: Burpee Broad Jumps (Light)
+          prescription: "2 x 20m"
+          rest: 60s
+          notes: Practice pacing and technique. Not for speed.
+        - name: Sled Pull (Light)
+          prescription: "2 x 25m @ 80 kg"
+          notes: Hand-over-hand rhythm practice.
+
+    friday:
+      name: "Day 5 - Lower Hypertrophy (Brief)"
+      duration: 20 min
+      exercises:
+        - name: Goblet Squats
+          sets: 3
+          reps: 10
+          weight: 24 kg
+        - name: Single Leg RDL
+          sets: 2
+          reps: 8 each
+          weight: 16 kg
+        - name: Box Jumps
+          sets: 3
+          reps: 5
+          notes: Power development. Full recovery between.
+
+    saturday:
+      name: "Day 3 - Deadlift Focus"
+      duration: 55 min
+      exercises:
+        - name: Deadlift
+          sets: 5
+          reps: 3
+          weight: 112 kg
+          notes: "80%. Heavy triples."
+        - name: Pause Deadlift
+          sets: 2
+          reps: 3
+          weight: 90 kg
+        - name: Hip Thrust
+          sets: 4
+          reps: 6
+          weight: 120 kg
+        - name: "HYROX: Farmers Carry"
+          prescription: "200m @ 28 kg each"
+          notes: Full race distance, overload weight.
+        - name: Grip Holds
+          sets: 3
+          duration: 45s
+          weight: 30 kg each
+
+  # ============ WEEK 4 - DELOAD ============
+  - week: 4
+    phase: Deload
+    philosophy: Recovery week. Matches running recovery. Reduce volume 40%, maintain movement.
+
+    tuesday:
+      name: "Day 1 - Squat Focus (Light)"
+      duration: 40 min
+      exercises:
+        - name: Back Squat
+          sets: 3
+          reps: 5
+          weight: 72 kg
+          notes: "65%. Perfect form, no grinding."
+        - name: RDL
+          sets: 2
+          reps: 8
+          weight: 70 kg
+        - name: Bodyweight Lunges
+          sets: 2
+          reps: 10 each
+        - name: Core - Planks
+          sets: 2
+          duration: 45s
+
+    wednesday:
+      name: "Day 4 - Upper Hypertrophy (Light)"
+      duration: 25 min
+      exercises:
+        - name: Push-ups
+          sets: 3
+          reps: 15
+        - name: Pull-ups
+          sets: 3
+          reps: "5-6"
+        - name: Band Face Pulls
+          sets: 3
+          reps: 15
+        - name: Light Shoulder Press
+          sets: 2
+          reps: 10
+          weight: 15 kg each
+
+    thursday:
+      name: "Day 2 - Bench Focus (Light) + Hyrox"
+      duration: 45 min
+      notes: Deload week - very light everything.
+      exercises:
+        - name: Barbell Bench Press
+          sets: 3
+          reps: 8
+          weight: 45 kg
+          notes: Very light. Movement practice.
+        - name: Light Rows
+          sets: 3
+          reps: 10
+          weight: 50 kg
+      hyrox:
+        - name: Wall Balls (Light)
+          sets: 2
+          reps: 15
+          notes: Easy reps. Movement maintenance.
+        - name: Mobility Work
+          duration: 10 min
+          areas: "Hip flexors, thoracic spine, shoulders"
+
+    friday:
+      name: "Day 5 - Lower Hypertrophy (Light)"
+      duration: 15 min
+      exercises:
+        - name: Goblet Squat
+          sets: 2
+          reps: 10
+          weight: 16 kg
+        - name: Glute Bridges
+          sets: 2
+          reps: 15
+          weight: bodyweight
+        - name: Calf Stretch + Raises
+          sets: 2
+          reps: 12
+
+    saturday:
+      name: "Day 3 - Deadlift Focus (Light)"
+      duration: 40 min
+      exercises:
+        - name: Deadlift
+          sets: 3
+          reps: 5
+          weight: 91 kg
+          notes: "65%. Technique focus."
+        - name: Light Hip Thrust
+          sets: 3
+          reps: 10
+          weight: 80 kg
+        - name: "HYROX: Light Station Practice"
+          prescription: |
+            - 500m SkiErg easy
+            - 30 Wall Balls
+            - 2 x 25m light sled
+          notes: Movement maintenance, no intensity.
+
+# Progression Guide for Cycles 2 & 3
+cycleProgression:
+  cycle2:
+    weeks: "5-8"
+    adjustment: |
+      Add 2.5-5 kg to main lifts from Cycle 1.
+      Squat: 80-93 kg range
+      Bench: 55-65 kg range
+      Deadlift: 100-120 kg range
+    notes: Building phase. Volume increases slightly.
+
+  cycle3:
+    weeks: "9-12"
+    adjustment: |
+      Week 9-10: Peak weights - test new maxes
+      Week 11: Reduce to 70% for taper
+      Week 12: Very light or skip - race week
+    notes: Peak then taper for race.
+
+# Hyrox Carryover Notes
+hyroxCarryover:
+  squat: Wall Balls - explosive hip drive transfers directly
+  deadlift: Sled Pull - hip hinge pattern, posterior chain strength
+  bench: Sled Push - chest/shoulder pressing position
+  hipThrust: Sandbag Lunges - glute endurance for 100m lunges
+  rows: Farmers Carry - grip and upper back endurance
+  core: Everything - stability through all stations

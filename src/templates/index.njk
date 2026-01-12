@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hyrox Training Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>{{ css | safe }}</style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">HYROX PREP</div>
+        <div class="header-meta">
+          <div class="countdown">
+            <span class="countdown-value" id="countdown-days">--</span>
+            <span class="countdown-label">Days to Race</span>
+          </div>
+          <nav class="week-nav">
+            <button class="week-nav-btn" id="prev-week">&larr;</button>
+            <span class="week-nav-current" id="current-week-label">Week 1</span>
+            <button class="week-nav-btn" id="next-week">&rarr;</button>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="today-hero">
+      <div class="today-hero-inner">
+        <div class="today-header">
+          <div class="today-date-block">
+            <span class="today-label">Today</span>
+            <h1 class="today-day" id="today-day-name">Monday</h1>
+            <span class="today-full-date" id="today-full-date">January 13, 2026</span>
+          </div>
+          <div class="today-phase-block">
+            <span class="phase-badge" id="today-phase-badge" data-phase="base">Base</span>
+            <div class="week-title" id="today-week-title">Week 1 of 13</div>
+          </div>
+        </div>
+        <div class="today-philosophy">
+          <div class="philosophy-label">Week Focus</div>
+          <p class="philosophy-text" id="today-philosophy">Loading...</p>
+        </div>
+        <div class="today-schedule" id="today-schedule"></div>
+      </div>
+    </section>
+
+    <section class="week-view">
+      <div class="week-view-inner">
+        <div class="week-view-header">
+          <h2 class="week-view-title" id="week-view-title">Week 1 Overview</h2>
+          <div class="week-stats">
+            <div class="week-stat">
+              <span class="week-stat-value" id="week-total-km">36 km</span>
+              <span class="week-stat-label">Running Volume</span>
+            </div>
+            <div class="week-stat">
+              <span class="week-stat-value" id="week-strength-phase">Volume</span>
+              <span class="week-stat-label">Strength Phase</span>
+            </div>
+            <div class="week-stat">
+              <span class="week-stat-value" id="week-hyrox-focus">Foundation</span>
+              <span class="week-stat-label">Hyrox Cycle</span>
+            </div>
+          </div>
+        </div>
+        <div class="days-grid" id="days-grid"></div>
+        <div class="mileage-breakdown">
+          <h3 class="mileage-breakdown-title">Weekly Mileage by Type</h3>
+          <div class="mileage-bars" id="mileage-bars"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="progress-section">
+      <div class="progress-inner">
+        <div class="progress-header">
+          <h2 class="progress-title">Training Progress</h2>
+          <p class="progress-subtitle">Your journey to race day</p>
+        </div>
+        <div class="progress-grid">
+          <div class="progress-card">
+            <div class="progress-card-title">Total Plan Volume</div>
+            <div class="progress-big-number">{{ plan.totals.totalDistance }} <span>km</span></div>
+            <div class="progress-detail">Across 13 weeks of training</div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-title">Week Progress</div>
+            <div class="progress-big-number" id="weeks-completed">0 <span>/ 13</span></div>
+            <div class="weeks-timeline" id="weeks-timeline"></div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-title">Weekly Volume Chart</div>
+            <div class="mileage-chart" id="mileage-chart"></div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-title">Target Race Time</div>
+            <div class="progress-big-number">Sub 70 <span>min</span></div>
+            <div class="progress-detail">{{ plan.meta.targetRace }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stations-section">
+      <div class="stations-inner">
+        <div class="stations-header">
+          <h2 class="stations-title">Race Stations</h2>
+          <p class="stations-subtitle">8 functional fitness challenges between 1km runs</p>
+        </div>
+        <div class="stations-grid" id="stations-grid">
+          {% for station in hyrox.raceSpec.stations %}
+          <div class="station-card">
+            <div class="station-number">{{ loop.index }}</div>
+            <div class="station-content">
+              <h3 class="station-name">{{ station.name }}</h3>
+              <div class="station-spec">
+                {% if station.distance %}{{ station.distance }}{% endif %}
+                {% if station.reps %}{{ station.reps }} reps{% endif %}
+                {% if station.weight %} @ {{ station.weight }}{% endif %}
+              </div>
+              {% if station.targetTime %}
+              <div class="station-target">Target: {{ station.targetTime }}</div>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="hyrox-training-section">
+      <div class="hyrox-training-inner">
+        <div class="hyrox-training-header">
+          <h2 class="hyrox-training-title">Hyrox Training</h2>
+          <p class="hyrox-training-subtitle">This week's station work</p>
+        </div>
+        <div class="hyrox-workout-display" id="hyrox-workout-display"></div>
+      </div>
+    </section>
+
+    <section class="technique-section">
+      <div class="technique-inner">
+        <div class="technique-header">
+          <h2 class="technique-title">Station Technique Cues</h2>
+          <p class="technique-subtitle">Quick reference for proper form</p>
+        </div>
+        <div class="technique-grid">
+          {% for station, data in hyrox.stationTechnique %}
+          <div class="technique-card">
+            <h3 class="technique-station-name">{{ station | replace("skiErg", "SkiErg") | replace("sledPush", "Sled Push") | replace("sledPull", "Sled Pull") | replace("burpeeBroadJumps", "Burpee Broad Jumps") | replace("rowing", "Rowing") | replace("farmersCarry", "Farmers Carry") | replace("lunges", "Lunges") | replace("wallBalls", "Wall Balls") }}</h3>
+            <ul class="technique-cues">
+              {% for cue in data.cues %}
+              <li>{{ cue }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="race-strategy-section">
+      <div class="race-strategy-inner">
+        <div class="race-strategy-header">
+          <h2 class="race-strategy-title">Race Day Strategy</h2>
+          <p class="race-strategy-subtitle">Target: {{ hyrox.raceCard.target if hyrox.raceCard else "Sub 70:00" }}</p>
+        </div>
+        <div class="strategy-content">
+          <div class="strategy-card strategy-targets">
+            <h3 class="strategy-card-title">Station Targets</h3>
+            <div class="station-targets-list">
+              {% if hyrox.raceDayStrategy %}
+              {% for target in hyrox.raceDayStrategy.stationTargets %}
+              <div class="station-target-row">
+                <span class="target-station">{{ target.station }}</span>
+                <span class="target-time">{{ target.target }}</span>
+                <span class="target-strategy">{{ target.strategy }}</span>
+              </div>
+              {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+          <div class="strategy-card strategy-mental">
+            <h3 class="strategy-card-title">Mental Cues</h3>
+            {% if hyrox.raceDayStrategy %}
+            <div class="mental-cue-block">
+              <div class="mental-cue-label">First Half (Stations 1-4)</div>
+              <p class="mental-cue-text">{{ hyrox.raceDayStrategy.mentalCues.firstHalf | replace("\n", " ") | trim }}</p>
+            </div>
+            <div class="mental-cue-block">
+              <div class="mental-cue-label">Second Half (Stations 5-8)</div>
+              <p class="mental-cue-text">{{ hyrox.raceDayStrategy.mentalCues.secondHalf | replace("\n", " ") | trim }}</p>
+            </div>
+            {% endif %}
+          </div>
+          <div class="strategy-card strategy-mantra">
+            <h3 class="strategy-card-title">Race Mantra</h3>
+            <p class="mantra-text">{{ hyrox.raceCard.mantra if hyrox.raceCard else "Control the first half. Attack the second half. Trust the training." }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="paces-section">
+      <div class="paces-inner">
+        <div class="paces-header">
+          <h2 class="paces-title">Training Zones</h2>
+        </div>
+        <div class="paces-grid">
+          {% for pace in plan.paces %}
+          <div class="pace-card" data-zone="{{ pace.zone | lower }}">
+            <div class="pace-zone-letter">{{ pace.zone }}</div>
+            <div class="pace-name">{{ pace.name }}</div>
+            <div class="pace-value">{{ pace.pace }}</div>
+            <div class="pace-purpose">{{ pace.purpose }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Hyrox Training Command Center</p>
+      <p class="footer-meta">Race Day: {{ plan.meta.targetRace }}</p>
+    </footer>
+  </div>
+
+<script>
+const RACE_DATE = new Date('2026-04-12');
+const START_DATE = new Date('2026-01-12');
+
+// Run plan data from YAML
+const RUN_WEEKS = [
+  {% for week in plan.weeks %}
+  {
+    name: '{{ week.name }}',
+    dates: '{{ week.dates }}',
+    phase: '{{ week.phase }}',
+    volume: {% if week.volume == '~14 km' %}14{% else %}{{ week.volume | replace(' km', '') }}{% endif %},
+    philosophy: '{{ week.philosophy | replace("'", "\\'") | replace("\n", " ") }}',
+    workouts: [
+      {% for workout in week.workouts %}
+      { day: '{{ workout.day }}', type: '{{ workout.type }}', distance: {{ workout.distance | replace(' km', '') }}, details: '{{ workout.details | replace("'", "\\'") }}' }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+];
+
+// Strength phases cycle every 4 weeks
+const STRENGTH_PHASES = ['Volume', 'Volume+', 'Intensity', 'Deload'];
+
+// Strength base workouts by day
+const STRENGTH_BASE = {
+  monday: {
+    name: 'Squat Focus',
+    duration: '55 min',
+    exercises: [
+      { name: 'Back Squat', sets: 5, reps: 5, weight: '77 kg' },
+      { name: 'Paused Squats', sets: 3, reps: 3, weight: '70 kg' },
+      { name: 'RDL', sets: 3, reps: 8, weight: '80 kg' },
+      { name: 'Leg Curls', sets: 3, reps: 12, weight: 'moderate' },
+      { name: 'Core - Planks', sets: 3, reps: '45s', weight: '' }
+    ]
+  },
+  wednesday: {
+    name: 'Upper Hypertrophy',
+    duration: '30 min',
+    exercises: [
+      { name: 'Incline DB Bench', sets: 4, reps: 6, weight: '25 kg each' },
+      { name: 'Dumbbell Bench', sets: 3, reps: 10, weight: '22 kg each' },
+      { name: 'Pull-ups', sets: 4, reps: '6-8', weight: '' },
+      { name: 'Seated Shoulder Press', sets: 3, reps: 8, weight: '20 kg each' },
+      { name: 'Face Pulls', sets: 3, reps: 15, weight: '' }
+    ]
+  },
+  thursday: {
+    name: 'Bench Focus (Light)',
+    duration: '55 min',
+    exercises: [
+      { name: 'Barbell Bench Press', sets: 4, reps: 6, weight: '52 kg' },
+      { name: 'Close Grip Bench', sets: 3, reps: 8, weight: '45 kg' },
+      { name: 'Barbell Rows', sets: 3, reps: 8, weight: '60 kg' },
+      { name: 'Tricep Pushdowns', sets: 2, reps: 15, weight: '' }
+    ]
+  },
+  friday: {
+    name: 'Lower Hypertrophy (Brief)',
+    duration: '20 min',
+    exercises: [
+      { name: 'Split Squats', sets: 3, reps: '8 each', weight: '16 kg KB' },
+      { name: 'Glute Bridges', sets: 3, reps: 12, weight: '60 kg' },
+      { name: 'Calf Raises', sets: 3, reps: 15, weight: '' },
+      { name: 'Core Circuit', sets: 2, reps: '10/side', weight: '' }
+    ]
+  },
+  saturday: {
+    name: 'Deadlift Focus',
+    duration: '50-60 min',
+    exercises: [
+      { name: 'Deadlift', sets: 4, reps: 5, weight: '98 kg' },
+      { name: 'Pause Deadlift', sets: 2, reps: 3, weight: '80 kg' },
+      { name: 'Hip Thrust', sets: 4, reps: 8, weight: '100 kg' },
+      { name: 'Back Extensions', sets: 3, reps: 12, weight: '' },
+      { name: 'Farmers Hold', sets: 3, reps: '30s', weight: '28 kg each' }
+    ]
+  }
+};
+
+// Hyrox cycles
+const HYROX_CYCLES = {
+  foundation: {
+    name: 'Foundation',
+    weeks: [
+      { name: 'Station Introduction', duration: '55 min', focus: 'SkiErg + Wall Balls + Farmers Carry' },
+      { name: 'Sled Day', duration: '60 min', focus: 'Sled Push + Sled Pull + Rowing' },
+      { name: 'Full Body Circuit', duration: '60 min', focus: 'Mini circuit: BBJ + Wall Balls + Carry' },
+      { name: 'Recovery - Technique', duration: '35 min', focus: 'Light movement practice' }
+    ]
+  },
+  build: {
+    name: 'Build',
+    weeks: [
+      { name: 'Race Weight Intro', duration: '65 min', focus: 'SkiErg 1000m + Sled @ race weight' },
+      { name: 'Half Simulation', duration: '70 min', focus: '4 stations with 500m runs between' },
+      { name: 'Overload Training', duration: '70 min', focus: 'Sled @ 170kg + heavy carries' },
+      { name: 'Recovery Week', duration: '35 min', focus: 'Light station practice' }
+    ]
+  },
+  peak: {
+    name: 'Peak & Taper',
+    weeks: [
+      { name: 'Full Race Simulation', duration: '80-95 min', focus: '8 stations at race weight' },
+      { name: 'Peak Performance', duration: '60 min', focus: 'Race pace transitions' },
+      { name: 'Sharpening', duration: '45 min', focus: 'Abbreviated simulation' },
+      { name: 'Race Week', duration: '20 min', focus: 'Light activation only' }
+    ]
+  }
+};
+
+// Detailed Hyrox workouts from YAML (indexed by week 0-12)
+const HYROX_WORKOUTS = [
+  {% for cycle in hyrox.cycles %}
+  {% if cycle.week1 %}
+  // Week {{ loop.index * 4 - 3 }} ({{ cycle.name }})
+  {
+    phase: '{{ cycle.week1.phase }}',
+    theme: '{{ cycle.week1.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week1.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week1.tuesday.duration }}',
+      warmup: '{{ cycle.week1.tuesday.warmup | replace("'", "\\'") if cycle.week1.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week1.tuesday.cooldown | replace("'", "\\'") if cycle.week1.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week1.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week2 %}
+  // Week {{ loop.index * 4 - 2 }}
+  {
+    phase: '{{ cycle.week2.phase }}',
+    theme: '{{ cycle.week2.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week2.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week2.tuesday.duration }}',
+      warmup: '{{ cycle.week2.tuesday.warmup | replace("'", "\\'") if cycle.week2.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week2.tuesday.cooldown | replace("'", "\\'") if cycle.week2.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week2.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week3 %}
+  // Week {{ loop.index * 4 - 1 }}
+  {
+    phase: '{{ cycle.week3.phase }}',
+    theme: '{{ cycle.week3.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week3.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week3.tuesday.duration }}',
+      warmup: '{{ cycle.week3.tuesday.warmup | replace("'", "\\'") if cycle.week3.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week3.tuesday.cooldown | replace("'", "\\'") if cycle.week3.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week3.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week4 %}
+  // Week {{ loop.index * 4 }}
+  {
+    phase: '{{ cycle.week4.phase }}',
+    theme: '{{ cycle.week4.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week4.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week4.tuesday.duration }}',
+      warmup: '{{ cycle.week4.tuesday.warmup | replace("'", "\\'") if cycle.week4.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week4.tuesday.cooldown | replace("'", "\\'") if cycle.week4.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week4.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week5 %}
+  // Week 5
+  {
+    phase: '{{ cycle.week5.phase }}',
+    theme: '{{ cycle.week5.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week5.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week5.tuesday.duration }}',
+      warmup: '{{ cycle.week5.tuesday.warmup | replace("'", "\\'") if cycle.week5.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week5.tuesday.cooldown | replace("'", "\\'") if cycle.week5.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week5.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week6 %}
+  // Week 6
+  {
+    phase: '{{ cycle.week6.phase }}',
+    theme: '{{ cycle.week6.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week6.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week6.tuesday.duration }}',
+      warmup: '{{ cycle.week6.tuesday.warmup | replace("'", "\\'") if cycle.week6.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week6.tuesday.cooldown | replace("'", "\\'") if cycle.week6.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week6.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week7 %}
+  // Week 7
+  {
+    phase: '{{ cycle.week7.phase }}',
+    theme: '{{ cycle.week7.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week7.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week7.tuesday.duration }}',
+      warmup: '{{ cycle.week7.tuesday.warmup | replace("'", "\\'") if cycle.week7.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week7.tuesday.cooldown | replace("'", "\\'") if cycle.week7.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week7.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week8 %}
+  // Week 8
+  {
+    phase: '{{ cycle.week8.phase }}',
+    theme: '{{ cycle.week8.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week8.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week8.tuesday.duration }}',
+      warmup: '{{ cycle.week8.tuesday.warmup | replace("'", "\\'") if cycle.week8.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week8.tuesday.cooldown | replace("'", "\\'") if cycle.week8.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week8.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week9 %}
+  // Week 9
+  {
+    phase: '{{ cycle.week9.phase }}',
+    theme: '{{ cycle.week9.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week9.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week9.tuesday.duration }}',
+      warmup: '{{ cycle.week9.tuesday.warmup | replace("'", "\\'") if cycle.week9.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week9.tuesday.cooldown | replace("'", "\\'") if cycle.week9.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week9.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week10 %}
+  // Week 10
+  {
+    phase: '{{ cycle.week10.phase }}',
+    theme: '{{ cycle.week10.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week10.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week10.tuesday.duration }}',
+      warmup: '{{ cycle.week10.tuesday.warmup | replace("'", "\\'") if cycle.week10.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week10.tuesday.cooldown | replace("'", "\\'") if cycle.week10.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week10.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week11 %}
+  // Week 11
+  {
+    phase: '{{ cycle.week11.phase }}',
+    theme: '{{ cycle.week11.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week11.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week11.tuesday.duration }}',
+      warmup: '{{ cycle.week11.tuesday.warmup | replace("'", "\\'") if cycle.week11.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week11.tuesday.cooldown | replace("'", "\\'") if cycle.week11.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week11.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% if cycle.week12 %}
+  // Week 12
+  {
+    phase: '{{ cycle.week12.phase }}',
+    theme: '{{ cycle.week12.theme | replace("'", "\\'") }}',
+    tuesday: {
+      name: '{{ cycle.week12.tuesday.name | replace("'", "\\'") }}',
+      duration: '{{ cycle.week12.tuesday.duration }}',
+      warmup: '{{ cycle.week12.tuesday.warmup | replace("'", "\\'") if cycle.week12.tuesday.warmup else "" }}',
+      cooldown: '{{ cycle.week12.tuesday.cooldown | replace("'", "\\'") if cycle.week12.tuesday.cooldown else "" }}',
+      blocks: [
+        {% for block in cycle.week12.tuesday.workout %}
+        {
+          name: '{{ block.block | replace("'", "\\'") }}',
+          notes: '{{ block.notes | replace("'", "\\'") | replace("\n", " ") if block.notes else "" }}',
+          exercises: [
+            {% for ex in block.exercises %}
+            {
+              name: '{{ ex.name | replace("'", "\\'") }}',
+              prescription: `{{ ex.prescription | replace("'", "\\'") | replace("\n", "\\n") if ex.prescription else "" }}`,
+              rest: '{{ ex.rest | replace("'", "\\'") if ex.rest else "" }}',
+              notes: '{{ ex.notes | replace("'", "\\'") | replace("\n", " ") if ex.notes else "" }}'
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  },
+  {% endif %}
+  {% endfor %}
+];
+
+let currentWeekIndex = 0;
+let selectedDayIndex = null; // null means "today" or first day of week
+let today = new Date();
+
+function getWeekStartDate(weekIndex) {
+  const start = new Date(START_DATE);
+  start.setDate(start.getDate() + weekIndex * 7);
+  return start;
+}
+
+function getDayOfWeek(date) {
+  return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()];
+}
+
+function getFullDayName(date) {
+  return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date.getDay()];
+}
+
+function formatDate(date) {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+}
+
+function formatShortDate(date) {
+  return `${date.getMonth() + 1}/${date.getDate()}`;
+}
+
+function getDaysUntilRace() {
+  return Math.ceil((RACE_DATE - today) / (1000 * 60 * 60 * 24));
+}
+
+function getCurrentWeekIndex() {
+  if (today < START_DATE) return 0;
+  if (today > RACE_DATE) return RUN_WEEKS.length - 1;
+  return Math.min(Math.floor((today - START_DATE) / (1000 * 60 * 60 * 24 * 7)), RUN_WEEKS.length - 1);
+}
+
+function getStrengthPhase(weekIndex) {
+  return STRENGTH_PHASES[weekIndex % 4];
+}
+
+function getHyroxCycle(weekIndex) {
+  if (weekIndex < 4) return 'foundation';
+  if (weekIndex < 8) return 'build';
+  return 'peak';
+}
+
+function getRunTypeSlug(type) {
+  return {
+    'Tempo': 'tempo',
+    'Intervals': 'intervals',
+    'Easy': 'easy',
+    'Long Run': 'long-run',
+    'Strides': 'strides',
+    'Rest': 'rest',
+    'RACE': 'race'
+  }[type] || 'easy';
+}
+
+function getStrengthForDay(dayAbbrev, weekIndex) {
+  const dayMap = { 'Mon': 'monday', 'Tue': null, 'Wed': 'wednesday', 'Thu': 'thursday', 'Fri': 'friday', 'Sat': 'saturday', 'Sun': null };
+  const dayKey = dayMap[dayAbbrev];
+  if (!dayKey || !STRENGTH_BASE[dayKey]) return null;
+  return { ...STRENGTH_BASE[dayKey], phase: getStrengthPhase(weekIndex) };
+}
+
+function getHyroxForDay(dayAbbrev, weekIndex) {
+  if (dayAbbrev !== 'Tue') return null;
+  const cycle = getHyroxCycle(weekIndex);
+  const cycleData = HYROX_CYCLES[cycle];
+  return { ...cycleData.weeks[weekIndex % 4], cycle: cycleData.name };
+}
+
+function getRunForDay(dayAbbrev, weekIndex) {
+  const week = RUN_WEEKS[weekIndex];
+  if (!week) return null;
+  return week.workouts.find(w => w.day === dayAbbrev) || null;
+}
+
+function renderCountdown() {
+  document.getElementById('countdown-days').textContent = getDaysUntilRace();
+}
+
+function renderWeekNav() {
+  document.getElementById('current-week-label').textContent = currentWeekIndex === 12 ? 'Race Week' : `Week ${currentWeekIndex + 1}`;
+  document.getElementById('prev-week').disabled = currentWeekIndex === 0;
+  document.getElementById('next-week').disabled = currentWeekIndex === RUN_WEEKS.length - 1;
+}
+
+function renderTodayHero() {
+  const week = RUN_WEEKS[currentWeekIndex];
+  const weekStart = getWeekStartDate(currentWeekIndex);
+  let viewDate = new Date(weekStart);
+  const realWeekIndex = getCurrentWeekIndex();
+
+  if (selectedDayIndex !== null) {
+    // User selected a specific day
+    viewDate = new Date(weekStart);
+    viewDate.setDate(viewDate.getDate() + selectedDayIndex);
+  } else if (currentWeekIndex === realWeekIndex && today >= START_DATE && today <= RACE_DATE) {
+    viewDate = today;
+  }
+
+  const dayAbbrev = getDayOfWeek(viewDate);
+
+  document.getElementById('today-day-name').textContent = getFullDayName(viewDate);
+  document.getElementById('today-full-date').textContent = formatDate(viewDate);
+
+  const phaseBadge = document.getElementById('today-phase-badge');
+  phaseBadge.textContent = week.phase;
+  phaseBadge.dataset.phase = week.phase.toLowerCase();
+
+  document.getElementById('today-week-title').textContent = `${week.name} of 13 · ${week.dates}`;
+  document.getElementById('today-philosophy').textContent = week.philosophy;
+
+  renderTodaySchedule(dayAbbrev, currentWeekIndex);
+}
+
+function renderTodaySchedule(dayAbbrev, weekIndex) {
+  const container = document.getElementById('today-schedule');
+  container.innerHTML = '';
+
+  const run = getRunForDay(dayAbbrev, weekIndex);
+  const strength = getStrengthForDay(dayAbbrev, weekIndex);
+  const hyrox = getHyroxForDay(dayAbbrev, weekIndex);
+
+  if (dayAbbrev === 'Sun') {
+    container.innerHTML = `
+      <div class="schedule-card" data-type="rest" style="grid-column: 1 / -1;">
+        <div class="schedule-card-header">
+          <span class="schedule-type">REST DAY</span>
+        </div>
+        <div class="schedule-card-body">
+          <div class="rest-message">
+            <div class="rest-icon">&#128716;</div>
+            <p class="rest-text">Full recovery. Optional light stretching or walk.</p>
+          </div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  if (run) {
+    const duration = run.type === 'Rest' ? '0 min' : run.distance <= 6 ? '30-40 min' : run.distance <= 10 ? '45-55 min' : '60-90 min';
+    container.innerHTML += `
+      <div class="schedule-card" data-type="run">
+        <div class="schedule-card-header">
+          <span class="schedule-type">RUNNING</span>
+          <span class="schedule-duration">${duration}</span>
+        </div>
+        <div class="schedule-card-body">
+          <h3 class="workout-title">${run.type}</h3>
+          <p class="workout-subtitle">${run.distance} km</p>
+          <div class="workout-exercises">
+            <div class="exercise-item">
+              <span class="exercise-name">${run.details}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (strength) {
+    container.innerHTML += `
+      <div class="schedule-card" data-type="strength">
+        <div class="schedule-card-header">
+          <span class="schedule-type">STRENGTH</span>
+          <span class="schedule-duration">${strength.duration}</span>
+        </div>
+        <div class="schedule-card-body">
+          <h3 class="workout-title">${strength.name}</h3>
+          <p class="workout-subtitle">${strength.phase} Phase</p>
+          <div class="workout-exercises">
+            ${strength.exercises.slice(0, 5).map(ex => `
+              <div class="exercise-item">
+                <span class="exercise-name">${ex.name}</span>
+                <span class="exercise-prescription">${ex.sets}x${ex.reps}${ex.weight ? ' @ ' + ex.weight : ''}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (hyrox) {
+    container.innerHTML += `
+      <div class="schedule-card" data-type="hyrox">
+        <div class="schedule-card-header">
+          <span class="schedule-type">HYROX STATIONS</span>
+          <span class="schedule-duration">${hyrox.duration}</span>
+        </div>
+        <div class="schedule-card-body">
+          <h3 class="workout-title">${hyrox.name}</h3>
+          <p class="workout-subtitle">${hyrox.cycle} Cycle</p>
+          <div class="workout-exercises">
+            <div class="exercise-item">
+              <span class="exercise-name">${hyrox.focus}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (dayAbbrev === 'Thu') {
+    container.innerHTML += `
+      <div class="schedule-card" data-type="hyrox">
+        <div class="schedule-card-header">
+          <span class="schedule-type">HYROX (LIGHT)</span>
+          <span class="schedule-duration">15-20 min</span>
+        </div>
+        <div class="schedule-card-body">
+          <h3 class="workout-title">Station Practice</h3>
+          <p class="workout-subtitle">Technique focus</p>
+          <div class="workout-exercises">
+            <div class="exercise-item">
+              <span class="exercise-name">Light wall balls, farmers carry, or sled work. Keep intensity low before Friday intervals.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function renderWeekView() {
+  const week = RUN_WEEKS[currentWeekIndex];
+
+  document.getElementById('week-view-title').textContent = `${week.name} Overview`;
+  document.getElementById('week-total-km').textContent = `${week.volume} km`;
+  document.getElementById('week-strength-phase').textContent = getStrengthPhase(currentWeekIndex);
+  document.getElementById('week-hyrox-focus').textContent = HYROX_CYCLES[getHyroxCycle(currentWeekIndex)].name;
+
+  const daysGrid = document.getElementById('days-grid');
+  daysGrid.innerHTML = '';
+
+  const weekStart = getWeekStartDate(currentWeekIndex);
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const realWeekIndex = getCurrentWeekIndex();
+
+  days.forEach((dayAbbrev, i) => {
+    const dayDate = new Date(weekStart);
+    dayDate.setDate(dayDate.getDate() + i);
+    const isToday = currentWeekIndex === realWeekIndex && dayDate.toDateString() === today.toDateString();
+
+    const run = getRunForDay(dayAbbrev, currentWeekIndex);
+    const strength = getStrengthForDay(dayAbbrev, currentWeekIndex);
+    const hyrox = getHyroxForDay(dayAbbrev, currentWeekIndex);
+
+    let activitiesHTML = '';
+    if (dayAbbrev === 'Sun') {
+      activitiesHTML = `<div class="day-activity" data-type="rest"><div class="activity-title">Rest Day</div><div class="activity-detail">Recovery</div></div>`;
+    } else {
+      if (run) activitiesHTML += `<div class="day-activity" data-type="run"><div class="activity-title">${run.type}</div><div class="activity-detail">${run.distance} km</div></div>`;
+      if (strength) activitiesHTML += `<div class="day-activity" data-type="strength"><div class="activity-title">${strength.name}</div><div class="activity-detail">${strength.duration}</div></div>`;
+      if (hyrox) activitiesHTML += `<div class="day-activity" data-type="hyrox"><div class="activity-title">${hyrox.name}</div><div class="activity-detail">${hyrox.duration}</div></div>`;
+      if (dayAbbrev === 'Thu') activitiesHTML += `<div class="day-activity" data-type="hyrox"><div class="activity-title">Light Hyrox</div><div class="activity-detail">15-20 min</div></div>`;
+    }
+
+    const isSelected = selectedDayIndex === i;
+    daysGrid.innerHTML += `
+      <div class="day-card ${isToday ? 'is-today' : ''} ${isSelected ? 'is-selected' : ''}" data-day-index="${i}" onclick="selectDay(${i})">
+        <div class="day-card-header">
+          <span class="day-name">${dayAbbrev}</span>
+          <span class="day-date">${formatShortDate(dayDate)}</span>
+        </div>
+        <div class="day-card-body">${activitiesHTML}</div>
+      </div>
+    `;
+  });
+
+  renderMileageBreakdown();
+}
+
+function renderMileageBreakdown() {
+  const week = RUN_WEEKS[currentWeekIndex];
+  const container = document.getElementById('mileage-bars');
+  container.innerHTML = '';
+
+  const byType = {};
+  week.workouts.forEach(w => {
+    byType[w.type] = (byType[w.type] || 0) + w.distance;
+  });
+
+  const maxKm = week.volume;
+  ['Tempo', 'Intervals', 'Easy', 'Long Run', 'Strides'].forEach(type => {
+    const km = byType[type] || 0;
+    if (km === 0 && type !== 'Long Run') return;
+    const percentage = (km / maxKm) * 100;
+    container.innerHTML += `
+      <div class="mileage-bar-row">
+        <span class="mileage-type">${type}</span>
+        <div class="mileage-bar-container">
+          <div class="mileage-bar" data-type="${getRunTypeSlug(type)}" style="width: ${percentage}%"></div>
+        </div>
+        <span class="mileage-value">${km} km</span>
+      </div>
+    `;
+  });
+}
+
+function renderProgress() {
+  const realWeekIndex = getCurrentWeekIndex();
+  document.getElementById('weeks-completed').innerHTML = `${realWeekIndex} <span>/ 13</span>`;
+
+  const timeline = document.getElementById('weeks-timeline');
+  timeline.innerHTML = '';
+  for (let i = 0; i < 13; i++) {
+    const status = i < realWeekIndex ? 'completed' : i === realWeekIndex ? 'current' : '';
+    timeline.innerHTML += `<div class="week-pip ${status}"></div>`;
+  }
+
+  const chart = document.getElementById('mileage-chart');
+  chart.innerHTML = '';
+  const maxVolume = Math.max(...RUN_WEEKS.map(w => typeof w.volume === 'number' ? w.volume : 14));
+  RUN_WEEKS.forEach((week, i) => {
+    const vol = typeof week.volume === 'number' ? week.volume : 14;
+    const height = (vol / maxVolume) * 100;
+    const highlighted = i === currentWeekIndex ? 'highlighted' : '';
+    chart.innerHTML += `<div class="chart-bar ${highlighted}" style="height: ${height}%"></div>`;
+  });
+}
+
+function selectDay(dayIndex) {
+  selectedDayIndex = dayIndex;
+  renderTodayHero();
+  renderWeekView(); // Re-render to update selected state
+}
+
+document.getElementById('prev-week').addEventListener('click', () => {
+  if (currentWeekIndex > 0) {
+    currentWeekIndex--;
+    selectedDayIndex = null; // Reset to default day when changing weeks
+    renderAll();
+  }
+});
+
+document.getElementById('next-week').addEventListener('click', () => {
+  if (currentWeekIndex < RUN_WEEKS.length - 1) {
+    currentWeekIndex++;
+    selectedDayIndex = null; // Reset to default day when changing weeks
+    renderAll();
+  }
+});
+
+function renderHyroxWorkout() {
+  const container = document.getElementById('hyrox-workout-display');
+  const workout = HYROX_WORKOUTS[currentWeekIndex];
+
+  if (!workout || !workout.tuesday) {
+    container.innerHTML = '<p class="no-workout">No Hyrox workout data available for this week.</p>';
+    return;
+  }
+
+  const tuesday = workout.tuesday;
+
+  let html = `
+    <div class="hyrox-workout-card">
+      <div class="hyrox-workout-header">
+        <div class="hyrox-workout-title-block">
+          <span class="hyrox-phase-badge">${workout.phase}</span>
+          <h3 class="hyrox-workout-name">${tuesday.name}</h3>
+          <p class="hyrox-workout-theme">${workout.theme}</p>
+        </div>
+        <div class="hyrox-workout-meta">
+          <span class="hyrox-duration">${tuesday.duration}</span>
+          <span class="hyrox-day">Tuesday</span>
+        </div>
+      </div>
+
+      ${tuesday.warmup ? `
+        <div class="hyrox-warmup">
+          <span class="hyrox-section-label">Warmup</span>
+          <p>${tuesday.warmup}</p>
+        </div>
+      ` : ''}
+
+      <div class="hyrox-blocks">
+        ${tuesday.blocks.map(block => `
+          <div class="hyrox-block">
+            <div class="hyrox-block-header">
+              <h4 class="hyrox-block-name">${block.name}</h4>
+              ${block.notes ? `<p class="hyrox-block-notes">${block.notes}</p>` : ''}
+            </div>
+            <div class="hyrox-exercises">
+              ${block.exercises.map(ex => `
+                <div class="hyrox-exercise">
+                  <div class="hyrox-exercise-header">
+                    <span class="hyrox-exercise-name">${ex.name}</span>
+                    ${ex.rest ? `<span class="hyrox-exercise-rest">Rest: ${ex.rest}</span>` : ''}
+                  </div>
+                  ${ex.prescription ? `<pre class="hyrox-prescription">${ex.prescription.replace(/\\n/g, '\n')}</pre>` : ''}
+                  ${ex.notes ? `<p class="hyrox-exercise-notes">${ex.notes}</p>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      ${tuesday.cooldown ? `
+        <div class="hyrox-cooldown">
+          <span class="hyrox-section-label">Cooldown</span>
+          <p>${tuesday.cooldown}</p>
+        </div>
+      ` : ''}
+    </div>
+  `;
+
+  container.innerHTML = html;
+}
+
+function renderAll() {
+  renderCountdown();
+  renderWeekNav();
+  renderTodayHero();
+  renderWeekView();
+  renderProgress();
+  renderHyroxWorkout();
+}
+
+function init() {
+  currentWeekIndex = getCurrentWeekIndex();
+  renderAll();
+}
+
+init();
+</script>
+</body>
+</html>

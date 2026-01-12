@@ -1,0 +1,947 @@
+# Hyrox Station Training Plan
+# Integrated with run_plan.yml and strength_plan.yml
+# 12-Week Program for Sub-70 Minute Finish
+
+meta:
+  goal: Prepare for sub-70 minute Hyrox finish
+  raceDate: April 12, 2026
+  targetTime: "< 70 minutes"
+  philosophy: |
+    Hyrox success comes from efficient transitions and sustainable pacing across
+    8 running segments and 8 functional stations. Running accounts for ~50% of
+    race time - your run_plan.yml is the foundation. This plan builds the other 50%.
+
+    Key principles:
+    - Train heavier than race weight so competition feels manageable
+    - Practice "compromised running" - running under fatigue after stations
+    - Master transitions - seconds lost add up across 16 transitions
+    - Build mental resilience to push through accumulated fatigue
+    - Simulate race conditions progressively leading to full simulations
+
+# Race specifications
+raceSpec:
+  runDistance: 8 km total (8 x 1km)
+  stations:
+    - name: SkiErg
+      distance: 1000m
+      targetTime: "4:30-5:00"
+      notes: Full body, rhythm-based. Don't blow up early.
+    - name: Sled Push
+      distance: 50m
+      weight: 152 kg (men open)
+      targetTime: "3:00-3:30"
+      notes: Most demanding station. Keep moving - stopping costs energy.
+    - name: Sled Pull
+      distance: 50m
+      weight: 103 kg (men open)
+      targetTime: "2:00-2:30"
+      notes: Hand-over-hand technique. Steady rhythm.
+    - name: Burpee Broad Jumps
+      distance: 80m
+      targetTime: "4:00-4:30"
+      notes: Pace yourself. Consistent jumps beat explosive starts.
+    - name: Rowing
+      distance: 1000m
+      targetTime: "4:00-4:30"
+      notes: You have rowing strength. Stay controlled.
+    - name: Farmers Carry
+      distance: 200m
+      weight: 2 x 24 kg (men open)
+      targetTime: "2:30-3:00"
+      notes: Grip endurance. Short, quick steps.
+    - name: Sandbag Lunges
+      distance: 100m
+      weight: 20 kg (men open)
+      substitute: Barbell lunges (no sandbag available)
+      targetTime: "4:00-4:30"
+      notes: Quad killer late in race. Pacing critical.
+    - name: Wall Balls
+      reps: 100
+      weight: 6 kg ball, 3m target
+      targetTime: "4:30-5:00"
+      notes: Final station. Break into manageable sets. 10s or 20s.
+
+# Equipment available
+equipment:
+  available:
+    - SkiErg
+    - Rowing machine
+    - Sled (push/pull)
+    - Wall ball
+    - Kettlebells/dumbbells for farmers carry
+    - Barbell (sandbag substitute)
+  substitute:
+    sandbag: "Barbell front rack lunges or zercher lunges"
+
+# Weekly Schedule Integration
+weeklySchedule:
+  monday: "Tempo Run + Squat Focus (see run_plan.yml + strength_plan.yml)"
+  tuesday: "HYROX ENDURANCE DAY - Compromised running, simulations, main Hyrox training (this plan)"
+  wednesday: "Easy Run + Upper Hypertrophy (see run_plan.yml + strength_plan.yml)"
+  thursday: "Bench Focus + Light Hyrox Practice (see strength_plan.yml for Hyrox work)"
+  friday: "Interval Run + Lower Hypertrophy (see run_plan.yml + strength_plan.yml)"
+  saturday: "Long Run AM + Deadlift PM + Optional station practice (this plan)"
+  sunday: Rest
+
+# Hyrox Training Structure
+hyroxTrainingDays:
+  tuesday:
+    name: Hyrox Endurance Day
+    duration: 50-75 min
+    focus: |
+      Your PRIMARY Hyrox training day. This is when you build race-specific fitness:
+      - "Compromised running" - running under fatigue after stations
+      - Station combinations mimicking race sequences
+      - Progressive race simulations (half → full)
+      - Mental resilience training through fatigue accumulation
+
+      No running or lifting scheduled today - dedicate full energy to Hyrox.
+
+  thursday:
+    name: Light Hyrox Practice
+    duration: 15-20 min (part of strength session)
+    focus: |
+      Technique refinement and light movement practice. Included in
+      strength_plan.yml Thursday sessions. Keep intensity LOW - this is
+      the day before Friday intervals.
+
+  saturday:
+    name: Optional Station Practice
+    duration: 15-30 min (after deadlifts, if energy permits)
+    focus: |
+      Light station work after your deadlift session. Focus on movements
+      that complement your strength work. Keep it brief - you've already
+      done long run + deadlifts. This is optional recovery-intensity work.
+
+# Station Technique Reference
+stationTechnique:
+  skiErg:
+    cues:
+      - Hinge at hips, not just arms
+      - Pull handles to thighs, not stopping at waist
+      - Use core and lats, not just arms
+      - Breathe rhythmically (exhale on pull)
+      - Target 30-35 strokes per minute
+
+  sledPush:
+    cues:
+      - Low body position, 45-degree angle
+      - Drive through legs, not arms
+      - Short, choppy steps
+      - NEVER stop - restarting costs more energy
+
+  sledPull:
+    cues:
+      - Sit back in athletic stance
+      - Pull with arms, use legs to anchor
+      - Alternate hands smoothly
+      - Don't death-grip the rope
+
+  burpeeBroadJumps:
+    cues:
+      - Controlled burpee, don't slam chest
+      - Jump for consistent distance (1.5m), not max
+      - Land softly, absorb with legs
+      - Break into mental chunks (8 x 10m)
+
+  rowing:
+    cues:
+      - Drive with legs first (60% of power)
+      - Open hips, then pull arms
+      - Control the recovery (don't rush)
+      - Target 26-28 strokes/minute
+      - Aim for 2:15/500m split
+
+  farmersCarry:
+    cues:
+      - Crush grip the handles
+      - Shoulders back and down
+      - Short, quick steps
+      - Breathe into belly
+
+  lunges:
+    cues:
+      - Controlled descent, knee tracks over toe
+      - Drive through front heel
+      - Keep torso upright
+      - Breathe on every rep
+
+  wallBalls:
+    cues:
+      - Deep squat, ball at chest
+      - Drive through heels, extend hips
+      - Guide ball with fingertips (don't push)
+      - Catch in squat position
+      - Keep elbows high
+
+# ============================================================
+# FULL 12-WEEK TRAINING PROGRAM
+# ============================================================
+
+cycles:
+  # ============================================================
+  # CYCLE 1: FOUNDATION (Weeks 1-4)
+  # ============================================================
+  - name: Foundation
+    weeks: "1-4"
+    focus: Learn movements, build base capacity, establish pacing
+    philosophy: |
+      Focus on technique and movement quality over intensity. Get comfortable
+      with each station individually. Build aerobic base for station work.
+      Learn your natural pacing and identify weaknesses. Week 4 is recovery.
+
+    # WEEK 1 - Station Introduction
+    week1:
+      phase: Foundation
+      theme: "Station Introduction - Learning the Movements"
+
+      tuesday:
+        name: "Hyrox Endurance: Station Intro + Compromised Running"
+        duration: 55 min
+        warmup: "5 min easy row + 10 air squats + arm circles"
+        workout:
+          - block: "SkiErg Learning"
+            exercises:
+              - name: SkiErg Technique Practice
+                prescription: "5 x 200m @ comfortable pace"
+                rest: "60s between sets"
+                notes: |
+                  Focus on hip hinge and lat engagement. Note your natural
+                  pace per 500m split. Don't worry about speed yet.
+
+          - block: "Intro to Compromised Running"
+            notes: "First taste of running after station work"
+            exercises:
+              - name: "SkiErg → Run Combo x 3 rounds"
+                prescription: |
+                  - SkiErg: 250m @ moderate pace
+                  - Run: 400m @ easy pace (around 6:00/km)
+                rest: "2 min between rounds"
+                notes: Notice how running feels after SkiErg. Legs heavy is normal.
+
+          - block: "Wall Ball Foundation"
+            exercises:
+              - name: Wall Balls
+                prescription: "5 x 10 reps"
+                rest: "30s"
+                notes: Focus on squat depth and hitting target consistently.
+
+          - block: "Grip Work"
+            exercises:
+              - name: Farmers Carry
+                prescription: "4 x 50m @ 20 kg each hand"
+                rest: "60s"
+                notes: Light weight - learning efficient walking pattern.
+
+        cooldown: "5 min stretch: hips, shoulders, lats"
+
+      saturday:
+        name: "Optional: Light Station Practice (after deadlifts)"
+        timing: "After deadlift session, if energy permits"
+        duration: 15-20 min
+        notes: "OPTIONAL - skip if fatigued from long run + deadlifts"
+        workout:
+          - block: "Light Movement Practice"
+            exercises:
+              - name: Easy Station Flow
+                prescription: |
+                  - Wall Balls: 2 x 15 reps easy
+                  - Light farmers walk: 50m @ 16 kg
+                notes: Movement maintenance only. Keep it brief.
+
+    # WEEK 2 - Sled & Rowing Focus
+    week2:
+      phase: Foundation
+      theme: "Sled & Rowing - Building Power"
+
+      tuesday:
+        name: "Hyrox Endurance: Sled, Row & Compromised Running"
+        duration: 60 min
+        warmup: "5 min bike + leg swings + hip hinges"
+        workout:
+          - block: "Sled Push Learning"
+            exercises:
+              - name: Sled Push
+                prescription: "4 x 25m @ 120 kg (sub race weight)"
+                rest: "90s"
+                notes: |
+                  Find your low position. Practice never stopping.
+                  This weight should feel manageable - we're learning.
+
+          - block: "Sled Pull Learning"
+            exercises:
+              - name: Sled Pull
+                prescription: "4 x 25m @ 80 kg (sub race weight)"
+                rest: "90s"
+                notes: Hand-over-hand rhythm. Find your pulling cadence.
+
+          - block: "Row + Run Combos"
+            exercises:
+              - name: "Row-Run Combo x 3 rounds"
+                prescription: |
+                  - Row: 500m @ 2:15/500m
+                  - Run: 500m @ 5:30/km
+                rest: "90s between rounds"
+                notes: |
+                  Rowing first, then run. Notice leg fatigue transferring.
+                  This teaches pacing under accumulating fatigue.
+
+          - block: "Wall Ball Practice"
+            exercises:
+              - name: Wall Balls
+                prescription: "3 x 12 reps"
+                rest: "20s"
+
+        cooldown: "5 min walk + quad stretch"
+
+      saturday:
+        name: "Optional: Sled Practice (after deadlifts)"
+        timing: "After deadlift session, if energy permits"
+        duration: 15-20 min
+        notes: "OPTIONAL - complements deadlift hip hinge work"
+        workout:
+          - block: "Light Sled Work"
+            exercises:
+              - name: Light Station Practice
+                prescription: |
+                  - Sled Pull: 2 x 25m @ 70 kg (light)
+                  - Easy row: 500m @ 2:25 pace
+                notes: Light movement only. Deadlifts are the priority.
+
+    # WEEK 3 - Full Body Circuit + Burpees
+    week3:
+      phase: Foundation
+      theme: "Movement Integration & Burpee Broad Jumps"
+
+      tuesday:
+        name: "Hyrox Endurance: 4-Station Mini Simulation"
+        duration: 60 min
+        warmup: "5 min SkiErg easy + dynamic stretches"
+        workout:
+          - block: "Burpee Broad Jump Learning"
+            exercises:
+              - name: Burpee Broad Jumps
+                prescription: "4 x 20m"
+                rest: "90s"
+                notes: |
+                  Aim for consistent ~1.5m jumps. Find sustainable rhythm.
+                  Don't go for max distance - you need 80m on race day.
+
+          - block: "Mini Hyrox Simulation"
+            notes: "First taste of combining multiple stations with running"
+            exercises:
+              - name: "4-Station Flow x 2 rounds"
+                prescription: |
+                  - Run: 500m @ 5:30/km
+                  - SkiErg: 500m
+                  - Run: 500m @ 5:30/km
+                  - Wall Balls: 25 reps
+                rest: "3 min between rounds"
+                notes: |
+                  First taste of combining multiple stations.
+                  Goal: consistent pacing, not speed.
+
+          - block: "Lunge Practice"
+            exercises:
+              - name: Barbell Walking Lunges (sandbag sub)
+                prescription: "3 x 25m @ 25 kg"
+                rest: "60s"
+                notes: Practice when legs are already tired.
+
+        cooldown: "Foam roll quads, lats, thoracic spine"
+
+      saturday:
+        name: "Optional: Burpee & Carry Practice (after deadlifts)"
+        timing: "After deadlift session, if energy permits"
+        duration: 15-20 min
+        notes: "OPTIONAL - brief movement work"
+        workout:
+          - block: "Light Practice"
+            exercises:
+              - name: Light Station Work
+                prescription: |
+                  - Burpee Broad Jumps: 2 x 10m (technique only)
+                  - Farmers Carry: 50m @ 20 kg
+                notes: Keep it brief. Deadlifts are the priority.
+
+    # WEEK 4 - Recovery Week
+    week4:
+      phase: Foundation
+      theme: "Recovery Week - Technique Focus"
+      notes: "Matches running plan recovery week. Reduce intensity significantly."
+
+      tuesday:
+        name: "Hyrox Endurance: Recovery - Light Movement Only"
+        duration: 35 min
+        warmup: "5 min easy row"
+        workout:
+          - block: "Easy Movement Flow"
+            notes: "NO intensity. Recovery week - just moving well."
+            exercises:
+              - name: Movement Flow
+                prescription: |
+                  - Easy row: 1000m @ 2:30 pace
+                  - Run: 800m @ very easy pace (6:30/km)
+                  - SkiErg: 500m @ very easy pace
+                  - Wall Balls: 3 x 10 perfect reps
+                  - Light farmers walk: 100m @ 16 kg
+                rest: "Full recovery between each"
+                notes: Movement maintenance only. Stay fresh for Cycle 2.
+
+        cooldown: "10 min extended mobility - hip flexors, thoracic, shoulders"
+
+      saturday:
+        name: "Optional: Skip or Very Light"
+        duration: 0-15 min
+        notes: "Recovery week - recommend skipping Saturday station work"
+        workout:
+          - block: "If you must move"
+            exercises:
+              - name: Optional Light Work
+                prescription: |
+                  - Easy row: 500m
+                  - Wall Balls: 15 reps
+                notes: Only if you feel antsy. Resting is better.
+
+  # ============================================================
+  # CYCLE 2: BUILD (Weeks 5-8)
+  # ============================================================
+  - name: Build
+    weeks: "5-8"
+    focus: Race-weight work, station combinations, half simulations
+    philosophy: |
+      Progress to race-weight and race-distance work. Start combining stations
+      to simulate race conditions. Introduce longer "compromised running" segments.
+      Build toward half-race simulations. Week 8 is recovery.
+
+    # WEEK 5 - Race Weight Introduction
+    week5:
+      phase: Build
+      theme: "Race Weight Introduction"
+
+      tuesday:
+        name: "Hyrox Endurance: Race Weight + Compromised Running"
+        duration: 65 min
+        warmup: "5 min row + leg swings + arm circles"
+        workout:
+          - block: "Sled at Race Weight"
+            exercises:
+              - name: Sled Push
+                prescription: "3 x 50m @ 152 kg (RACE WEIGHT)"
+                rest: "2 min"
+                notes: |
+                  First time at full race weight for full distance.
+                  Focus: DON'T STOP. Time each rep.
+
+              - name: Sled Pull
+                prescription: "3 x 50m @ 103 kg (RACE WEIGHT)"
+                rest: "2 min"
+                notes: Full race weight. Find your sustainable rhythm.
+
+          - block: "Sled → Run Transitions"
+            notes: "The hardest transition in Hyrox"
+            exercises:
+              - name: "Sled + Run Combo x 3 rounds"
+                prescription: |
+                  - Sled Push: 50m @ 140 kg
+                  - Run: 800m @ 5:15/km (race pace)
+                rest: "90s between rounds"
+                notes: |
+                  Legs will feel like concrete. Push through.
+                  This is what race day feels like.
+
+          - block: "Wall Ball Capacity"
+            exercises:
+              - name: Wall Balls
+                prescription: "4 x 25 reps"
+                rest: "30s"
+                notes: Building toward 100-rep race requirement.
+
+        cooldown: "5 min walk, stretch"
+
+      saturday:
+        name: "Optional: SkiErg Practice (after deadlifts)"
+        timing: "After deadlift session, if energy permits"
+        duration: 15-20 min
+        notes: "OPTIONAL - SkiErg complements deadlift posterior chain work"
+        workout:
+          - block: "Light Aerobic Work"
+            exercises:
+              - name: Light Station Practice
+                prescription: |
+                  - SkiErg: 2 x 500m @ easy pace
+                  - Row: 500m @ 2:20 pace
+                notes: Easy effort. Keep it brief.
+
+    # WEEK 6 - Half Simulation Week
+    week6:
+      phase: Build
+      theme: "Half Hyrox Simulation"
+
+      tuesday:
+        name: "Hyrox Endurance: HALF RACE SIMULATION"
+        duration: 70 min
+        warmup: "10 min progressive: easy row → dynamic stretches → few air squats"
+        workout:
+          - block: "Half Hyrox Simulation"
+            notes: |
+              THIS IS YOUR HALFWAY DRESS REHEARSAL.
+              4 stations with 500m runs between. Time everything.
+              This predicts your race performance.
+            exercises:
+              - name: "Half Simulation"
+                prescription: |
+                  - Run: 500m @ 5:15/km
+                  - SkiErg: 1000m (target: sub-5:00)
+                  - Run: 500m @ 5:15/km
+                  - Sled Push: 50m @ 145 kg
+                  - Run: 500m @ 5:15/km
+                  - Row: 1000m (target: sub-4:30)
+                  - Run: 500m @ 5:15/km
+                  - Wall Balls: 50 reps (sets of 10)
+                rest: "None - continuous like race day"
+                notes: |
+                  RECORD ALL TIMES. This is your benchmark.
+                  Identify which stations need the most work.
+
+          - block: "Farmers + Lunges Combo"
+            notes: "Practice the brutal Station 6→7 transition"
+            exercises:
+              - name: "Back-to-Back"
+                prescription: |
+                  - Farmers Carry: 200m @ 24 kg (race weight)
+                  - immediately into:
+                  - Barbell Lunges: 50m @ 30 kg
+                rest: "Full recovery"
+                notes: |
+                  Grip fatigued going into lunges is BRUTAL.
+                  This is what late race feels like.
+
+        cooldown: "Stretch quads, grip/forearm roll, extended recovery"
+
+      saturday:
+        name: "Optional: Endurance Station Practice (after deadlifts)"
+        timing: "After deadlift session, if energy permits"
+        duration: 20 min
+        notes: "OPTIONAL - build aerobic buffer on SkiErg/Row"
+        workout:
+          - block: "Light Aerobic Overload"
+            exercises:
+              - name: Endurance Practice
+                prescription: |
+                  - SkiErg: 750m @ comfortable pace
+                  - Row: 750m @ 2:20 pace
+                notes: Overload distance training. Easy effort.
+
+    # WEEK 7 - Overload Training
+    week7:
+      phase: Build
+      theme: "Overload Week - Heavier Than Race"
+
+      tuesday:
+        name: "Hyrox Endurance: Overload + Burpee Capacity"
+        duration: 70 min
+        warmup: "5 min bike + dynamic movement"
+        workout:
+          - block: "Sled Overload"
+            notes: "Train heavier than race so competition feels easy"
+            exercises:
+              - name: Sled Push
+                prescription: "3 x 50m @ 170 kg (+18 kg over race)"
+                rest: "2 min"
+                notes: |
+                  HEAVIER than race weight. After this, 152 kg
+                  will feel manageable.
+
+              - name: Sled Pull
+                prescription: "3 x 50m @ 115 kg (+12 kg over race)"
+                rest: "2 min"
+                notes: Build pulling strength. Race weight = easy.
+
+          - block: "Burpee Broad Jump Capacity"
+            exercises:
+              - name: Burpee Broad Jumps
+                prescription: "80m continuous (FULL RACE DISTANCE)"
+                rest: "Full recovery"
+                notes: |
+                  First time at full 80m. Break mentally: 8 x 10m chunks.
+                  Aim for 4:00-4:30 total time.
+
+          - block: "Post-Burpee Running"
+            notes: "Most brutal transition - Station 4→5"
+            exercises:
+              - name: "Burpee → Run x 2 rounds"
+                prescription: |
+                  - Burpee Broad Jumps: 40m
+                  - Run: 1km @ 5:15/km
+                rest: "2 min between rounds"
+                notes: |
+                  Learn to run when legs are screaming.
+                  This is what race day feels like.
+
+          - block: "Farmers + Lunge Overload"
+            exercises:
+              - name: Farmers Carry
+                prescription: "200m @ 28 kg each (+4 kg over race)"
+                rest: "90s"
+                notes: Grip endurance at higher load.
+
+              - name: Barbell Lunges
+                prescription: "100m @ 40 kg"
+                rest: "Full recovery"
+                notes: Full race distance at overload weight.
+
+        cooldown: "Extensive stretch + foam roll"
+
+      saturday:
+        name: "Optional: Grip & Carry Practice (after deadlifts)"
+        timing: "After deadlift session, if energy permits"
+        duration: 15-20 min
+        notes: "OPTIONAL - complements deadlift grip work"
+        workout:
+          - block: "Light Grip Work"
+            exercises:
+              - name: Grip Practice
+                prescription: |
+                  - Farmers Carry: 100m @ 24 kg (race weight)
+                  - Sled Pull: 25m @ 80 kg (light)
+                notes: Light effort. Deadlifts are the priority.
+
+    # WEEK 8 - Recovery Week
+    week8:
+      phase: Build
+      theme: "Recovery Week"
+      notes: "Matches running plan recovery. Reduced volume, maintain movement."
+
+      tuesday:
+        name: "Hyrox Endurance: Recovery - Easy Flow"
+        duration: 35 min
+        warmup: "5 min easy row"
+        workout:
+          - block: "Easy Movement Flow"
+            notes: "NO intensity. Recovery week. Let body absorb training."
+            exercises:
+              - name: Easy Flow
+                prescription: |
+                  - Row: 1000m @ 2:25 pace
+                  - Easy run: 800m @ 6:00/km
+                  - SkiErg: 500m easy
+                  - Wall Balls: 2 x 15 easy
+                  - Farmers Carry: 100m @ 18 kg
+                rest: "Full recovery between"
+                notes: Movement maintenance. Stay fresh for peak phase.
+
+        cooldown: "10 min mobility focus"
+
+      saturday:
+        name: "Optional: Skip or Very Light"
+        duration: 0-15 min
+        notes: "Recovery week - recommend skipping Saturday station work"
+        workout:
+          - block: "If you must move"
+            exercises:
+              - name: Optional Light Work
+                prescription: |
+                  - Easy row: 500m
+                  - Light stretching
+                notes: Only if you feel antsy. Resting is better.
+
+  # ============================================================
+  # CYCLE 3: PEAK & TAPER (Weeks 9-12)
+  # ============================================================
+  - name: Peak and Taper
+    weeks: "9-12"
+    focus: Full race simulations, then systematic taper
+    philosophy: |
+      Week 9-10: Full race simulations at race weight. Practice complete pacing
+      strategy. Identify and fix any remaining weaknesses.
+      Week 11: Reduce volume but maintain sharpness.
+      Week 12: Very light - preserve energy for race day.
+
+    # WEEK 9 - Full Race Simulation
+    week9:
+      phase: Peak
+      theme: "Full Hyrox Simulation"
+
+      tuesday:
+        name: "Hyrox Endurance: FULL RACE SIMULATION"
+        duration: 80-95 min
+        warmup: "15 min progressive: easy row → dynamic stretches → practice transitions"
+        workout:
+          - block: "Full Hyrox Simulation"
+            notes: |
+              THIS IS YOUR DRESS REHEARSAL.
+              Complete all 8 stations at race weight with 800m runs between.
+              (800m to save time vs full 1km, but similar effort)
+
+              TIME EVERYTHING. This predicts race day.
+              Practice your pacing strategy. Control first half, attack second.
+            exercises:
+              - name: "Full 8-Station Simulation"
+                prescription: |
+                  Station 1: Run 800m → SkiErg 1000m
+                  Station 2: Run 800m → Sled Push 50m @ 152 kg
+                  Station 3: Run 800m → Sled Pull 50m @ 103 kg
+                  Station 4: Run 800m → Burpee Broad Jumps 80m
+                  Station 5: Run 800m → Row 1000m
+                  Station 6: Run 800m → Farmers Carry 200m @ 24 kg
+                  Station 7: Run 800m → Barbell Lunges 100m @ 35 kg
+                  Station 8: Run 800m → Wall Balls 100 reps
+                rest: "None - continuous like race day"
+                notes: |
+                  This is your best predictor of race performance.
+                  Add ~5-8 minutes for the extra 200m/segment (1km vs 800m)
+                  to estimate actual race time.
+
+                  RECORD EVERY SPLIT. Analyze after.
+
+        cooldown: "Extended recovery: walk, stretch, refuel"
+
+      saturday:
+        name: "Optional: Light Station Time Trials (after deadlifts)"
+        timing: "After deadlift session, if energy permits"
+        duration: 20-25 min
+        notes: "OPTIONAL - only if you want benchmark times"
+        workout:
+          - block: "Station Benchmarks"
+            exercises:
+              - name: Time Trial Options
+                prescription: |
+                  Choose ONE to test (if fresh enough):
+                  - SkiErg: 1000m time trial (target: sub 4:45)
+                  - OR Wall Balls: 100 reps for time (target: sub 5:00)
+                notes: Test individual station performance. Don't do both.
+
+    # WEEK 10 - Peak Performance
+    week10:
+      phase: Peak
+      theme: "Peak Performance & Sharpening"
+
+      tuesday:
+        name: "Hyrox Endurance: Race Pace Transitions"
+        duration: 60 min
+        warmup: "10 min progressive"
+        workout:
+          - block: "Race Pace Station/Run Combos"
+            notes: "Focus on TRANSITIONS - getting in and out of stations fast"
+            exercises:
+              - name: "Transition Practice x 4"
+                prescription: |
+                  Complete at race pace with focus on TRANSITIONS:
+
+                  Round 1: Sled Push 50m @ 152 kg → immediate transition → Run 800m
+                  Round 2: Row 1000m → immediate transition → Run 800m
+                  Round 3: Burpees 40m → immediate transition → Run 800m
+                  Round 4: Wall Balls 50 reps → immediate transition → Run 800m
+                rest: "2 min between rounds"
+                notes: |
+                  Focus on getting out of transition zones FAST.
+                  Practice your mental cues for each station exit.
+                  This is race-specific sharpening.
+
+          - block: "Speed Station Work"
+            notes: "Short, fast efforts to stay sharp"
+            exercises:
+              - name: Sled Push
+                prescription: "2 x 25m @ 152 kg - FAST"
+                rest: "90s"
+                notes: Half distance, full speed. Build power.
+
+              - name: SkiErg
+                prescription: "2 x 500m @ race pace"
+                rest: "90s"
+                notes: Fast but controlled. Practice pacing.
+
+        cooldown: "Light stretch"
+
+      saturday:
+        name: "Optional: Speed Sharpening (after deadlifts)"
+        timing: "After deadlift session, if energy permits"
+        duration: 15-20 min
+        notes: "OPTIONAL - brief speed work to stay sharp"
+        workout:
+          - block: "Quick Station Work"
+            exercises:
+              - name: Speed Practice
+                prescription: |
+                  - Wall Balls: 2 x 25 reps - quick pace
+                  - Row: 500m @ race pace
+                notes: Stay sharp, don't fatigue. Peak week.
+
+    # WEEK 11 - Taper Week 1
+    week11:
+      phase: Taper
+      theme: "Sharpen - Reduce Volume, Maintain Intensity"
+
+      tuesday:
+        name: "Hyrox Endurance: Abbreviated Simulation"
+        duration: 45 min
+        warmup: "5 min easy"
+        workout:
+          - block: "Abbreviated Simulation"
+            notes: "Reduced volume, race intensity. Stay sharp."
+            exercises:
+              - name: "4-Station Sharp Simulation"
+                prescription: |
+                  Reduced volume, RACE INTENSITY:
+                  - Run: 600m @ race pace (5:15/km)
+                  - SkiErg: 750m @ race pace
+                  - Run: 600m @ race pace
+                  - Sled Push: 50m @ 152 kg (race weight)
+                  - Run: 600m @ race pace
+                  - Wall Balls: 50 reps
+                  - Run: 600m @ race pace
+                rest: "None - continuous"
+                notes: |
+                  Shorter than race but at full intensity.
+                  Stay confident. Trust your fitness.
+                  This is your final test before race week.
+
+        cooldown: "Light stretch + visualization"
+
+      saturday:
+        name: "Optional: Light Sharpening (after deadlifts)"
+        timing: "After deadlift session - KEEP IT BRIEF"
+        duration: 10-15 min
+        notes: "OPTIONAL - very light. Taper week priority is rest."
+        workout:
+          - block: "Movement Activation"
+            exercises:
+              - name: Light Station Work
+                prescription: |
+                  - Wall Balls: 15 reps
+                  - Easy row: 500m
+                  - 3 burpee broad jumps (feel the movement)
+                notes: Just staying loose. Don't fatigue.
+
+    # WEEK 12 - Race Week (Taper Week 2)
+    week12:
+      phase: Taper
+      theme: "Race Week - Stay Fresh"
+      notes: "MINIMAL work. Your fitness is built. Now preserve it."
+
+      tuesday:
+        name: "Hyrox Endurance: Race Week - Light Activation Only"
+        duration: 20 min
+        warmup: "None needed - keep brief"
+        workout:
+          - block: "Light Movement Activation"
+            notes: "OPTIONAL - only if you feel antsy. Resting is also good."
+            exercises:
+              - name: Movement Activation
+                prescription: |
+                  Very light practice if you want:
+                  - Easy run: 5 min @ conversational pace
+                  - SkiErg: 250m easy
+                  - Wall Balls: 10 reps
+                  - 5 burpee broad jumps (feel the movement)
+                rest: "Full recovery"
+                notes: |
+                  This is OPTIONAL. If you feel tired, SKIP and rest.
+                  Your fitness is built. Trust it.
+
+        cooldown: "Light stretch, visualization, mental rehearsal"
+
+      saturday:
+        name: "RACE DAY - April 12, 2026"
+        workout:
+          - block: "PRE-RACE PROTOCOL"
+            notes: |
+              RACE DAY CHECKLIST:
+
+              MORNING:
+              - Wake up 3-4 hours before start
+              - Light breakfast: familiar foods, carbs, moderate protein
+              - Coffee if you normally have it
+              - Hydrate well but stop drinking 2 hours before
+
+              ARRIVAL:
+              - Arrive 60-90 min before start
+              - Check in, familiarize with venue layout
+              - Locate transition zones and station equipment
+
+              WARMUP (15-20 min before):
+              - Easy jog: 5 min
+              - Dynamic stretches: leg swings, arm circles
+              - 10 air squats, 5 burpees (feel the movements)
+              - Mental cues review (see below)
+
+              RACE MINDSET:
+              - "Control the first half. Attack the second half."
+              - TRUST YOUR TRAINING. You've done the work.
+              - GO GET IT.
+
+# Pacing Strategy for Race Day
+raceDayStrategy:
+  overall: |
+    Target: Sub 70 minutes
+    Running: 8 x 1km @ 5:00-5:15 pace = 40-42 min
+    Stations: Target 28-30 min total
+    Transitions: Budget 2-3 min total (15-20s each)
+
+  stationTargets:
+    - station: SkiErg
+      target: "4:30-5:00"
+      strategy: "Start at 2:20/500m pace. Resist going faster early."
+
+    - station: Sled Push
+      target: "3:00-3:30"
+      strategy: "Low position. Short choppy steps. NEVER STOP."
+
+    - station: Sled Pull
+      target: "2:00-2:30"
+      strategy: "Steady hand-over-hand. Don't death-grip."
+
+    - station: Burpee Broad Jumps
+      target: "4:00-4:30"
+      strategy: "8 x 10m chunks mentally. Consistent 1.5m jumps."
+
+    - station: Rowing
+      target: "4:00-4:30"
+      strategy: "You're strong here. 2:10-2:15 splits. Don't rush recovery."
+
+    - station: Farmers Carry
+      target: "2:30-3:00"
+      strategy: "Quick steps. 2 short breaks max if needed."
+
+    - station: Sandbag Lunges
+      target: "4:00-4:30"
+      strategy: "SLOW IS FINE. Steady pace. Don't stop."
+
+    - station: Wall Balls
+      target: "4:30-5:00"
+      strategy: "10x10 or 5x20. Break from start. FINISH STRONG."
+
+  mentalCues:
+    firstHalf: |
+      "First 4 stations: Stay controlled. You're depositing in the bank.
+       If you feel good, you're going too fast. Stick to plan."
+
+    secondHalf: |
+      "Stations 5-8: Time to withdraw from the bank. Push harder.
+       You trained for this. Trust the work."
+
+    perStation:
+      - "SkiErg: Rhythm, not power. Breathe."
+      - "Sled Push: Don't stop. Short steps. Keep momentum."
+      - "Sled Pull: Steady hands. Sit back. Breathe."
+      - "Burpees: Chunk it. 10m at a time. You've done this."
+      - "Row: Strong legs. You're halfway. Let's go."
+      - "Farmers: Grip recovers. Short breaks OK. Keep moving."
+      - "Lunges: Slow is fine. Just don't stop. Almost there."
+      - "Wall Balls: LAST STATION. Break it up. Empty the tank."
+
+# Quick Reference Card (Print for Race Day)
+raceCard:
+  target: "Sub 70:00"
+  runPace: "5:00-5:15/km"
+  stationNotes:
+    - "SkiErg: 2:20 splits, 30-35 SPM"
+    - "Sled Push: LOW, never stop"
+    - "Sled Pull: Steady rhythm"
+    - "Burpees: 8 x 10m mental chunks"
+    - "Row: 2:10-2:15 splits, 26-28 SPM"
+    - "Farmers: Quick steps, 2 breaks max"
+    - "Lunges: Slow & steady wins"
+    - "Wall Balls: 10x10 or 5x20, finish strong"
+  mantra: "Control the first half. Attack the second half. Trust the training."

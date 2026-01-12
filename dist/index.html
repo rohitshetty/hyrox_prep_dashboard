@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hyrox Training Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>/* Hyrox Training Command Center - Distinctive Styling */
+/* Fonts: Archivo Black, DM Sans, Fira Code */
+/* Palette: Warm Industrial - Fire, Gold, Sage */
+
+:root {
+  --bg-void: #0d0d0f;
+  --bg-primary: #141416;
+  --bg-elevated: #1c1c1f;
+  --bg-surface: #242428;
+  --text-primary: #f5f2eb;
+  --text-secondary: #a8a5a0;
+  --text-muted: #6b6966;
+  --accent-fire: #e85a2b;
+  --accent-gold: #d4a84b;
+  --accent-sage: #7d9c7f;
+  --accent-steel: #5c7a8a;
+  --color-run: #e85a2b;
+  --color-strength: #d4a84b;
+  --color-hyrox: #7d9c7f;
+  --color-rest: #4a4a4d;
+  --run-tempo: #e85a2b;
+  --run-intervals: #22c997;
+  --run-easy: #7dd3c0;
+  --run-long: #a78bfa;
+  --run-strides: #f472b6;
+  --phase-base: #5c7a8a;
+  --phase-build: #d4a84b;
+  --phase-recovery: #7d9c7f;
+  --phase-peak: #e85a2b;
+  --phase-taper: #a78bfa;
+  --phase-race: #fbbf24;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --border-subtle: rgba(245, 242, 235, 0.06);
+  --border-medium: rgba(245, 242, 235, 0.12);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-void);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    rgba(232, 90, 43, 0.015) 40px,
+    rgba(232, 90, 43, 0.015) 41px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 13, 15, 0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: var(--space-md) var(--space-xl);
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  color: var(--accent-fire);
+}
+
+.header-meta {
+  display: flex;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.countdown-value {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+}
+
+.countdown-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.week-nav {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.week-nav-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.week-nav-btn:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-medium);
+}
+
+.week-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.week-nav-current {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 0 var(--space-md);
+  color: var(--text-primary);
+}
+
+/* Today Hero Section */
+.today-hero {
+  padding: var(--space-3xl) var(--space-xl);
+  background: radial-gradient(ellipse at 30% 20%, rgba(232, 90, 43, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(212, 168, 75, 0.05) 0%, transparent 50%),
+              var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.today-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.today-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.today-date-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.today-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.today-day {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.today-full-date {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-sm);
+}
+
+.today-phase-block {
+  text-align: right;
+}
+
+.phase-badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-sm);
+}
+
+.phase-badge[data-phase="base"] { background: var(--phase-base); color: white; }
+.phase-badge[data-phase="build"] { background: var(--phase-build); color: #1a1a1e; }
+.phase-badge[data-phase="recovery"] { background: var(--phase-recovery); color: #1a1a1e; }
+.phase-badge[data-phase="peak"] { background: var(--phase-peak); color: white; }
+.phase-badge[data-phase="taper"] { background: var(--phase-taper); color: white; }
+.phase-badge[data-phase="race"] { background: var(--phase-race); color: #1a1a1e; }
+
+.week-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.today-philosophy {
+  background: var(--bg-elevated);
+  border-left: 3px solid var(--accent-gold);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.philosophy-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.philosophy-text {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* Schedule Cards */
+.today-schedule {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.schedule-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.schedule-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium);
+}
+
+.schedule-card-header {
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.schedule-card[data-type="run"] .schedule-card-header {
+  background: linear-gradient(90deg, rgba(232, 90, 43, 0.15), transparent);
+}
+
+.schedule-card[data-type="strength"] .schedule-card-header {
+  background: linear-gradient(90deg, rgba(212, 168, 75, 0.15), transparent);
+}
+
+.schedule-card[data-type="hyrox"] .schedule-card-header {
+  background: linear-gradient(90deg, rgba(125, 156, 127, 0.15), transparent);
+}
+
+.schedule-card[data-type="rest"] .schedule-card-header {
+  background: linear-gradient(90deg, rgba(74, 74, 77, 0.15), transparent);
+}
+
+.schedule-type {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.schedule-card[data-type="run"] .schedule-type { color: var(--color-run); }
+.schedule-card[data-type="strength"] .schedule-type { color: var(--color-strength); }
+.schedule-card[data-type="hyrox"] .schedule-type { color: var(--color-hyrox); }
+.schedule-card[data-type="rest"] .schedule-type { color: var(--color-rest); }
+
+.schedule-duration {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.schedule-card-body {
+  padding: var(--space-lg);
+}
+
+.workout-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.workout-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.workout-exercises {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.exercise-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--space-sm);
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.exercise-name {
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.exercise-prescription {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.rest-message {
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.rest-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  opacity: 0.5;
+}
+
+.rest-text {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Week View */
+.week-view {
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--bg-void);
+}
+
+.week-view-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.week-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.week-view-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.week-stats {
+  display: flex;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.week-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.week-stat-value {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.week-stat-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* Days Grid */
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+}
+
+@media (max-width: 1200px) {
+  .days-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .days-grid { grid-template-columns: 1fr; }
+}
+
+.day-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.day-card:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+}
+
+.day-card.is-today {
+  border-color: var(--accent-fire);
+  box-shadow: 0 0 20px rgba(232, 90, 43, 0.15);
+}
+
+.day-card.is-selected {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 20px rgba(212, 168, 75, 0.2);
+  background: var(--bg-elevated);
+}
+
+.day-card.is-selected .day-name {
+  color: var(--accent-gold);
+}
+
+.day-card-header {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.day-card.is-today .day-name {
+  color: var(--accent-fire);
+}
+
+.day-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.day-card-body {
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-height: 180px;
+}
+
+.day-activity {
+  padding: var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+}
+
+.day-activity[data-type="run"] {
+  background: rgba(232, 90, 43, 0.1);
+  border-left: 2px solid var(--color-run);
+}
+
+.day-activity[data-type="strength"] {
+  background: rgba(212, 168, 75, 0.1);
+  border-left: 2px solid var(--color-strength);
+}
+
+.day-activity[data-type="hyrox"] {
+  background: rgba(125, 156, 127, 0.1);
+  border-left: 2px solid var(--color-hyrox);
+}
+
+.day-activity[data-type="rest"] {
+  background: rgba(74, 74, 77, 0.1);
+  border-left: 2px solid var(--color-rest);
+}
+
+.activity-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.activity-detail {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+/* Mileage Breakdown */
+.mileage-breakdown {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+.mileage-breakdown-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-bottom: var(--space-lg);
+  color: var(--text-secondary);
+}
+
+.mileage-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.mileage-bar-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 60px;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.mileage-type {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.mileage-bar-container {
+  height: 8px;
+  background: var(--bg-surface);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.mileage-bar {
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mileage-bar[data-type="tempo"] { background: var(--run-tempo); }
+.mileage-bar[data-type="intervals"] { background: var(--run-intervals); }
+.mileage-bar[data-type="easy"] { background: var(--run-easy); }
+.mileage-bar[data-type="long-run"] { background: var(--run-long); }
+.mileage-bar[data-type="strides"] { background: var(--run-strides); }
+
+.mileage-value {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-align: right;
+  color: var(--text-secondary);
+}
+
+/* Progress Section */
+.progress-section {
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.progress-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.progress-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.progress-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.progress-subtitle {
+  color: var(--text-secondary);
+}
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.progress-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+.progress-card-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.progress-big-number {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.progress-big-number span {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.progress-detail {
+  margin-top: var(--space-md);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.weeks-timeline {
+  display: flex;
+  gap: 4px;
+  margin-top: var(--space-lg);
+}
+
+.week-pip {
+  flex: 1;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--bg-surface);
+}
+
+.week-pip.completed {
+  background: var(--accent-sage);
+}
+
+.week-pip.current {
+  background: var(--accent-fire);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.mileage-chart {
+  margin-top: var(--space-lg);
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.chart-bar {
+  flex: 1;
+  background: var(--accent-fire);
+  border-radius: 2px 2px 0 0;
+  min-height: 4px;
+  transition: height 0.3s;
+  opacity: 0.6;
+}
+
+.chart-bar.highlighted {
+  opacity: 1;
+}
+
+/* Stations Section */
+.stations-section {
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--bg-void);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.stations-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.stations-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.stations-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.stations-subtitle {
+  color: var(--text-secondary);
+}
+
+.stations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.station-card {
+  display: flex;
+  gap: var(--space-md);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.station-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium);
+}
+
+.station-number {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--accent-fire);
+  opacity: 0.5;
+  line-height: 1;
+  min-width: 30px;
+}
+
+.station-content {
+  flex: 1;
+}
+
+.station-name {
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.station-spec {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.station-target {
+  font-size: 0.75rem;
+  color: var(--accent-sage);
+  font-weight: 500;
+}
+
+/* Paces Section */
+.paces-section {
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.paces-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.paces-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.paces-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.paces-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-md);
+}
+
+.pace-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.pace-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.pace-card[data-zone="e"]::before { background: var(--run-easy); }
+.pace-card[data-zone="m"]::before { background: var(--run-long); }
+.pace-card[data-zone="t"]::before { background: var(--run-tempo); }
+.pace-card[data-zone="i"]::before { background: var(--run-intervals); }
+.pace-card[data-zone="r"]::before { background: var(--run-strides); }
+
+.pace-zone-letter {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  opacity: 0.15;
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+}
+
+.pace-name {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.pace-value {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.pace-purpose {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Footer */
+.footer {
+  padding: var(--space-2xl) var(--space-xl);
+  background: var(--bg-void);
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.footer p {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.footer-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  margin-top: var(--space-sm);
+}
+
+/* Hyrox Training Section */
+.hyrox-training-section {
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.hyrox-training-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hyrox-training-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.hyrox-training-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-hyrox);
+}
+
+.hyrox-training-subtitle {
+  color: var(--text-secondary);
+}
+
+.hyrox-workout-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.hyrox-workout-header {
+  padding: var(--space-xl);
+  background: linear-gradient(135deg, rgba(125, 156, 127, 0.15), transparent);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.hyrox-workout-title-block {
+  flex: 1;
+}
+
+.hyrox-phase-badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  background: var(--color-hyrox);
+  color: #1a1a1e;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-sm);
+}
+
+.hyrox-workout-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.hyrox-workout-theme {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.hyrox-workout-meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-xs);
+}
+
+.hyrox-duration {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-hyrox);
+}
+
+.hyrox-day {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.hyrox-warmup,
+.hyrox-cooldown {
+  padding: var(--space-lg) var(--space-xl);
+  background: rgba(125, 156, 127, 0.05);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hyrox-section-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-hyrox);
+  margin-bottom: var(--space-sm);
+}
+
+.hyrox-warmup p,
+.hyrox-cooldown p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.hyrox-blocks {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.hyrox-block {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.hyrox-block-header {
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(125, 156, 127, 0.1);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hyrox-block-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-hyrox);
+  margin-bottom: var(--space-xs);
+}
+
+.hyrox-block-notes {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.hyrox-exercises {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.hyrox-exercise {
+  padding: var(--space-md);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-hyrox);
+}
+
+.hyrox-exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.hyrox-exercise-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.hyrox-exercise-rest {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+}
+
+.hyrox-prescription {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  padding: var(--space-md);
+  border-radius: var(--radius-sm);
+  margin: var(--space-sm) 0;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.hyrox-exercise-notes {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: var(--space-sm);
+}
+
+.no-workout {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Technique Section */
+.technique-section {
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--bg-void);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.technique-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.technique-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.technique-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.technique-subtitle {
+  color: var(--text-secondary);
+}
+
+.technique-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.technique-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.technique-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-hyrox);
+}
+
+.technique-station-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  color: var(--color-hyrox);
+}
+
+.technique-cues {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.technique-cues li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding-left: var(--space-lg);
+  position: relative;
+}
+
+.technique-cues li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-hyrox);
+}
+
+/* Race Strategy Section */
+.race-strategy-section {
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.race-strategy-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.race-strategy-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.race-strategy-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.race-strategy-subtitle {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  color: var(--accent-fire);
+}
+
+.strategy-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-lg);
+}
+
+.strategy-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+.strategy-card-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-bottom: var(--space-lg);
+  color: var(--text-primary);
+}
+
+.station-targets-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.station-target-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+}
+
+.target-station {
+  font-weight: 600;
+  font-size: 0.9rem;
+  grid-column: 1;
+}
+
+.target-time {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-fire);
+  grid-column: 2;
+  text-align: right;
+}
+
+.target-strategy {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  grid-column: 1 / -1;
+}
+
+.mental-cue-block {
+  padding: var(--space-lg);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+  border-left: 3px solid var(--accent-gold);
+}
+
+.mental-cue-block:last-child {
+  margin-bottom: 0;
+}
+
+.mental-cue-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.mental-cue-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.strategy-mantra {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mantra-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--accent-fire);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+  }
+
+  .header-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .today-header {
+    flex-direction: column;
+  }
+
+  .today-phase-block {
+    text-align: left;
+  }
+
+  .today-schedule {
+    grid-template-columns: 1fr;
+  }
+
+  .week-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .hyrox-workout-header {
+    flex-direction: column;
+  }
+
+  .hyrox-workout-meta {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .station-target-row {
+    grid-template-columns: 1fr;
+  }
+
+  .target-time {
+    text-align: left;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">HYROX PREP</div>
+        <div class="header-meta">
+          <div class="countdown">
+            <span class="countdown-value" id="countdown-days">--</span>
+            <span class="countdown-label">Days to Race</span>
+          </div>
+          <nav class="week-nav">
+            <button class="week-nav-btn" id="prev-week">&larr;</button>
+            <span class="week-nav-current" id="current-week-label">Week 1</span>
+            <button class="week-nav-btn" id="next-week">&rarr;</button>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="today-hero">
+      <div class="today-hero-inner">
+        <div class="today-header">
+          <div class="today-date-block">
+            <span class="today-label">Today</span>
+            <h1 class="today-day" id="today-day-name">Monday</h1>
+            <span class="today-full-date" id="today-full-date">January 13, 2026</span>
+          </div>
+          <div class="today-phase-block">
+            <span class="phase-badge" id="today-phase-badge" data-phase="base">Base</span>
+            <div class="week-title" id="today-week-title">Week 1 of 13</div>
+          </div>
+        </div>
+        <div class="today-philosophy">
+          <div class="philosophy-label">Week Focus</div>
+          <p class="philosophy-text" id="today-philosophy">Loading...</p>
+        </div>
+        <div class="today-schedule" id="today-schedule"></div>
+      </div>
+    </section>
+
+    <section class="week-view">
+      <div class="week-view-inner">
+        <div class="week-view-header">
+          <h2 class="week-view-title" id="week-view-title">Week 1 Overview</h2>
+          <div class="week-stats">
+            <div class="week-stat">
+              <span class="week-stat-value" id="week-total-km">36 km</span>
+              <span class="week-stat-label">Running Volume</span>
+            </div>
+            <div class="week-stat">
+              <span class="week-stat-value" id="week-strength-phase">Volume</span>
+              <span class="week-stat-label">Strength Phase</span>
+            </div>
+            <div class="week-stat">
+              <span class="week-stat-value" id="week-hyrox-focus">Foundation</span>
+              <span class="week-stat-label">Hyrox Cycle</span>
+            </div>
+          </div>
+        </div>
+        <div class="days-grid" id="days-grid"></div>
+        <div class="mileage-breakdown">
+          <h3 class="mileage-breakdown-title">Weekly Mileage by Type</h3>
+          <div class="mileage-bars" id="mileage-bars"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="progress-section">
+      <div class="progress-inner">
+        <div class="progress-header">
+          <h2 class="progress-title">Training Progress</h2>
+          <p class="progress-subtitle">Your journey to race day</p>
+        </div>
+        <div class="progress-grid">
+          <div class="progress-card">
+            <div class="progress-card-title">Total Plan Volume</div>
+            <div class="progress-big-number">514 <span>km</span></div>
+            <div class="progress-detail">Across 13 weeks of training</div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-title">Week Progress</div>
+            <div class="progress-big-number" id="weeks-completed">0 <span>/ 13</span></div>
+            <div class="weeks-timeline" id="weeks-timeline"></div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-title">Weekly Volume Chart</div>
+            <div class="mileage-chart" id="mileage-chart"></div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-card-title">Target Race Time</div>
+            <div class="progress-big-number">Sub 70 <span>min</span></div>
+            <div class="progress-detail">April 12, 2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stations-section">
+      <div class="stations-inner">
+        <div class="stations-header">
+          <h2 class="stations-title">Race Stations</h2>
+          <p class="stations-subtitle">8 functional fitness challenges between 1km runs</p>
+        </div>
+        <div class="stations-grid" id="stations-grid">
+          <div class="station-card">
+            <div class="station-number">1</div>
+            <div class="station-content">
+              <h3 class="station-name">SkiErg</h3>
+              <div class="station-spec">
+1000m              </div>
+              <div class="station-target">Target: 4:30-5:00</div>
+            </div>
+          </div>
+          <div class="station-card">
+            <div class="station-number">2</div>
+            <div class="station-content">
+              <h3 class="station-name">Sled Push</h3>
+              <div class="station-spec">
+50m @ 152 kg (men open)              </div>
+              <div class="station-target">Target: 3:00-3:30</div>
+            </div>
+          </div>
+          <div class="station-card">
+            <div class="station-number">3</div>
+            <div class="station-content">
+              <h3 class="station-name">Sled Pull</h3>
+              <div class="station-spec">
+50m @ 103 kg (men open)              </div>
+              <div class="station-target">Target: 2:00-2:30</div>
+            </div>
+          </div>
+          <div class="station-card">
+            <div class="station-number">4</div>
+            <div class="station-content">
+              <h3 class="station-name">Burpee Broad Jumps</h3>
+              <div class="station-spec">
+80m              </div>
+              <div class="station-target">Target: 4:00-4:30</div>
+            </div>
+          </div>
+          <div class="station-card">
+            <div class="station-number">5</div>
+            <div class="station-content">
+              <h3 class="station-name">Rowing</h3>
+              <div class="station-spec">
+1000m              </div>
+              <div class="station-target">Target: 4:00-4:30</div>
+            </div>
+          </div>
+          <div class="station-card">
+            <div class="station-number">6</div>
+            <div class="station-content">
+              <h3 class="station-name">Farmers Carry</h3>
+              <div class="station-spec">
+200m @ 2 x 24 kg (men open)              </div>
+              <div class="station-target">Target: 2:30-3:00</div>
+            </div>
+          </div>
+          <div class="station-card">
+            <div class="station-number">7</div>
+            <div class="station-content">
+              <h3 class="station-name">Sandbag Lunges</h3>
+              <div class="station-spec">
+100m @ 20 kg (men open)              </div>
+              <div class="station-target">Target: 4:00-4:30</div>
+            </div>
+          </div>
+          <div class="station-card">
+            <div class="station-number">8</div>
+            <div class="station-content">
+              <h3 class="station-name">Wall Balls</h3>
+              <div class="station-spec">
+100 reps @ 6 kg ball, 3m target              </div>
+              <div class="station-target">Target: 4:30-5:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hyrox-training-section">
+      <div class="hyrox-training-inner">
+        <div class="hyrox-training-header">
+          <h2 class="hyrox-training-title">Hyrox Training</h2>
+          <p class="hyrox-training-subtitle">This week's station work</p>
+        </div>
+        <div class="hyrox-workout-display" id="hyrox-workout-display"></div>
+      </div>
+    </section>
+
+    <section class="technique-section">
+      <div class="technique-inner">
+        <div class="technique-header">
+          <h2 class="technique-title">Station Technique Cues</h2>
+          <p class="technique-subtitle">Quick reference for proper form</p>
+        </div>
+        <div class="technique-grid">
+          <div class="technique-card">
+            <h3 class="technique-station-name">SkiErg</h3>
+            <ul class="technique-cues">
+              <li>Hinge at hips, not just arms</li>
+              <li>Pull handles to thighs, not stopping at waist</li>
+              <li>Use core and lats, not just arms</li>
+              <li>Breathe rhythmically (exhale on pull)</li>
+              <li>Target 30-35 strokes per minute</li>
+            </ul>
+          </div>
+          <div class="technique-card">
+            <h3 class="technique-station-name">Sled Push</h3>
+            <ul class="technique-cues">
+              <li>Low body position, 45-degree angle</li>
+              <li>Drive through legs, not arms</li>
+              <li>Short, choppy steps</li>
+              <li>NEVER stop - restarting costs more energy</li>
+            </ul>
+          </div>
+          <div class="technique-card">
+            <h3 class="technique-station-name">Sled Pull</h3>
+            <ul class="technique-cues">
+              <li>Sit back in athletic stance</li>
+              <li>Pull with arms, use legs to anchor</li>
+              <li>Alternate hands smoothly</li>
+              <li>Don&#39;t death-grip the rope</li>
+            </ul>
+          </div>
+          <div class="technique-card">
+            <h3 class="technique-station-name">Burpee Broad Jumps</h3>
+            <ul class="technique-cues">
+              <li>Controlled burpee, don&#39;t slam chest</li>
+              <li>Jump for consistent distance (1.5m), not max</li>
+              <li>Land softly, absorb with legs</li>
+              <li>Break into mental chunks (8 x 10m)</li>
+            </ul>
+          </div>
+          <div class="technique-card">
+            <h3 class="technique-station-name">Rowing</h3>
+            <ul class="technique-cues">
+              <li>Drive with legs first (60% of power)</li>
+              <li>Open hips, then pull arms</li>
+              <li>Control the recovery (don&#39;t rush)</li>
+              <li>Target 26-28 strokes/minute</li>
+              <li>Aim for 2:15/500m split</li>
+            </ul>
+          </div>
+          <div class="technique-card">
+            <h3 class="technique-station-name">Farmers Carry</h3>
+            <ul class="technique-cues">
+              <li>Crush grip the handles</li>
+              <li>Shoulders back and down</li>
+              <li>Short, quick steps</li>
+              <li>Breathe into belly</li>
+            </ul>
+          </div>
+          <div class="technique-card">
+            <h3 class="technique-station-name">Lunges</h3>
+            <ul class="technique-cues">
+              <li>Controlled descent, knee tracks over toe</li>
+              <li>Drive through front heel</li>
+              <li>Keep torso upright</li>
+              <li>Breathe on every rep</li>
+            </ul>
+          </div>
+          <div class="technique-card">
+            <h3 class="technique-station-name">Wall Balls</h3>
+            <ul class="technique-cues">
+              <li>Deep squat, ball at chest</li>
+              <li>Drive through heels, extend hips</li>
+              <li>Guide ball with fingertips (don&#39;t push)</li>
+              <li>Catch in squat position</li>
+              <li>Keep elbows high</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="race-strategy-section">
+      <div class="race-strategy-inner">
+        <div class="race-strategy-header">
+          <h2 class="race-strategy-title">Race Day Strategy</h2>
+          <p class="race-strategy-subtitle">Target: Sub 70:00</p>
+        </div>
+        <div class="strategy-content">
+          <div class="strategy-card strategy-targets">
+            <h3 class="strategy-card-title">Station Targets</h3>
+            <div class="station-targets-list">
+              <div class="station-target-row">
+                <span class="target-station">SkiErg</span>
+                <span class="target-time">4:30-5:00</span>
+                <span class="target-strategy">Start at 2:20/500m pace. Resist going faster early.</span>
+              </div>
+              <div class="station-target-row">
+                <span class="target-station">Sled Push</span>
+                <span class="target-time">3:00-3:30</span>
+                <span class="target-strategy">Low position. Short choppy steps. NEVER STOP.</span>
+              </div>
+              <div class="station-target-row">
+                <span class="target-station">Sled Pull</span>
+                <span class="target-time">2:00-2:30</span>
+                <span class="target-strategy">Steady hand-over-hand. Don&#39;t death-grip.</span>
+              </div>
+              <div class="station-target-row">
+                <span class="target-station">Burpee Broad Jumps</span>
+                <span class="target-time">4:00-4:30</span>
+                <span class="target-strategy">8 x 10m chunks mentally. Consistent 1.5m jumps.</span>
+              </div>
+              <div class="station-target-row">
+                <span class="target-station">Rowing</span>
+                <span class="target-time">4:00-4:30</span>
+                <span class="target-strategy">You&#39;re strong here. 2:10-2:15 splits. Don&#39;t rush recovery.</span>
+              </div>
+              <div class="station-target-row">
+                <span class="target-station">Farmers Carry</span>
+                <span class="target-time">2:30-3:00</span>
+                <span class="target-strategy">Quick steps. 2 short breaks max if needed.</span>
+              </div>
+              <div class="station-target-row">
+                <span class="target-station">Sandbag Lunges</span>
+                <span class="target-time">4:00-4:30</span>
+                <span class="target-strategy">SLOW IS FINE. Steady pace. Don&#39;t stop.</span>
+              </div>
+              <div class="station-target-row">
+                <span class="target-station">Wall Balls</span>
+                <span class="target-time">4:30-5:00</span>
+                <span class="target-strategy">10x10 or 5x20. Break from start. FINISH STRONG.</span>
+              </div>
+            </div>
+          </div>
+          <div class="strategy-card strategy-mental">
+            <h3 class="strategy-card-title">Mental Cues</h3>
+            <div class="mental-cue-block">
+              <div class="mental-cue-label">First Half (Stations 1-4)</div>
+              <p class="mental-cue-text">&quot;First 4 stations: Stay controlled. You&#39;re depositing in the bank.  If you feel good, you&#39;re going too fast. Stick to plan.&quot;</p>
+            </div>
+            <div class="mental-cue-block">
+              <div class="mental-cue-label">Second Half (Stations 5-8)</div>
+              <p class="mental-cue-text">&quot;Stations 5-8: Time to withdraw from the bank. Push harder.  You trained for this. Trust the work.&quot;</p>
+            </div>
+          </div>
+          <div class="strategy-card strategy-mantra">
+            <h3 class="strategy-card-title">Race Mantra</h3>
+            <p class="mantra-text">Control the first half. Attack the second half. Trust the training.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="paces-section">
+      <div class="paces-inner">
+        <div class="paces-header">
+          <h2 class="paces-title">Training Zones</h2>
+        </div>
+        <div class="paces-grid">
+          <div class="pace-card" data-zone="e">
+            <div class="pace-zone-letter">E</div>
+            <div class="pace-name">Easy</div>
+            <div class="pace-value">6:15-6:50/km</div>
+            <div class="pace-purpose">Aerobic base, recovery</div>
+          </div>
+          <div class="pace-card" data-zone="m">
+            <div class="pace-zone-letter">M</div>
+            <div class="pace-name">Marathon</div>
+            <div class="pace-value">5:55/km</div>
+            <div class="pace-purpose">Race simulation</div>
+          </div>
+          <div class="pace-card" data-zone="t">
+            <div class="pace-zone-letter">T</div>
+            <div class="pace-name">Threshold</div>
+            <div class="pace-value">5:26/km</div>
+            <div class="pace-purpose">Lactate clearance</div>
+          </div>
+          <div class="pace-card" data-zone="i">
+            <div class="pace-zone-letter">I</div>
+            <div class="pace-name">Interval</div>
+            <div class="pace-value">4:58/km</div>
+            <div class="pace-purpose">VO2max development</div>
+          </div>
+          <div class="pace-card" data-zone="r">
+            <div class="pace-zone-letter">R</div>
+            <div class="pace-name">Repetition</div>
+            <div class="pace-value">4:39/km</div>
+            <div class="pace-purpose">Speed &amp; running economy</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Hyrox Training Command Center</p>
+      <p class="footer-meta">Race Day: April 12, 2026</p>
+    </footer>
+  </div>
+
+<script>
+const RACE_DATE = new Date('2026-04-12');
+const START_DATE = new Date('2026-01-12');
+
+// Run plan data from YAML
+const RUN_WEEKS = [
+  {
+    name: 'Week 1',
+    dates: 'Jan 13-19',
+    phase: 'Base',
+    volume: 36,
+    philosophy: 'Building aerobic foundation and establishing consistent training rhythm. Focus on easy effort and developing running economy.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 8, details: '2km E + 2x10min T (3min jog) + 2km E' },      { day: 'Wed', type: 'Easy', distance: 6, details: 'Steady E pace throughout' },      { day: 'Fri', type: 'Intervals', distance: 8, details: '2km E + 6x800m I (2min jog) + 2km E' },      { day: 'Sat', type: 'Long Run', distance: 14, details: 'E pace, conversational' }    ]
+  },  {
+    name: 'Week 2',
+    dates: 'Jan 20-26',
+    phase: 'Base',
+    volume: 38,
+    philosophy: 'Building aerobic foundation and establishing consistent training rhythm. Focus on easy effort and developing running economy.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 8, details: '2km E + 15min T + 3min jog + 10min T + 2km E' },      { day: 'Wed', type: 'Easy', distance: 6, details: 'Steady E pace throughout' },      { day: 'Fri', type: 'Intervals', distance: 9, details: '2km E + 5x1000m I (2min jog) + 2km E' },      { day: 'Sat', type: 'Long Run', distance: 15, details: 'E pace with 2x5min M in middle' }    ]
+  },  {
+    name: 'Week 3',
+    dates: 'Jan 27 - Feb 2',
+    phase: 'Build',
+    volume: 46,
+    philosophy: 'Progressive overload phase. Increasing volume and introducing more quality work to develop race-specific fitness.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 10, details: '2km E + 20min T + 3min jog + 15min T + 2km E' },      { day: 'Wed', type: 'Easy', distance: 8, details: 'Steady E pace throughout' },      { day: 'Fri', type: 'Intervals', distance: 10, details: '2km E + 6x1000m I (90s jog) + 2km E' },      { day: 'Sat', type: 'Long Run', distance: 18, details: 'E pace, negative split last 4km' }    ]
+  },  {
+    name: 'Week 4',
+    dates: 'Feb 3-9',
+    phase: 'Recovery',
+    volume: 27,
+    philosophy: 'Adaptation week. Reduced volume allows your body to absorb training stress and come back stronger.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 6, details: '2km E + 12min T + 2km E' },      { day: 'Wed', type: 'Easy', distance: 5, details: 'Very easy, recovery focus' },      { day: 'Fri', type: 'Intervals', distance: 5, details: '2km E + 4x600m I (2min jog) + 1km E' },      { day: 'Sat', type: 'Long Run', distance: 11, details: 'E pace, relaxed' }    ]
+  },  {
+    name: 'Week 5',
+    dates: 'Feb 10-16',
+    phase: 'Build',
+    volume: 48,
+    philosophy: 'Progressive overload phase. Increasing volume and introducing more quality work to develop race-specific fitness.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 10, details: '2km E + 2x15min T (3min jog) + 2km E' },      { day: 'Wed', type: 'Easy', distance: 8, details: 'Steady E pace throughout' },      { day: 'Fri', type: 'Intervals', distance: 11, details: '2km E + 7x1000m I (90s jog) + 2km E' },      { day: 'Sat', type: 'Long Run', distance: 19, details: 'E pace with 3x5min M efforts' }    ]
+  },  {
+    name: 'Week 6',
+    dates: 'Feb 17-23',
+    phase: 'Build',
+    volume: 50,
+    philosophy: 'Progressive overload phase. Increasing volume and introducing more quality work to develop race-specific fitness.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 11, details: '2km E + 25min T + 3min jog + 10min T + 2km E' },      { day: 'Wed', type: 'Easy', distance: 8, details: 'Steady E pace throughout' },      { day: 'Fri', type: 'Intervals', distance: 11, details: '2km E + 8x1000m I (90s jog) + 2km E' },      { day: 'Sat', type: 'Long Run', distance: 20, details: 'E pace, last 5km at M pace' }    ]
+  },  {
+    name: 'Week 7',
+    dates: 'Feb 24 - Mar 2',
+    phase: 'Build',
+    volume: 54,
+    philosophy: 'Progressive overload phase. Increasing volume and introducing more quality work to develop race-specific fitness.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 12, details: '2km E + 30min T + 3min jog + 10min T + 2km E' },      { day: 'Wed', type: 'Easy', distance: 9, details: 'Steady E pace throughout' },      { day: 'Fri', type: 'Intervals', distance: 12, details: '2km E + 5x1600m I (2min jog) + 2km E' },      { day: 'Sat', type: 'Long Run', distance: 21, details: 'E pace with 4x5min M efforts' }    ]
+  },  {
+    name: 'Week 8',
+    dates: 'Mar 3-9',
+    phase: 'Recovery',
+    volume: 35,
+    philosophy: 'Adaptation week. Reduced volume allows your body to absorb training stress and come back stronger.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 8, details: '2km E + 15min T + 2km E' },      { day: 'Wed', type: 'Easy', distance: 6, details: 'Very easy, recovery focus' },      { day: 'Fri', type: 'Intervals', distance: 7, details: '2km E + 5x800m I (2min jog) + 1km E' },      { day: 'Sat', type: 'Long Run', distance: 14, details: 'E pace, relaxed' }    ]
+  },  {
+    name: 'Week 9',
+    dates: 'Mar 10-16',
+    phase: 'Peak',
+    volume: 54,
+    philosophy: 'Maximum race-specific training. Highest quality sessions to sharpen fitness for race day performance.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 12, details: '2km E + 2x20min T (3min jog) + 2km E' },      { day: 'Wed', type: 'Easy', distance: 9, details: 'Steady E pace throughout' },      { day: 'Fri', type: 'Intervals', distance: 12, details: '2km E + 10x800m I (90s jog) + 2km E' },      { day: 'Sat', type: 'Long Run', distance: 21, details: 'Hyrox Sim: 8x1km at M pace (2min jog between) + E cooldown' }    ]
+  },  {
+    name: 'Week 10',
+    dates: 'Mar 17-23',
+    phase: 'Peak',
+    volume: 57,
+    philosophy: 'Maximum race-specific training. Highest quality sessions to sharpen fitness for race day performance.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 13, details: '2km E + 35min T + 2km E' },      { day: 'Wed', type: 'Easy', distance: 9, details: 'Steady E pace throughout' },      { day: 'Fri', type: 'Intervals', distance: 13, details: '2km E + 6x1200m I (90s jog) + 2km E' },      { day: 'Sat', type: 'Long Run', distance: 22, details: 'E pace with 6x1km at M pace scattered throughout' }    ]
+  },  {
+    name: 'Week 11',
+    dates: 'Mar 24-30',
+    phase: 'Taper',
+    volume: 42,
+    philosophy: 'Reducing volume while maintaining intensity. Letting your body freshen up while staying sharp.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 10, details: '2km E + 20min T + 2km E' },      { day: 'Wed', type: 'Easy', distance: 7, details: 'Steady E pace, stay fresh' },      { day: 'Fri', type: 'Intervals', distance: 9, details: '2km E + 8x600m I (90s jog) + 2km E' },      { day: 'Sat', type: 'Long Run', distance: 16, details: 'Hyrox Sim: 8x1km at race effort (90s jog)' }    ]
+  },  {
+    name: 'Week 12',
+    dates: 'Mar 31 - Apr 6',
+    phase: 'Taper',
+    volume: 20,
+    philosophy: 'Reducing volume while maintaining intensity. Letting your body freshen up while staying sharp.',
+    workouts: [
+      { day: 'Mon', type: 'Tempo', distance: 6, details: '2km E + 10min T + 2km E' },      { day: 'Wed', type: 'Easy', distance: 5, details: 'Shakeout, very easy' },      { day: 'Fri', type: 'Intervals', distance: 5, details: '1km E + 6x400m R (full recovery) + 1km E' },      { day: 'Sat', type: 'Long Run', distance: 4, details: 'Easy jog, confidence builder' }    ]
+  },  {
+    name: 'Race Week',
+    dates: 'Apr 7-12',
+    phase: 'Race',
+    volume: 14,
+    philosophy: 'Race week protocol. Minimal volume, short sharpening sessions, and mental preparation for race day.',
+    workouts: [
+      { day: 'Mon', type: 'Easy', distance: 4, details: 'Shakeout run, very easy' },      { day: 'Wed', type: 'Strides', distance: 3, details: '1km E + 4x200m R (full recovery) + 1km E' },      { day: 'Fri', type: 'Rest', distance: 0, details: 'Complete rest or light walk' },      { day: 'Sat', type: 'RACE', distance: 8, details: 'Hyrox - GO TIME!' }    ]
+  }];
+
+// Strength phases cycle every 4 weeks
+const STRENGTH_PHASES = ['Volume', 'Volume+', 'Intensity', 'Deload'];
+
+// Strength base workouts by day
+const STRENGTH_BASE = {
+  monday: {
+    name: 'Squat Focus',
+    duration: '55 min',
+    exercises: [
+      { name: 'Back Squat', sets: 5, reps: 5, weight: '77 kg' },
+      { name: 'Paused Squats', sets: 3, reps: 3, weight: '70 kg' },
+      { name: 'RDL', sets: 3, reps: 8, weight: '80 kg' },
+      { name: 'Leg Curls', sets: 3, reps: 12, weight: 'moderate' },
+      { name: 'Core - Planks', sets: 3, reps: '45s', weight: '' }
+    ]
+  },
+  wednesday: {
+    name: 'Upper Hypertrophy',
+    duration: '30 min',
+    exercises: [
+      { name: 'Incline DB Bench', sets: 4, reps: 6, weight: '25 kg each' },
+      { name: 'Dumbbell Bench', sets: 3, reps: 10, weight: '22 kg each' },
+      { name: 'Pull-ups', sets: 4, reps: '6-8', weight: '' },
+      { name: 'Seated Shoulder Press', sets: 3, reps: 8, weight: '20 kg each' },
+      { name: 'Face Pulls', sets: 3, reps: 15, weight: '' }
+    ]
+  },
+  thursday: {
+    name: 'Bench Focus (Light)',
+    duration: '55 min',
+    exercises: [
+      { name: 'Barbell Bench Press', sets: 4, reps: 6, weight: '52 kg' },
+      { name: 'Close Grip Bench', sets: 3, reps: 8, weight: '45 kg' },
+      { name: 'Barbell Rows', sets: 3, reps: 8, weight: '60 kg' },
+      { name: 'Tricep Pushdowns', sets: 2, reps: 15, weight: '' }
+    ]
+  },
+  friday: {
+    name: 'Lower Hypertrophy (Brief)',
+    duration: '20 min',
+    exercises: [
+      { name: 'Split Squats', sets: 3, reps: '8 each', weight: '16 kg KB' },
+      { name: 'Glute Bridges', sets: 3, reps: 12, weight: '60 kg' },
+      { name: 'Calf Raises', sets: 3, reps: 15, weight: '' },
+      { name: 'Core Circuit', sets: 2, reps: '10/side', weight: '' }
+    ]
+  },
+  saturday: {
+    name: 'Deadlift Focus',
+    duration: '50-60 min',
+    exercises: [
+      { name: 'Deadlift', sets: 4, reps: 5, weight: '98 kg' },
+      { name: 'Pause Deadlift', sets: 2, reps: 3, weight: '80 kg' },
+      { name: 'Hip Thrust', sets: 4, reps: 8, weight: '100 kg' },
+      { name: 'Back Extensions', sets: 3, reps: 12, weight: '' },
+      { name: 'Farmers Hold', sets: 3, reps: '30s', weight: '28 kg each' }
+    ]
+  }
+};
+
+// Hyrox cycles
+const HYROX_CYCLES = {
+  foundation: {
+    name: 'Foundation',
+    weeks: [
+      { name: 'Station Introduction', duration: '55 min', focus: 'SkiErg + Wall Balls + Farmers Carry' },
+      { name: 'Sled Day', duration: '60 min', focus: 'Sled Push + Sled Pull + Rowing' },
+      { name: 'Full Body Circuit', duration: '60 min', focus: 'Mini circuit: BBJ + Wall Balls + Carry' },
+      { name: 'Recovery - Technique', duration: '35 min', focus: 'Light movement practice' }
+    ]
+  },
+  build: {
+    name: 'Build',
+    weeks: [
+      { name: 'Race Weight Intro', duration: '65 min', focus: 'SkiErg 1000m + Sled @ race weight' },
+      { name: 'Half Simulation', duration: '70 min', focus: '4 stations with 500m runs between' },
+      { name: 'Overload Training', duration: '70 min', focus: 'Sled @ 170kg + heavy carries' },
+      { name: 'Recovery Week', duration: '35 min', focus: 'Light station practice' }
+    ]
+  },
+  peak: {
+    name: 'Peak & Taper',
+    weeks: [
+      { name: 'Full Race Simulation', duration: '80-95 min', focus: '8 stations at race weight' },
+      { name: 'Peak Performance', duration: '60 min', focus: 'Race pace transitions' },
+      { name: 'Sharpening', duration: '45 min', focus: 'Abbreviated simulation' },
+      { name: 'Race Week', duration: '20 min', focus: 'Light activation only' }
+    ]
+  }
+};
+
+// Detailed Hyrox workouts from YAML (indexed by week 0-12)
+const HYROX_WORKOUTS = [
+  // Week 1 (Foundation)
+  {
+    phase: 'Foundation',
+    theme: 'Station Introduction - Learning the Movements',
+    tuesday: {
+      name: 'Hyrox Endurance: Station Intro + Compromised Running',
+      duration: '55 min',
+      warmup: '5 min easy row + 10 air squats + arm circles',
+      cooldown: '5 min stretch: hips, shoulders, lats',
+      blocks: [
+        {
+          name: 'SkiErg Learning',
+          notes: '',
+          exercises: [
+            {
+              name: 'SkiErg Technique Practice',
+              prescription: `5 x 200m @ comfortable pace`,
+              rest: '60s between sets',
+              notes: 'Focus on hip hinge and lat engagement. Note your natural pace per 500m split. Don&#92;&#39;t worry about speed yet. '
+            }          ]
+        },        {
+          name: 'Intro to Compromised Running',
+          notes: 'First taste of running after station work',
+          exercises: [
+            {
+              name: 'SkiErg → Run Combo x 3 rounds',
+              prescription: `- SkiErg: 250m @ moderate pace&#92;n- Run: 400m @ easy pace (around 6:00/km)&#92;n`,
+              rest: '2 min between rounds',
+              notes: 'Notice how running feels after SkiErg. Legs heavy is normal.'
+            }          ]
+        },        {
+          name: 'Wall Ball Foundation',
+          notes: '',
+          exercises: [
+            {
+              name: 'Wall Balls',
+              prescription: `5 x 10 reps`,
+              rest: '30s',
+              notes: 'Focus on squat depth and hitting target consistently.'
+            }          ]
+        },        {
+          name: 'Grip Work',
+          notes: '',
+          exercises: [
+            {
+              name: 'Farmers Carry',
+              prescription: `4 x 50m @ 20 kg each hand`,
+              rest: '60s',
+              notes: 'Light weight - learning efficient walking pattern.'
+            }          ]
+        }      ]
+    }
+  },
+  // Week 2
+  {
+    phase: 'Foundation',
+    theme: 'Sled &amp; Rowing - Building Power',
+    tuesday: {
+      name: 'Hyrox Endurance: Sled, Row &amp; Compromised Running',
+      duration: '60 min',
+      warmup: '5 min bike + leg swings + hip hinges',
+      cooldown: '5 min walk + quad stretch',
+      blocks: [
+        {
+          name: 'Sled Push Learning',
+          notes: '',
+          exercises: [
+            {
+              name: 'Sled Push',
+              prescription: `4 x 25m @ 120 kg (sub race weight)`,
+              rest: '90s',
+              notes: 'Find your low position. Practice never stopping. This weight should feel manageable - we&#92;&#39;re learning. '
+            }          ]
+        },        {
+          name: 'Sled Pull Learning',
+          notes: '',
+          exercises: [
+            {
+              name: 'Sled Pull',
+              prescription: `4 x 25m @ 80 kg (sub race weight)`,
+              rest: '90s',
+              notes: 'Hand-over-hand rhythm. Find your pulling cadence.'
+            }          ]
+        },        {
+          name: 'Row + Run Combos',
+          notes: '',
+          exercises: [
+            {
+              name: 'Row-Run Combo x 3 rounds',
+              prescription: `- Row: 500m @ 2:15/500m&#92;n- Run: 500m @ 5:30/km&#92;n`,
+              rest: '90s between rounds',
+              notes: 'Rowing first, then run. Notice leg fatigue transferring. This teaches pacing under accumulating fatigue. '
+            }          ]
+        },        {
+          name: 'Wall Ball Practice',
+          notes: '',
+          exercises: [
+            {
+              name: 'Wall Balls',
+              prescription: `3 x 12 reps`,
+              rest: '20s',
+              notes: ''
+            }          ]
+        }      ]
+    }
+  },
+  // Week 3
+  {
+    phase: 'Foundation',
+    theme: 'Movement Integration &amp; Burpee Broad Jumps',
+    tuesday: {
+      name: 'Hyrox Endurance: 4-Station Mini Simulation',
+      duration: '60 min',
+      warmup: '5 min SkiErg easy + dynamic stretches',
+      cooldown: 'Foam roll quads, lats, thoracic spine',
+      blocks: [
+        {
+          name: 'Burpee Broad Jump Learning',
+          notes: '',
+          exercises: [
+            {
+              name: 'Burpee Broad Jumps',
+              prescription: `4 x 20m`,
+              rest: '90s',
+              notes: 'Aim for consistent ~1.5m jumps. Find sustainable rhythm. Don&#92;&#39;t go for max distance - you need 80m on race day. '
+            }          ]
+        },        {
+          name: 'Mini Hyrox Simulation',
+          notes: 'First taste of combining multiple stations with running',
+          exercises: [
+            {
+              name: '4-Station Flow x 2 rounds',
+              prescription: `- Run: 500m @ 5:30/km&#92;n- SkiErg: 500m&#92;n- Run: 500m @ 5:30/km&#92;n- Wall Balls: 25 reps&#92;n`,
+              rest: '3 min between rounds',
+              notes: 'First taste of combining multiple stations. Goal: consistent pacing, not speed. '
+            }          ]
+        },        {
+          name: 'Lunge Practice',
+          notes: '',
+          exercises: [
+            {
+              name: 'Barbell Walking Lunges (sandbag sub)',
+              prescription: `3 x 25m @ 25 kg`,
+              rest: '60s',
+              notes: 'Practice when legs are already tired.'
+            }          ]
+        }      ]
+    }
+  },
+  // Week 4
+  {
+    phase: 'Foundation',
+    theme: 'Recovery Week - Technique Focus',
+    tuesday: {
+      name: 'Hyrox Endurance: Recovery - Light Movement Only',
+      duration: '35 min',
+      warmup: '5 min easy row',
+      cooldown: '10 min extended mobility - hip flexors, thoracic, shoulders',
+      blocks: [
+        {
+          name: 'Easy Movement Flow',
+          notes: 'NO intensity. Recovery week - just moving well.',
+          exercises: [
+            {
+              name: 'Movement Flow',
+              prescription: `- Easy row: 1000m @ 2:30 pace&#92;n- Run: 800m @ very easy pace (6:30/km)&#92;n- SkiErg: 500m @ very easy pace&#92;n- Wall Balls: 3 x 10 perfect reps&#92;n- Light farmers walk: 100m @ 16 kg&#92;n`,
+              rest: 'Full recovery between each',
+              notes: 'Movement maintenance only. Stay fresh for Cycle 2.'
+            }          ]
+        }      ]
+    }
+  },
+  // Week 5
+  {
+    phase: 'Build',
+    theme: 'Race Weight Introduction',
+    tuesday: {
+      name: 'Hyrox Endurance: Race Weight + Compromised Running',
+      duration: '65 min',
+      warmup: '5 min row + leg swings + arm circles',
+      cooldown: '5 min walk, stretch',
+      blocks: [
+        {
+          name: 'Sled at Race Weight',
+          notes: '',
+          exercises: [
+            {
+              name: 'Sled Push',
+              prescription: `3 x 50m @ 152 kg (RACE WEIGHT)`,
+              rest: '2 min',
+              notes: 'First time at full race weight for full distance. Focus: DON&#92;&#39;T STOP. Time each rep. '
+            },            {
+              name: 'Sled Pull',
+              prescription: `3 x 50m @ 103 kg (RACE WEIGHT)`,
+              rest: '2 min',
+              notes: 'Full race weight. Find your sustainable rhythm.'
+            }          ]
+        },        {
+          name: 'Sled → Run Transitions',
+          notes: 'The hardest transition in Hyrox',
+          exercises: [
+            {
+              name: 'Sled + Run Combo x 3 rounds',
+              prescription: `- Sled Push: 50m @ 140 kg&#92;n- Run: 800m @ 5:15/km (race pace)&#92;n`,
+              rest: '90s between rounds',
+              notes: 'Legs will feel like concrete. Push through. This is what race day feels like. '
+            }          ]
+        },        {
+          name: 'Wall Ball Capacity',
+          notes: '',
+          exercises: [
+            {
+              name: 'Wall Balls',
+              prescription: `4 x 25 reps`,
+              rest: '30s',
+              notes: 'Building toward 100-rep race requirement.'
+            }          ]
+        }      ]
+    }
+  },
+  // Week 6
+  {
+    phase: 'Build',
+    theme: 'Half Hyrox Simulation',
+    tuesday: {
+      name: 'Hyrox Endurance: HALF RACE SIMULATION',
+      duration: '70 min',
+      warmup: '10 min progressive: easy row → dynamic stretches → few air squats',
+      cooldown: 'Stretch quads, grip/forearm roll, extended recovery',
+      blocks: [
+        {
+          name: 'Half Hyrox Simulation',
+          notes: 'THIS IS YOUR HALFWAY DRESS REHEARSAL. 4 stations with 500m runs between. Time everything. This predicts your race performance. ',
+          exercises: [
+            {
+              name: 'Half Simulation',
+              prescription: `- Run: 500m @ 5:15/km&#92;n- SkiErg: 1000m (target: sub-5:00)&#92;n- Run: 500m @ 5:15/km&#92;n- Sled Push: 50m @ 145 kg&#92;n- Run: 500m @ 5:15/km&#92;n- Row: 1000m (target: sub-4:30)&#92;n- Run: 500m @ 5:15/km&#92;n- Wall Balls: 50 reps (sets of 10)&#92;n`,
+              rest: 'None - continuous like race day',
+              notes: 'RECORD ALL TIMES. This is your benchmark. Identify which stations need the most work. '
+            }          ]
+        },        {
+          name: 'Farmers + Lunges Combo',
+          notes: 'Practice the brutal Station 6→7 transition',
+          exercises: [
+            {
+              name: 'Back-to-Back',
+              prescription: `- Farmers Carry: 200m @ 24 kg (race weight)&#92;n- immediately into:&#92;n- Barbell Lunges: 50m @ 30 kg&#92;n`,
+              rest: 'Full recovery',
+              notes: 'Grip fatigued going into lunges is BRUTAL. This is what late race feels like. '
+            }          ]
+        }      ]
+    }
+  },
+  // Week 7
+  {
+    phase: 'Build',
+    theme: 'Overload Week - Heavier Than Race',
+    tuesday: {
+      name: 'Hyrox Endurance: Overload + Burpee Capacity',
+      duration: '70 min',
+      warmup: '5 min bike + dynamic movement',
+      cooldown: 'Extensive stretch + foam roll',
+      blocks: [
+        {
+          name: 'Sled Overload',
+          notes: 'Train heavier than race so competition feels easy',
+          exercises: [
+            {
+              name: 'Sled Push',
+              prescription: `3 x 50m @ 170 kg (+18 kg over race)`,
+              rest: '2 min',
+              notes: 'HEAVIER than race weight. After this, 152 kg will feel manageable. '
+            },            {
+              name: 'Sled Pull',
+              prescription: `3 x 50m @ 115 kg (+12 kg over race)`,
+              rest: '2 min',
+              notes: 'Build pulling strength. Race weight = easy.'
+            }          ]
+        },        {
+          name: 'Burpee Broad Jump Capacity',
+          notes: '',
+          exercises: [
+            {
+              name: 'Burpee Broad Jumps',
+              prescription: `80m continuous (FULL RACE DISTANCE)`,
+              rest: 'Full recovery',
+              notes: 'First time at full 80m. Break mentally: 8 x 10m chunks. Aim for 4:00-4:30 total time. '
+            }          ]
+        },        {
+          name: 'Post-Burpee Running',
+          notes: 'Most brutal transition - Station 4→5',
+          exercises: [
+            {
+              name: 'Burpee → Run x 2 rounds',
+              prescription: `- Burpee Broad Jumps: 40m&#92;n- Run: 1km @ 5:15/km&#92;n`,
+              rest: '2 min between rounds',
+              notes: 'Learn to run when legs are screaming. This is what race day feels like. '
+            }          ]
+        },        {
+          name: 'Farmers + Lunge Overload',
+          notes: '',
+          exercises: [
+            {
+              name: 'Farmers Carry',
+              prescription: `200m @ 28 kg each (+4 kg over race)`,
+              rest: '90s',
+              notes: 'Grip endurance at higher load.'
+            },            {
+              name: 'Barbell Lunges',
+              prescription: `100m @ 40 kg`,
+              rest: 'Full recovery',
+              notes: 'Full race distance at overload weight.'
+            }          ]
+        }      ]
+    }
+  },
+  // Week 8
+  {
+    phase: 'Build',
+    theme: 'Recovery Week',
+    tuesday: {
+      name: 'Hyrox Endurance: Recovery - Easy Flow',
+      duration: '35 min',
+      warmup: '5 min easy row',
+      cooldown: '10 min mobility focus',
+      blocks: [
+        {
+          name: 'Easy Movement Flow',
+          notes: 'NO intensity. Recovery week. Let body absorb training.',
+          exercises: [
+            {
+              name: 'Easy Flow',
+              prescription: `- Row: 1000m @ 2:25 pace&#92;n- Easy run: 800m @ 6:00/km&#92;n- SkiErg: 500m easy&#92;n- Wall Balls: 2 x 15 easy&#92;n- Farmers Carry: 100m @ 18 kg&#92;n`,
+              rest: 'Full recovery between',
+              notes: 'Movement maintenance. Stay fresh for peak phase.'
+            }          ]
+        }      ]
+    }
+  },
+  // Week 9
+  {
+    phase: 'Peak',
+    theme: 'Full Hyrox Simulation',
+    tuesday: {
+      name: 'Hyrox Endurance: FULL RACE SIMULATION',
+      duration: '80-95 min',
+      warmup: '15 min progressive: easy row → dynamic stretches → practice transitions',
+      cooldown: 'Extended recovery: walk, stretch, refuel',
+      blocks: [
+        {
+          name: 'Full Hyrox Simulation',
+          notes: 'THIS IS YOUR DRESS REHEARSAL. Complete all 8 stations at race weight with 800m runs between. (800m to save time vs full 1km, but similar effort)  TIME EVERYTHING. This predicts race day. Practice your pacing strategy. Control first half, attack second. ',
+          exercises: [
+            {
+              name: 'Full 8-Station Simulation',
+              prescription: `Station 1: Run 800m → SkiErg 1000m&#92;nStation 2: Run 800m → Sled Push 50m @ 152 kg&#92;nStation 3: Run 800m → Sled Pull 50m @ 103 kg&#92;nStation 4: Run 800m → Burpee Broad Jumps 80m&#92;nStation 5: Run 800m → Row 1000m&#92;nStation 6: Run 800m → Farmers Carry 200m @ 24 kg&#92;nStation 7: Run 800m → Barbell Lunges 100m @ 35 kg&#92;nStation 8: Run 800m → Wall Balls 100 reps&#92;n`,
+              rest: 'None - continuous like race day',
+              notes: 'This is your best predictor of race performance. Add ~5-8 minutes for the extra 200m/segment (1km vs 800m) to estimate actual race time.  RECORD EVERY SPLIT. Analyze after. '
+            }          ]
+        }      ]
+    }
+  },
+  // Week 10
+  {
+    phase: 'Peak',
+    theme: 'Peak Performance &amp; Sharpening',
+    tuesday: {
+      name: 'Hyrox Endurance: Race Pace Transitions',
+      duration: '60 min',
+      warmup: '10 min progressive',
+      cooldown: 'Light stretch',
+      blocks: [
+        {
+          name: 'Race Pace Station/Run Combos',
+          notes: 'Focus on TRANSITIONS - getting in and out of stations fast',
+          exercises: [
+            {
+              name: 'Transition Practice x 4',
+              prescription: `Complete at race pace with focus on TRANSITIONS:&#92;n&#92;nRound 1: Sled Push 50m @ 152 kg → immediate transition → Run 800m&#92;nRound 2: Row 1000m → immediate transition → Run 800m&#92;nRound 3: Burpees 40m → immediate transition → Run 800m&#92;nRound 4: Wall Balls 50 reps → immediate transition → Run 800m&#92;n`,
+              rest: '2 min between rounds',
+              notes: 'Focus on getting out of transition zones FAST. Practice your mental cues for each station exit. This is race-specific sharpening. '
+            }          ]
+        },        {
+          name: 'Speed Station Work',
+          notes: 'Short, fast efforts to stay sharp',
+          exercises: [
+            {
+              name: 'Sled Push',
+              prescription: `2 x 25m @ 152 kg - FAST`,
+              rest: '90s',
+              notes: 'Half distance, full speed. Build power.'
+            },            {
+              name: 'SkiErg',
+              prescription: `2 x 500m @ race pace`,
+              rest: '90s',
+              notes: 'Fast but controlled. Practice pacing.'
+            }          ]
+        }      ]
+    }
+  },
+  // Week 11
+  {
+    phase: 'Taper',
+    theme: 'Sharpen - Reduce Volume, Maintain Intensity',
+    tuesday: {
+      name: 'Hyrox Endurance: Abbreviated Simulation',
+      duration: '45 min',
+      warmup: '5 min easy',
+      cooldown: 'Light stretch + visualization',
+      blocks: [
+        {
+          name: 'Abbreviated Simulation',
+          notes: 'Reduced volume, race intensity. Stay sharp.',
+          exercises: [
+            {
+              name: '4-Station Sharp Simulation',
+              prescription: `Reduced volume, RACE INTENSITY:&#92;n- Run: 600m @ race pace (5:15/km)&#92;n- SkiErg: 750m @ race pace&#92;n- Run: 600m @ race pace&#92;n- Sled Push: 50m @ 152 kg (race weight)&#92;n- Run: 600m @ race pace&#92;n- Wall Balls: 50 reps&#92;n- Run: 600m @ race pace&#92;n`,
+              rest: 'None - continuous',
+              notes: 'Shorter than race but at full intensity. Stay confident. Trust your fitness. This is your final test before race week. '
+            }          ]
+        }      ]
+    }
+  },
+  // Week 12
+  {
+    phase: 'Taper',
+    theme: 'Race Week - Stay Fresh',
+    tuesday: {
+      name: 'Hyrox Endurance: Race Week - Light Activation Only',
+      duration: '20 min',
+      warmup: 'None needed - keep brief',
+      cooldown: 'Light stretch, visualization, mental rehearsal',
+      blocks: [
+        {
+          name: 'Light Movement Activation',
+          notes: 'OPTIONAL - only if you feel antsy. Resting is also good.',
+          exercises: [
+            {
+              name: 'Movement Activation',
+              prescription: `Very light practice if you want:&#92;n- Easy run: 5 min @ conversational pace&#92;n- SkiErg: 250m easy&#92;n- Wall Balls: 10 reps&#92;n- 5 burpee broad jumps (feel the movement)&#92;n`,
+              rest: 'Full recovery',
+              notes: 'This is OPTIONAL. If you feel tired, SKIP and rest. Your fitness is built. Trust it. '
+            }          ]
+        }      ]
+    }
+  },
+];
+
+let currentWeekIndex = 0;
+let selectedDayIndex = null; // null means "today" or first day of week
+let today = new Date();
+
+function getWeekStartDate(weekIndex) {
+  const start = new Date(START_DATE);
+  start.setDate(start.getDate() + weekIndex * 7);
+  return start;
+}
+
+function getDayOfWeek(date) {
+  return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()];
+}
+
+function getFullDayName(date) {
+  return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date.getDay()];
+}
+
+function formatDate(date) {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+}
+
+function formatShortDate(date) {
+  return `${date.getMonth() + 1}/${date.getDate()}`;
+}
+
+function getDaysUntilRace() {
+  return Math.ceil((RACE_DATE - today) / (1000 * 60 * 60 * 24));
+}
+
+function getCurrentWeekIndex() {
+  if (today < START_DATE) return 0;
+  if (today > RACE_DATE) return RUN_WEEKS.length - 1;
+  return Math.min(Math.floor((today - START_DATE) / (1000 * 60 * 60 * 24 * 7)), RUN_WEEKS.length - 1);
+}
+
+function getStrengthPhase(weekIndex) {
+  return STRENGTH_PHASES[weekIndex % 4];
+}
+
+function getHyroxCycle(weekIndex) {
+  if (weekIndex < 4) return 'foundation';
+  if (weekIndex < 8) return 'build';
+  return 'peak';
+}
+
+function getRunTypeSlug(type) {
+  return {
+    'Tempo': 'tempo',
+    'Intervals': 'intervals',
+    'Easy': 'easy',
+    'Long Run': 'long-run',
+    'Strides': 'strides',
+    'Rest': 'rest',
+    'RACE': 'race'
+  }[type] || 'easy';
+}
+
+function getStrengthForDay(dayAbbrev, weekIndex) {
+  const dayMap = { 'Mon': 'monday', 'Tue': null, 'Wed': 'wednesday', 'Thu': 'thursday', 'Fri': 'friday', 'Sat': 'saturday', 'Sun': null };
+  const dayKey = dayMap[dayAbbrev];
+  if (!dayKey || !STRENGTH_BASE[dayKey]) return null;
+  return { ...STRENGTH_BASE[dayKey], phase: getStrengthPhase(weekIndex) };
+}
+
+function getHyroxForDay(dayAbbrev, weekIndex) {
+  if (dayAbbrev !== 'Tue') return null;
+  const cycle = getHyroxCycle(weekIndex);
+  const cycleData = HYROX_CYCLES[cycle];
+  return { ...cycleData.weeks[weekIndex % 4], cycle: cycleData.name };
+}
+
+function getRunForDay(dayAbbrev, weekIndex) {
+  const week = RUN_WEEKS[weekIndex];
+  if (!week) return null;
+  return week.workouts.find(w => w.day === dayAbbrev) || null;
+}
+
+function renderCountdown() {
+  document.getElementById('countdown-days').textContent = getDaysUntilRace();
+}
+
+function renderWeekNav() {
+  document.getElementById('current-week-label').textContent = currentWeekIndex === 12 ? 'Race Week' : `Week ${currentWeekIndex + 1}`;
+  document.getElementById('prev-week').disabled = currentWeekIndex === 0;
+  document.getElementById('next-week').disabled = currentWeekIndex === RUN_WEEKS.length - 1;
+}
+
+function renderTodayHero() {
+  const week = RUN_WEEKS[currentWeekIndex];
+  const weekStart = getWeekStartDate(currentWeekIndex);
+  let viewDate = new Date(weekStart);
+  const realWeekIndex = getCurrentWeekIndex();
+
+  if (selectedDayIndex !== null) {
+    // User selected a specific day
+    viewDate = new Date(weekStart);
+    viewDate.setDate(viewDate.getDate() + selectedDayIndex);
+  } else if (currentWeekIndex === realWeekIndex && today >= START_DATE && today <= RACE_DATE) {
+    viewDate = today;
+  }
+
+  const dayAbbrev = getDayOfWeek(viewDate);
+
+  document.getElementById('today-day-name').textContent = getFullDayName(viewDate);
+  document.getElementById('today-full-date').textContent = formatDate(viewDate);
+
+  const phaseBadge = document.getElementById('today-phase-badge');
+  phaseBadge.textContent = week.phase;
+  phaseBadge.dataset.phase = week.phase.toLowerCase();
+
+  document.getElementById('today-week-title').textContent = `${week.name} of 13 · ${week.dates}`;
+  document.getElementById('today-philosophy').textContent = week.philosophy;
+
+  renderTodaySchedule(dayAbbrev, currentWeekIndex);
+}
+
+function renderTodaySchedule(dayAbbrev, weekIndex) {
+  const container = document.getElementById('today-schedule');
+  container.innerHTML = '';
+
+  const run = getRunForDay(dayAbbrev, weekIndex);
+  const strength = getStrengthForDay(dayAbbrev, weekIndex);
+  const hyrox = getHyroxForDay(dayAbbrev, weekIndex);
+
+  if (dayAbbrev === 'Sun') {
+    container.innerHTML = `
+      <div class="schedule-card" data-type="rest" style="grid-column: 1 / -1;">
+        <div class="schedule-card-header">
+          <span class="schedule-type">REST DAY</span>
+        </div>
+        <div class="schedule-card-body">
+          <div class="rest-message">
+            <div class="rest-icon">&#128716;</div>
+            <p class="rest-text">Full recovery. Optional light stretching or walk.</p>
+          </div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  if (run) {
+    const duration = run.type === 'Rest' ? '0 min' : run.distance <= 6 ? '30-40 min' : run.distance <= 10 ? '45-55 min' : '60-90 min';
+    container.innerHTML += `
+      <div class="schedule-card" data-type="run">
+        <div class="schedule-card-header">
+          <span class="schedule-type">RUNNING</span>
+          <span class="schedule-duration">${duration}</span>
+        </div>
+        <div class="schedule-card-body">
+          <h3 class="workout-title">${run.type}</h3>
+          <p class="workout-subtitle">${run.distance} km</p>
+          <div class="workout-exercises">
+            <div class="exercise-item">
+              <span class="exercise-name">${run.details}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (strength) {
+    container.innerHTML += `
+      <div class="schedule-card" data-type="strength">
+        <div class="schedule-card-header">
+          <span class="schedule-type">STRENGTH</span>
+          <span class="schedule-duration">${strength.duration}</span>
+        </div>
+        <div class="schedule-card-body">
+          <h3 class="workout-title">${strength.name}</h3>
+          <p class="workout-subtitle">${strength.phase} Phase</p>
+          <div class="workout-exercises">
+            ${strength.exercises.slice(0, 5).map(ex => `
+              <div class="exercise-item">
+                <span class="exercise-name">${ex.name}</span>
+                <span class="exercise-prescription">${ex.sets}x${ex.reps}${ex.weight ? ' @ ' + ex.weight : ''}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (hyrox) {
+    container.innerHTML += `
+      <div class="schedule-card" data-type="hyrox">
+        <div class="schedule-card-header">
+          <span class="schedule-type">HYROX STATIONS</span>
+          <span class="schedule-duration">${hyrox.duration}</span>
+        </div>
+        <div class="schedule-card-body">
+          <h3 class="workout-title">${hyrox.name}</h3>
+          <p class="workout-subtitle">${hyrox.cycle} Cycle</p>
+          <div class="workout-exercises">
+            <div class="exercise-item">
+              <span class="exercise-name">${hyrox.focus}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (dayAbbrev === 'Thu') {
+    container.innerHTML += `
+      <div class="schedule-card" data-type="hyrox">
+        <div class="schedule-card-header">
+          <span class="schedule-type">HYROX (LIGHT)</span>
+          <span class="schedule-duration">15-20 min</span>
+        </div>
+        <div class="schedule-card-body">
+          <h3 class="workout-title">Station Practice</h3>
+          <p class="workout-subtitle">Technique focus</p>
+          <div class="workout-exercises">
+            <div class="exercise-item">
+              <span class="exercise-name">Light wall balls, farmers carry, or sled work. Keep intensity low before Friday intervals.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function renderWeekView() {
+  const week = RUN_WEEKS[currentWeekIndex];
+
+  document.getElementById('week-view-title').textContent = `${week.name} Overview`;
+  document.getElementById('week-total-km').textContent = `${week.volume} km`;
+  document.getElementById('week-strength-phase').textContent = getStrengthPhase(currentWeekIndex);
+  document.getElementById('week-hyrox-focus').textContent = HYROX_CYCLES[getHyroxCycle(currentWeekIndex)].name;
+
+  const daysGrid = document.getElementById('days-grid');
+  daysGrid.innerHTML = '';
+
+  const weekStart = getWeekStartDate(currentWeekIndex);
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const realWeekIndex = getCurrentWeekIndex();
+
+  days.forEach((dayAbbrev, i) => {
+    const dayDate = new Date(weekStart);
+    dayDate.setDate(dayDate.getDate() + i);
+    const isToday = currentWeekIndex === realWeekIndex && dayDate.toDateString() === today.toDateString();
+
+    const run = getRunForDay(dayAbbrev, currentWeekIndex);
+    const strength = getStrengthForDay(dayAbbrev, currentWeekIndex);
+    const hyrox = getHyroxForDay(dayAbbrev, currentWeekIndex);
+
+    let activitiesHTML = '';
+    if (dayAbbrev === 'Sun') {
+      activitiesHTML = `<div class="day-activity" data-type="rest"><div class="activity-title">Rest Day</div><div class="activity-detail">Recovery</div></div>`;
+    } else {
+      if (run) activitiesHTML += `<div class="day-activity" data-type="run"><div class="activity-title">${run.type}</div><div class="activity-detail">${run.distance} km</div></div>`;
+      if (strength) activitiesHTML += `<div class="day-activity" data-type="strength"><div class="activity-title">${strength.name}</div><div class="activity-detail">${strength.duration}</div></div>`;
+      if (hyrox) activitiesHTML += `<div class="day-activity" data-type="hyrox"><div class="activity-title">${hyrox.name}</div><div class="activity-detail">${hyrox.duration}</div></div>`;
+      if (dayAbbrev === 'Thu') activitiesHTML += `<div class="day-activity" data-type="hyrox"><div class="activity-title">Light Hyrox</div><div class="activity-detail">15-20 min</div></div>`;
+    }
+
+    const isSelected = selectedDayIndex === i;
+    daysGrid.innerHTML += `
+      <div class="day-card ${isToday ? 'is-today' : ''} ${isSelected ? 'is-selected' : ''}" data-day-index="${i}" onclick="selectDay(${i})">
+        <div class="day-card-header">
+          <span class="day-name">${dayAbbrev}</span>
+          <span class="day-date">${formatShortDate(dayDate)}</span>
+        </div>
+        <div class="day-card-body">${activitiesHTML}</div>
+      </div>
+    `;
+  });
+
+  renderMileageBreakdown();
+}
+
+function renderMileageBreakdown() {
+  const week = RUN_WEEKS[currentWeekIndex];
+  const container = document.getElementById('mileage-bars');
+  container.innerHTML = '';
+
+  const byType = {};
+  week.workouts.forEach(w => {
+    byType[w.type] = (byType[w.type] || 0) + w.distance;
+  });
+
+  const maxKm = week.volume;
+  ['Tempo', 'Intervals', 'Easy', 'Long Run', 'Strides'].forEach(type => {
+    const km = byType[type] || 0;
+    if (km === 0 && type !== 'Long Run') return;
+    const percentage = (km / maxKm) * 100;
+    container.innerHTML += `
+      <div class="mileage-bar-row">
+        <span class="mileage-type">${type}</span>
+        <div class="mileage-bar-container">
+          <div class="mileage-bar" data-type="${getRunTypeSlug(type)}" style="width: ${percentage}%"></div>
+        </div>
+        <span class="mileage-value">${km} km</span>
+      </div>
+    `;
+  });
+}
+
+function renderProgress() {
+  const realWeekIndex = getCurrentWeekIndex();
+  document.getElementById('weeks-completed').innerHTML = `${realWeekIndex} <span>/ 13</span>`;
+
+  const timeline = document.getElementById('weeks-timeline');
+  timeline.innerHTML = '';
+  for (let i = 0; i < 13; i++) {
+    const status = i < realWeekIndex ? 'completed' : i === realWeekIndex ? 'current' : '';
+    timeline.innerHTML += `<div class="week-pip ${status}"></div>`;
+  }
+
+  const chart = document.getElementById('mileage-chart');
+  chart.innerHTML = '';
+  const maxVolume = Math.max(...RUN_WEEKS.map(w => typeof w.volume === 'number' ? w.volume : 14));
+  RUN_WEEKS.forEach((week, i) => {
+    const vol = typeof week.volume === 'number' ? week.volume : 14;
+    const height = (vol / maxVolume) * 100;
+    const highlighted = i === currentWeekIndex ? 'highlighted' : '';
+    chart.innerHTML += `<div class="chart-bar ${highlighted}" style="height: ${height}%"></div>`;
+  });
+}
+
+function selectDay(dayIndex) {
+  selectedDayIndex = dayIndex;
+  renderTodayHero();
+  renderWeekView(); // Re-render to update selected state
+}
+
+document.getElementById('prev-week').addEventListener('click', () => {
+  if (currentWeekIndex > 0) {
+    currentWeekIndex--;
+    selectedDayIndex = null; // Reset to default day when changing weeks
+    renderAll();
+  }
+});
+
+document.getElementById('next-week').addEventListener('click', () => {
+  if (currentWeekIndex < RUN_WEEKS.length - 1) {
+    currentWeekIndex++;
+    selectedDayIndex = null; // Reset to default day when changing weeks
+    renderAll();
+  }
+});
+
+function renderHyroxWorkout() {
+  const container = document.getElementById('hyrox-workout-display');
+  const workout = HYROX_WORKOUTS[currentWeekIndex];
+
+  if (!workout || !workout.tuesday) {
+    container.innerHTML = '<p class="no-workout">No Hyrox workout data available for this week.</p>';
+    return;
+  }
+
+  const tuesday = workout.tuesday;
+
+  let html = `
+    <div class="hyrox-workout-card">
+      <div class="hyrox-workout-header">
+        <div class="hyrox-workout-title-block">
+          <span class="hyrox-phase-badge">${workout.phase}</span>
+          <h3 class="hyrox-workout-name">${tuesday.name}</h3>
+          <p class="hyrox-workout-theme">${workout.theme}</p>
+        </div>
+        <div class="hyrox-workout-meta">
+          <span class="hyrox-duration">${tuesday.duration}</span>
+          <span class="hyrox-day">Tuesday</span>
+        </div>
+      </div>
+
+      ${tuesday.warmup ? `
+        <div class="hyrox-warmup">
+          <span class="hyrox-section-label">Warmup</span>
+          <p>${tuesday.warmup}</p>
+        </div>
+      ` : ''}
+
+      <div class="hyrox-blocks">
+        ${tuesday.blocks.map(block => `
+          <div class="hyrox-block">
+            <div class="hyrox-block-header">
+              <h4 class="hyrox-block-name">${block.name}</h4>
+              ${block.notes ? `<p class="hyrox-block-notes">${block.notes}</p>` : ''}
+            </div>
+            <div class="hyrox-exercises">
+              ${block.exercises.map(ex => `
+                <div class="hyrox-exercise">
+                  <div class="hyrox-exercise-header">
+                    <span class="hyrox-exercise-name">${ex.name}</span>
+                    ${ex.rest ? `<span class="hyrox-exercise-rest">Rest: ${ex.rest}</span>` : ''}
+                  </div>
+                  ${ex.prescription ? `<pre class="hyrox-prescription">${ex.prescription.replace(/\\n/g, '\n')}</pre>` : ''}
+                  ${ex.notes ? `<p class="hyrox-exercise-notes">${ex.notes}</p>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      ${tuesday.cooldown ? `
+        <div class="hyrox-cooldown">
+          <span class="hyrox-section-label">Cooldown</span>
+          <p>${tuesday.cooldown}</p>
+        </div>
+      ` : ''}
+    </div>
+  `;
+
+  container.innerHTML = html;
+}
+
+function renderAll() {
+  renderCountdown();
+  renderWeekNav();
+  renderTodayHero();
+  renderWeekView();
+  renderProgress();
+  renderHyroxWorkout();
+}
+
+function init() {
+  currentWeekIndex = getCurrentWeekIndex();
+  renderAll();
+}
+
+init();
+</script>
+</body>
+</html>
