@@ -1,0 +1,1127 @@
+# Combined Hyrox Training Plan
+# Contains: Running, Strength, and Hyrox Station workouts
+# 12-Week Program for Sub-70 Minute Finish
+# Race Date: April 12, 2026
+
+meta:
+  targetRace: April 12, 2026
+  goalTime: Sub 70 minutes
+  duration: 12 weeks
+  startDate: January 13, 2026
+
+# ==============================================================================
+# RUNNING PLAN
+# ==============================================================================
+
+runPlan:
+  paces:
+    - zone: E
+      name: Easy
+      pace: "6:15-6:50/km"
+      purpose: Aerobic base, recovery
+    - zone: M
+      name: Marathon
+      pace: "5:55/km"
+      purpose: Race simulation
+    - zone: T
+      name: Threshold
+      pace: "5:26/km"
+      purpose: Lactate clearance
+    - zone: I
+      name: Interval
+      pace: "4:58/km"
+      purpose: VO2max development
+    - zone: R
+      name: Repetition
+      pace: "4:39/km"
+      purpose: Speed & running economy
+
+  weeks:
+    - name: Week 1
+      dates: Jan 13-19
+      phase: Base
+      volume: 36 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 8 km
+          details: 2km E + 2x10min T (3min jog) + 2km E
+        - day: Wed
+          type: Easy
+          distance: 6 km
+          details: Steady E pace throughout
+        - day: Fri
+          type: Intervals
+          distance: 8 km
+          details: 2km E + 6x800m I (2min jog) + 2km E
+        - day: Sat
+          type: Long Run
+          distance: 14 km
+          details: E pace, conversational
+
+    - name: Week 2
+      dates: Jan 20-26
+      phase: Base
+      volume: 38 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 8 km
+          details: 2km E + 15min T + 3min jog + 10min T + 2km E
+        - day: Wed
+          type: Easy
+          distance: 6 km
+          details: Steady E pace throughout
+        - day: Fri
+          type: Intervals
+          distance: 9 km
+          details: 2km E + 5x1000m I (2min jog) + 2km E
+        - day: Sat
+          type: Long Run
+          distance: 15 km
+          details: E pace with 2x5min M in middle
+
+    - name: Week 3
+      dates: Jan 27 - Feb 2
+      phase: Build
+      volume: 46 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 10 km
+          details: 2km E + 20min T + 3min jog + 15min T + 2km E
+        - day: Wed
+          type: Easy
+          distance: 8 km
+          details: Steady E pace throughout
+        - day: Fri
+          type: Intervals
+          distance: 10 km
+          details: 2km E + 6x1000m I (90s jog) + 2km E
+        - day: Sat
+          type: Long Run
+          distance: 18 km
+          details: E pace, negative split last 4km
+
+    - name: Week 4
+      dates: Feb 3-9
+      phase: Recovery
+      volume: 27 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 6 km
+          details: 2km E + 12min T + 2km E
+        - day: Wed
+          type: Easy
+          distance: 5 km
+          details: Very easy, recovery focus
+        - day: Fri
+          type: Intervals
+          distance: 5 km
+          details: 2km E + 4x600m I (2min jog) + 1km E
+        - day: Sat
+          type: Long Run
+          distance: 11 km
+          details: E pace, relaxed
+
+    - name: Week 5
+      dates: Feb 10-16
+      phase: Build
+      volume: 48 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 10 km
+          details: 2km E + 2x15min T (3min jog) + 2km E
+        - day: Wed
+          type: Easy
+          distance: 8 km
+          details: Steady E pace throughout
+        - day: Fri
+          type: Intervals
+          distance: 11 km
+          details: 2km E + 7x1000m I (90s jog) + 2km E
+        - day: Sat
+          type: Long Run
+          distance: 19 km
+          details: E pace with 3x5min M efforts
+
+    - name: Week 6
+      dates: Feb 17-23
+      phase: Build
+      volume: 50 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 11 km
+          details: 2km E + 25min T + 3min jog + 10min T + 2km E
+        - day: Wed
+          type: Easy
+          distance: 8 km
+          details: Steady E pace throughout
+        - day: Fri
+          type: Intervals
+          distance: 11 km
+          details: 2km E + 8x1000m I (90s jog) + 2km E
+        - day: Sat
+          type: Long Run
+          distance: 20 km
+          details: E pace, last 5km at M pace
+
+    - name: Week 7
+      dates: Feb 24 - Mar 2
+      phase: Build
+      volume: 54 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 12 km
+          details: 2km E + 30min T + 3min jog + 10min T + 2km E
+        - day: Wed
+          type: Easy
+          distance: 9 km
+          details: Steady E pace throughout
+        - day: Fri
+          type: Intervals
+          distance: 12 km
+          details: 2km E + 5x1600m I (2min jog) + 2km E
+        - day: Sat
+          type: Long Run
+          distance: 21 km
+          details: E pace with 4x5min M efforts
+
+    - name: Week 8
+      dates: Mar 3-9
+      phase: Recovery
+      volume: 35 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 8 km
+          details: 2km E + 15min T + 2km E
+        - day: Wed
+          type: Easy
+          distance: 6 km
+          details: Very easy, recovery focus
+        - day: Fri
+          type: Intervals
+          distance: 7 km
+          details: 2km E + 5x800m I (2min jog) + 1km E
+        - day: Sat
+          type: Long Run
+          distance: 14 km
+          details: E pace, relaxed
+
+    - name: Week 9
+      dates: Mar 10-16
+      phase: Peak
+      volume: 54 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 12 km
+          details: 2km E + 2x20min T (3min jog) + 2km E
+        - day: Wed
+          type: Easy
+          distance: 9 km
+          details: Steady E pace throughout
+        - day: Fri
+          type: Intervals
+          distance: 12 km
+          details: 2km E + 10x800m I (90s jog) + 2km E
+        - day: Sat
+          type: Long Run
+          distance: 21 km
+          details: "Hyrox Sim: 8x1km at M pace (2min jog between) + E cooldown"
+
+    - name: Week 10
+      dates: Mar 17-23
+      phase: Peak
+      volume: 57 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 13 km
+          details: 2km E + 35min T + 2km E
+        - day: Wed
+          type: Easy
+          distance: 9 km
+          details: Steady E pace throughout
+        - day: Fri
+          type: Intervals
+          distance: 13 km
+          details: 2km E + 6x1200m I (90s jog) + 2km E
+        - day: Sat
+          type: Long Run
+          distance: 22 km
+          details: E pace with 6x1km at M pace scattered throughout
+
+    - name: Week 11
+      dates: Mar 24-30
+      phase: Taper
+      volume: 42 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 10 km
+          details: 2km E + 20min T + 2km E
+        - day: Wed
+          type: Easy
+          distance: 7 km
+          details: Steady E pace, stay fresh
+        - day: Fri
+          type: Intervals
+          distance: 9 km
+          details: 2km E + 8x600m I (90s jog) + 2km E
+        - day: Sat
+          type: Long Run
+          distance: 16 km
+          details: "Hyrox Sim: 8x1km at race effort (90s jog)"
+
+    - name: Week 12
+      dates: Mar 31 - Apr 6
+      phase: Taper
+      volume: 20 km
+      workouts:
+        - day: Mon
+          type: Tempo
+          distance: 6 km
+          details: 2km E + 10min T + 2km E
+        - day: Wed
+          type: Easy
+          distance: 5 km
+          details: Shakeout, very easy
+        - day: Fri
+          type: Intervals
+          distance: 5 km
+          details: 1km E + 6x400m R (full recovery) + 1km E
+        - day: Sat
+          type: Long Run
+          distance: 4 km
+          details: Easy jog, confidence builder
+
+    - name: Race Week
+      dates: Apr 7-12
+      phase: Race
+      volume: "~14 km"
+      workouts:
+        - day: Mon
+          type: Easy
+          distance: 4 km
+          details: Shakeout run, very easy
+        - day: Wed
+          type: Strides
+          distance: 3 km
+          details: 1km E + 4x200m R (full recovery) + 1km E
+        - day: Fri
+          type: Rest
+          distance: 0 km
+          details: Complete rest or light walk
+        - day: Sat
+          type: RACE
+          distance: 8 km
+          details: Hyrox - GO TIME!
+
+# ==============================================================================
+# STRENGTH PLAN
+# ==============================================================================
+
+strengthPlan:
+  maxes:
+    squat: 110 kg
+    deadlift: 140 kg
+    bench: 75 kg
+
+  periodization:
+    week1:
+      name: Volume
+      squat: "5x5 @ 77 kg (70%)"
+      bench: "5x5 @ 52 kg (70%)"
+      deadlift: "4x5 @ 98 kg (70%)"
+    week2:
+      name: Volume+
+      squat: "5x4 @ 82 kg (75%)"
+      bench: "5x4 @ 56 kg (75%)"
+      deadlift: "4x4 @ 105 kg (75%)"
+    week3:
+      name: Intensity
+      squat: "5x3 @ 88 kg (80%)"
+      bench: "5x3 @ 60 kg (80%)"
+      deadlift: "5x3 @ 112 kg (80%)"
+    week4:
+      name: Deload
+      squat: "3x5 @ 72 kg (65%)"
+      bench: "3x5 @ 49 kg (65%)"
+      deadlift: "3x5 @ 91 kg (65%)"
+
+  weeks:
+    # WEEK 1 - VOLUME
+    - week: 1
+      phase: Volume
+      monday:
+        name: "Day 1 - Squat Focus (after Tempo Run)"
+        duration: 55 min
+        exercises:
+          - name: Back Squat
+            sets: 5
+            reps: 5
+            weight: 77 kg
+          - name: Paused Squats
+            sets: 3
+            reps: 3
+            weight: 70 kg
+          - name: RDL
+            sets: 3
+            reps: 8
+            weight: 80 kg
+          - name: Leg Curls
+            sets: 3
+            reps: 12
+          - name: Core - Planks
+            sets: 3
+            duration: 45s
+
+      wednesday:
+        name: "Day 4 - Upper Hypertrophy (after Easy Run)"
+        duration: 30 min
+        exercises:
+          - name: Incline Dumbbell Bench
+            sets: 4
+            reps: 6
+            weight: 25 kg each
+          - name: Dumbbell Bench
+            sets: 3
+            reps: 10
+            weight: 22 kg each
+          - name: Pull-ups
+            sets: 4
+            reps: "6-8"
+          - name: Seated Shoulder Press
+            sets: 3
+            reps: 8
+            weight: 20 kg each
+          - name: Face Pulls
+            sets: 3
+            reps: 15
+
+      thursday:
+        name: "Day 2 - Bench Focus (Light) + Hyrox"
+        duration: 55 min
+        exercises:
+          - name: Barbell Bench Press
+            sets: 4
+            reps: 6
+            weight: 52 kg
+          - name: Close Grip Bench
+            sets: 3
+            reps: 8
+            weight: 45 kg
+          - name: Barbell Rows
+            sets: 3
+            reps: 8
+            weight: 60 kg
+          - name: Tricep Pushdowns
+            sets: 2
+            reps: 15
+        hyrox:
+          - name: Wall Balls (Light)
+            sets: 3
+            reps: 15
+          - name: Farmers Carry
+            prescription: "2 x 50m @ 20 kg"
+
+      friday:
+        name: "Day 5 - Lower Hypertrophy (Brief, after Intervals)"
+        duration: 20 min
+        exercises:
+          - name: Split Squats
+            sets: 3
+            reps: 8 each leg
+            weight: 16 kg KB
+          - name: Glute Bridges
+            sets: 3
+            reps: 12
+            weight: 60 kg
+          - name: Calf Raises
+            sets: 3
+            reps: 15
+          - name: Core Circuit
+            sets: 2
+            exercises: "Dead bugs 10/side + Bird dogs 10/side"
+
+      saturday:
+        name: "Day 3 - Deadlift Focus (after Long Run)"
+        duration: 50-60 min
+        exercises:
+          - name: Deadlift
+            sets: 4
+            reps: 5
+            weight: 98 kg
+          - name: Pause Deadlift
+            sets: 2
+            reps: 3
+            weight: 80 kg
+          - name: Hip Thrust
+            sets: 4
+            reps: 8
+            weight: 100 kg
+          - name: Back Extensions
+            sets: 3
+            reps: 12
+          - name: Grip Work - Farmers Hold
+            sets: 3
+            duration: 30s
+            weight: 28 kg each
+
+    # WEEK 2 - VOLUME+
+    - week: 2
+      phase: Volume+
+      monday:
+        name: "Day 1 - Squat Focus (after Tempo Run)"
+        duration: 55 min
+        exercises:
+          - name: Back Squat
+            sets: 5
+            reps: 4
+            weight: 82 kg
+          - name: Paused Squats
+            sets: 3
+            reps: 3
+            weight: 75 kg
+          - name: RDL
+            sets: 3
+            reps: 8
+            weight: 85 kg
+          - name: Leg Curls
+            sets: 3
+            reps: 12
+          - name: Ab Wheel
+            sets: 3
+            reps: 10
+
+      wednesday:
+        name: "Day 4 - Upper Hypertrophy"
+        duration: 30 min
+        exercises:
+          - name: Incline Dumbbell Bench
+            sets: 4
+            reps: 6
+            weight: 27 kg each
+          - name: Dumbbell Bench
+            sets: 3
+            reps: 10
+            weight: 25 kg each
+          - name: Pull-ups
+            sets: 4
+            reps: "6-8"
+          - name: Chest Supported Rows
+            sets: 3
+            reps: 10
+            weight: 25 kg each
+          - name: Bicep Curls
+            sets: 3
+            reps: 12
+            weight: 12.5 kg each
+
+      thursday:
+        name: "Day 2 - Bench Focus (Light) + Hyrox"
+        duration: 55 min
+        exercises:
+          - name: Barbell Bench Press
+            sets: 4
+            reps: 5
+            weight: 56 kg
+          - name: Close Grip Bench
+            sets: 3
+            reps: 6
+            weight: 50 kg
+          - name: Barbell Rows
+            sets: 3
+            reps: 8
+            weight: 65 kg
+          - name: Dips
+            sets: 3
+            reps: "8-10"
+        hyrox:
+          - name: SkiErg (Light)
+            prescription: "2 x 500m @ easy pace"
+          - name: Rowing (Light)
+            prescription: "500m @ 2:20 pace"
+
+      friday:
+        name: "Day 5 - Lower Hypertrophy (Brief)"
+        duration: 20 min
+        exercises:
+          - name: Front Squat
+            sets: 3
+            reps: 5
+            weight: 60 kg
+          - name: Walking Lunges
+            sets: 2
+            reps: 12 each leg
+            weight: 16 kg KB
+          - name: Calf Raises
+            sets: 3
+            reps: 15
+
+      saturday:
+        name: "Day 3 - Deadlift Focus"
+        duration: 55 min
+        exercises:
+          - name: Deadlift
+            sets: 4
+            reps: 4
+            weight: 105 kg
+          - name: Deficit Deadlift
+            sets: 2
+            reps: 3
+            weight: 85 kg
+          - name: Hip Thrust
+            sets: 4
+            reps: 8
+            weight: 110 kg
+          - name: Back Extensions
+            sets: 3
+            reps: 12
+          - name: "HYROX: Sled Push"
+            prescription: "3 x 50m @ race weight"
+
+    # WEEK 3 - INTENSITY
+    - week: 3
+      phase: Intensity
+      monday:
+        name: "Day 1 - Squat Focus (after Tempo Run)"
+        duration: 55 min
+        exercises:
+          - name: Back Squat
+            sets: 5
+            reps: 3
+            weight: 88 kg
+          - name: Paused Squats
+            sets: 3
+            reps: 3
+            weight: 80 kg
+          - name: RDL
+            sets: 3
+            reps: 6
+            weight: 90 kg
+          - name: Leg Curls
+            sets: 3
+            reps: 10
+          - name: Hanging Leg Raises
+            sets: 3
+            reps: 10
+
+      wednesday:
+        name: "Day 4 - Upper Hypertrophy"
+        duration: 30 min
+        exercises:
+          - name: Incline Dumbbell Bench
+            sets: 4
+            reps: 6
+            weight: 30 kg each
+          - name: Weighted Pull-ups
+            sets: 4
+            reps: 5
+            weight: "+5 kg"
+          - name: Seated Shoulder Press
+            sets: 3
+            reps: 6
+            weight: 22 kg each
+          - name: Cable Rows
+            sets: 3
+            reps: 8
+          - name: Tricep Dips
+            sets: 3
+            reps: "8-10"
+
+      thursday:
+        name: "Day 2 - Bench Focus (Light) + Hyrox"
+        duration: 55 min
+        exercises:
+          - name: Barbell Bench Press
+            sets: 4
+            reps: 5
+            weight: 56 kg
+          - name: Close Grip Bench
+            sets: 3
+            reps: 5
+            weight: 52 kg
+          - name: Pendlay Rows
+            sets: 3
+            reps: 6
+            weight: 70 kg
+        hyrox:
+          - name: Burpee Broad Jumps (Light)
+            prescription: "2 x 20m"
+          - name: Sled Pull (Light)
+            prescription: "2 x 25m @ 80 kg"
+
+      friday:
+        name: "Day 5 - Lower Hypertrophy (Brief)"
+        duration: 20 min
+        exercises:
+          - name: Goblet Squats
+            sets: 3
+            reps: 10
+            weight: 24 kg
+          - name: Single Leg RDL
+            sets: 2
+            reps: 8 each
+            weight: 16 kg
+          - name: Box Jumps
+            sets: 3
+            reps: 5
+
+      saturday:
+        name: "Day 3 - Deadlift Focus"
+        duration: 55 min
+        exercises:
+          - name: Deadlift
+            sets: 5
+            reps: 3
+            weight: 112 kg
+          - name: Pause Deadlift
+            sets: 2
+            reps: 3
+            weight: 90 kg
+          - name: Hip Thrust
+            sets: 4
+            reps: 6
+            weight: 120 kg
+          - name: "HYROX: Farmers Carry"
+            prescription: "200m @ 28 kg each"
+          - name: Grip Holds
+            sets: 3
+            duration: 45s
+            weight: 30 kg each
+
+    # WEEK 4 - DELOAD
+    - week: 4
+      phase: Deload
+      tuesday:
+        name: "Day 1 - Squat Focus (Light)"
+        duration: 40 min
+        exercises:
+          - name: Back Squat
+            sets: 3
+            reps: 5
+            weight: 72 kg
+          - name: RDL
+            sets: 2
+            reps: 8
+            weight: 70 kg
+          - name: Bodyweight Lunges
+            sets: 2
+            reps: 10 each
+          - name: Core - Planks
+            sets: 2
+            duration: 45s
+
+      wednesday:
+        name: "Day 4 - Upper Hypertrophy (Light)"
+        duration: 25 min
+        exercises:
+          - name: Push-ups
+            sets: 3
+            reps: 15
+          - name: Pull-ups
+            sets: 3
+            reps: "5-6"
+          - name: Band Face Pulls
+            sets: 3
+            reps: 15
+          - name: Light Shoulder Press
+            sets: 2
+            reps: 10
+            weight: 15 kg each
+
+      thursday:
+        name: "Day 2 - Bench Focus (Light) + Hyrox"
+        duration: 45 min
+        exercises:
+          - name: Barbell Bench Press
+            sets: 3
+            reps: 8
+            weight: 45 kg
+          - name: Light Rows
+            sets: 3
+            reps: 10
+            weight: 50 kg
+        hyrox:
+          - name: Wall Balls (Light)
+            sets: 2
+            reps: 15
+          - name: Mobility Work
+            duration: 10 min
+
+      friday:
+        name: "Day 5 - Lower Hypertrophy (Light)"
+        duration: 15 min
+        exercises:
+          - name: Goblet Squat
+            sets: 2
+            reps: 10
+            weight: 16 kg
+          - name: Glute Bridges
+            sets: 2
+            reps: 15
+          - name: Calf Stretch + Raises
+            sets: 2
+            reps: 12
+
+      saturday:
+        name: "Day 3 - Deadlift Focus (Light)"
+        duration: 40 min
+        exercises:
+          - name: Deadlift
+            sets: 3
+            reps: 5
+            weight: 91 kg
+          - name: Light Hip Thrust
+            sets: 3
+            reps: 10
+            weight: 80 kg
+          - name: "HYROX: Light Station Practice"
+            prescription: "500m SkiErg + 30 Wall Balls + 2x25m light sled"
+
+  cycleProgression:
+    cycle2:
+      weeks: "5-8"
+      squat: "80-93 kg range"
+      bench: "55-65 kg range"
+      deadlift: "100-120 kg range"
+    cycle3:
+      weeks: "9-12"
+      notes: "Week 9-10: Peak weights. Week 11: 70% for taper. Week 12: Very light."
+
+# ==============================================================================
+# HYROX STATION PLAN
+# ==============================================================================
+
+hyroxPlan:
+  raceSpec:
+    runDistance: 8 km total (8 x 1km)
+    stations:
+      - name: SkiErg
+        distance: 1000m
+        targetTime: "4:30-5:00"
+      - name: Sled Push
+        distance: 50m
+        weight: 152 kg
+        targetTime: "3:00-3:30"
+      - name: Sled Pull
+        distance: 50m
+        weight: 103 kg
+        targetTime: "2:00-2:30"
+      - name: Burpee Broad Jumps
+        distance: 80m
+        targetTime: "4:00-4:30"
+      - name: Rowing
+        distance: 1000m
+        targetTime: "4:00-4:30"
+      - name: Farmers Carry
+        distance: 200m
+        weight: 2 x 24 kg
+        targetTime: "2:30-3:00"
+      - name: Sandbag Lunges
+        distance: 100m
+        weight: 20 kg
+        targetTime: "4:00-4:30"
+      - name: Wall Balls
+        reps: 100
+        weight: 6 kg ball
+        targetTime: "4:30-5:00"
+
+  cycles:
+    # CYCLE 1: FOUNDATION (Weeks 1-4)
+    - name: Foundation
+      weeks: "1-4"
+      focus: Learn movements, build base capacity, establish pacing
+
+      week1:
+        theme: "Station Introduction"
+        tuesday:
+          name: "Hyrox Endurance: Station Intro + Compromised Running"
+          duration: 55 min
+          workout:
+            - block: "SkiErg Learning"
+              exercises:
+                - name: SkiErg Technique Practice
+                  prescription: "5 x 200m @ comfortable pace"
+                  rest: "60s"
+            - block: "Intro to Compromised Running"
+              exercises:
+                - name: "SkiErg-Run Combo x 3 rounds"
+                  prescription: "250m SkiErg + 400m run @ easy pace"
+                  rest: "2 min"
+            - block: "Wall Ball Foundation"
+              exercises:
+                - name: Wall Balls
+                  prescription: "5 x 10 reps"
+                  rest: "30s"
+            - block: "Grip Work"
+              exercises:
+                - name: Farmers Carry
+                  prescription: "4 x 50m @ 20 kg each"
+                  rest: "60s"
+
+      week2:
+        theme: "Sled & Rowing - Building Power"
+        tuesday:
+          name: "Hyrox Endurance: Sled, Row & Compromised Running"
+          duration: 60 min
+          workout:
+            - block: "Sled Push Learning"
+              exercises:
+                - name: Sled Push
+                  prescription: "4 x 25m @ 120 kg"
+                  rest: "90s"
+            - block: "Sled Pull Learning"
+              exercises:
+                - name: Sled Pull
+                  prescription: "4 x 25m @ 80 kg"
+                  rest: "90s"
+            - block: "Row + Run Combos"
+              exercises:
+                - name: "Row-Run Combo x 3 rounds"
+                  prescription: "500m row @ 2:15 + 500m run @ 5:30/km"
+                  rest: "90s"
+            - block: "Wall Ball Practice"
+              exercises:
+                - name: Wall Balls
+                  prescription: "3 x 12 reps"
+                  rest: "20s"
+
+      week3:
+        theme: "Movement Integration & Burpee Broad Jumps"
+        tuesday:
+          name: "Hyrox Endurance: 4-Station Mini Simulation"
+          duration: 60 min
+          workout:
+            - block: "Burpee Broad Jump Learning"
+              exercises:
+                - name: Burpee Broad Jumps
+                  prescription: "4 x 20m"
+                  rest: "90s"
+            - block: "Mini Hyrox Simulation"
+              exercises:
+                - name: "4-Station Flow x 2 rounds"
+                  prescription: "500m run + 500m SkiErg + 500m run + 25 Wall Balls"
+                  rest: "3 min"
+            - block: "Lunge Practice"
+              exercises:
+                - name: Barbell Walking Lunges
+                  prescription: "3 x 25m @ 25 kg"
+                  rest: "60s"
+
+      week4:
+        theme: "Recovery Week - Technique Focus"
+        tuesday:
+          name: "Hyrox Endurance: Recovery - Light Movement Only"
+          duration: 35 min
+          workout:
+            - block: "Easy Movement Flow"
+              exercises:
+                - name: Movement Flow
+                  prescription: "1000m easy row + 800m easy run + 500m easy SkiErg + 3x10 Wall Balls + 100m farmers @ 16 kg"
+                  rest: "Full recovery"
+
+    # CYCLE 2: BUILD (Weeks 5-8)
+    - name: Build
+      weeks: "5-8"
+      focus: Race-weight work, station combinations, half simulations
+
+      week5:
+        theme: "Race Weight Introduction"
+        tuesday:
+          name: "Hyrox Endurance: Race Weight + Compromised Running"
+          duration: 65 min
+          workout:
+            - block: "Sled at Race Weight"
+              exercises:
+                - name: Sled Push
+                  prescription: "3 x 50m @ 152 kg (RACE WEIGHT)"
+                  rest: "2 min"
+                - name: Sled Pull
+                  prescription: "3 x 50m @ 103 kg (RACE WEIGHT)"
+                  rest: "2 min"
+            - block: "Sled-Run Transitions"
+              exercises:
+                - name: "Sled + Run Combo x 3 rounds"
+                  prescription: "50m sled push @ 140 kg + 800m run @ 5:15/km"
+                  rest: "90s"
+            - block: "Wall Ball Capacity"
+              exercises:
+                - name: Wall Balls
+                  prescription: "4 x 25 reps"
+                  rest: "30s"
+
+      week6:
+        theme: "Half Hyrox Simulation"
+        tuesday:
+          name: "Hyrox Endurance: HALF RACE SIMULATION"
+          duration: 70 min
+          workout:
+            - block: "Half Simulation"
+              exercises:
+                - name: "Half Hyrox"
+                  prescription: |
+                    Run 500m + SkiErg 1000m + Run 500m + Sled Push 50m @ 145kg +
+                    Run 500m + Row 1000m + Run 500m + Wall Balls 50 reps
+                  rest: "None - continuous"
+            - block: "Farmers + Lunges Combo"
+              exercises:
+                - name: "Back-to-Back"
+                  prescription: "200m Farmers @ 24 kg + 50m Barbell Lunges @ 30 kg"
+                  rest: "Full recovery"
+
+      week7:
+        theme: "Overload Week - Heavier Than Race"
+        tuesday:
+          name: "Hyrox Endurance: Overload + Burpee Capacity"
+          duration: 70 min
+          workout:
+            - block: "Sled Overload"
+              exercises:
+                - name: Sled Push
+                  prescription: "3 x 50m @ 170 kg (+18 kg over race)"
+                  rest: "2 min"
+                - name: Sled Pull
+                  prescription: "3 x 50m @ 115 kg (+12 kg over race)"
+                  rest: "2 min"
+            - block: "Burpee Broad Jump Capacity"
+              exercises:
+                - name: Burpee Broad Jumps
+                  prescription: "80m continuous (FULL RACE DISTANCE)"
+                  rest: "Full recovery"
+            - block: "Post-Burpee Running"
+              exercises:
+                - name: "Burpee-Run x 2 rounds"
+                  prescription: "40m Burpee Broad Jumps + 1km run @ 5:15/km"
+                  rest: "2 min"
+            - block: "Farmers + Lunge Overload"
+              exercises:
+                - name: Farmers Carry
+                  prescription: "200m @ 28 kg each (+4 kg over race)"
+                - name: Barbell Lunges
+                  prescription: "100m @ 40 kg"
+
+      week8:
+        theme: "Recovery Week"
+        tuesday:
+          name: "Hyrox Endurance: Recovery - Easy Flow"
+          duration: 35 min
+          workout:
+            - block: "Easy Flow"
+              exercises:
+                - name: Easy Movement
+                  prescription: "1000m row @ 2:25 + 800m easy run + 500m easy SkiErg + 2x15 Wall Balls + 100m farmers @ 18 kg"
+                  rest: "Full recovery"
+
+    # CYCLE 3: PEAK & TAPER (Weeks 9-12)
+    - name: Peak and Taper
+      weeks: "9-12"
+      focus: Full race simulations, then systematic taper
+
+      week9:
+        theme: "Full Hyrox Simulation"
+        tuesday:
+          name: "Hyrox Endurance: FULL RACE SIMULATION"
+          duration: 80-95 min
+          workout:
+            - block: "Full 8-Station Simulation"
+              exercises:
+                - name: "Full Hyrox"
+                  prescription: |
+                    Station 1: Run 800m + SkiErg 1000m
+                    Station 2: Run 800m + Sled Push 50m @ 152 kg
+                    Station 3: Run 800m + Sled Pull 50m @ 103 kg
+                    Station 4: Run 800m + Burpee Broad Jumps 80m
+                    Station 5: Run 800m + Row 1000m
+                    Station 6: Run 800m + Farmers Carry 200m @ 24 kg
+                    Station 7: Run 800m + Barbell Lunges 100m @ 35 kg
+                    Station 8: Run 800m + Wall Balls 100 reps
+                  rest: "None - continuous"
+
+      week10:
+        theme: "Peak Performance & Sharpening"
+        tuesday:
+          name: "Hyrox Endurance: Race Pace Transitions"
+          duration: 60 min
+          workout:
+            - block: "Transition Practice x 4"
+              exercises:
+                - name: "Station/Run Combos"
+                  prescription: |
+                    Round 1: Sled Push 50m @ 152 kg + Run 800m
+                    Round 2: Row 1000m + Run 800m
+                    Round 3: Burpees 40m + Run 800m
+                    Round 4: Wall Balls 50 reps + Run 800m
+                  rest: "2 min between rounds"
+            - block: "Speed Station Work"
+              exercises:
+                - name: Sled Push
+                  prescription: "2 x 25m @ 152 kg - FAST"
+                - name: SkiErg
+                  prescription: "2 x 500m @ race pace"
+
+      week11:
+        theme: "Sharpen - Reduce Volume, Maintain Intensity"
+        tuesday:
+          name: "Hyrox Endurance: Abbreviated Simulation"
+          duration: 45 min
+          workout:
+            - block: "4-Station Sharp Simulation"
+              exercises:
+                - name: "Abbreviated Sim"
+                  prescription: |
+                    Run 600m + SkiErg 750m + Run 600m + Sled Push 50m @ 152 kg +
+                    Run 600m + Wall Balls 50 reps + Run 600m
+                  rest: "None - continuous"
+
+      week12:
+        theme: "Race Week - Stay Fresh"
+        tuesday:
+          name: "Hyrox Endurance: Race Week - Light Activation Only"
+          duration: 20 min
+          workout:
+            - block: "Movement Activation (OPTIONAL)"
+              exercises:
+                - name: Light Practice
+                  prescription: "5 min easy run + 250m easy SkiErg + 10 Wall Balls + 5 Burpee Broad Jumps"
+
+        saturday:
+          name: "RACE DAY - April 12, 2026"
+          notes: "GO TIME!"
+
+  raceDayStrategy:
+    target: "Sub 70:00"
+    runPace: "5:00-5:15/km"
+    stationTargets:
+      - station: SkiErg
+        target: "4:30-5:00"
+        strategy: "Start at 2:20/500m pace"
+      - station: Sled Push
+        target: "3:00-3:30"
+        strategy: "Low position. NEVER STOP."
+      - station: Sled Pull
+        target: "2:00-2:30"
+        strategy: "Steady hand-over-hand"
+      - station: Burpee Broad Jumps
+        target: "4:00-4:30"
+        strategy: "8 x 10m mental chunks"
+      - station: Rowing
+        target: "4:00-4:30"
+        strategy: "2:10-2:15 splits"
+      - station: Farmers Carry
+        target: "2:30-3:00"
+        strategy: "Quick steps. 2 breaks max."
+      - station: Sandbag Lunges
+        target: "4:00-4:30"
+        strategy: "Slow & steady"
+      - station: Wall Balls
+        target: "4:30-5:00"
+        strategy: "10x10 or 5x20. FINISH STRONG."
+    mantra: "Control the first half. Attack the second half. Trust the training."
